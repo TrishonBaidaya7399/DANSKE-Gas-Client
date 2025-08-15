@@ -199,7 +199,7 @@ const News = () => {
               onMouseEnter={() => setHoveredCard(event.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              {/* Image Container */}
+              {/* Image-Container */}
               <div
                 className={`relative ${
                   originalIndex === 2
@@ -225,7 +225,6 @@ const News = () => {
                   />
                 </div>
               </div>
-
               {/* Content Container */}
               <div
                 className={`flex flex-col ${
