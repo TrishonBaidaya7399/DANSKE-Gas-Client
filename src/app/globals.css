@@ -212,31 +212,31 @@ html {
 }
 .app-container {
   width: 100%;
-  max-width: 1281px;
+  max-width: 1312px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0; /* default for screens above 1024px */
+  padding: 0 16px; /* default for screens above 1024px */
   box-sizing: border-box;
 }
 
 /* From 1024px down to 768px */
 @media (max-width: 1024px) and (min-width: 769px) {
   .app-container {
-    padding: 0 !important;
+    padding: 0 16px !important;
   }
 }
 
 /* Below 768px */
 @media (max-width: 768px) {
   .app-container {
-    max-width: 754px;
-    padding: 0;
+    max-width: 786px;
+    padding: 0 16px;
   }
 }
 @media (max-width: 512px) {
   .app-container {
-    max-width: 370px;
-    padding: 0;
+    max-width: 402px;
+    padding: 0 16px;
   }
 }
 

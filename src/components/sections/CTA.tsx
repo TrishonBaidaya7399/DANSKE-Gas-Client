@@ -13,7 +13,10 @@ const CTA = () => {
       <div className="relative ">
         {/* Desktop Image and Tablet Image*/}
         <Image
-          src={"/assets/trusted-section.png"}
+          src={"/assets/trusted-section.webp"}
+          overrideSrc={"/assets/trusted-section.webp"}
+          placeholder='blur'
+          blurDataURL={"/assets/trusted-section-compressed.webp"}
           alt={"trusted-section"}
           width={1000}
           height={500}
@@ -25,7 +28,10 @@ const CTA = () => {
 
         {/* Mobile  */}
         <Image
-          src={"/assets/cta-mobile.png"}
+          src={"/assets/cta-mobile.webp"}
+          overrideSrc={"/assets/cta-mobile.webp"}
+          placeholder='blur'
+          blurDataURL={"/assets/cta-mobile-compressed.webp"}
           alt={"trusted-section-mobile"}
           width={1000}
           height={500}

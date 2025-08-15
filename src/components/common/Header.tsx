@@ -75,8 +75,8 @@ const BREAKPOINTS = {
 } as const;
 
 const IMAGES = {
-  DESKTOP_HEADER_LARGE: "/assets/main-header-1440.png",
-  MOBILE_HEADER: "/assets/header-pic.png",
+  DESKTOP_HEADER_LARGE: "/assets/main-header-1440.webp",
+  MOBILE_HEADER: "/assets/header-pic.webp",
   DESKTOP_LOGO: "/assets/logos/light-logo.svg",
   MOBILE_LOGO: "/assets/logos/mobile-light-logo.svg",
 } as const;

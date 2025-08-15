@@ -88,7 +88,7 @@ const FooterDescription: React.FC<{ className?: string }> = ({
       From high-performance racing fuels to technical gases.
     </p>{" "}
     <p
-      className={`${className} lg:hidden md:hidden block lg:w-full md:w-full w-[354px] text-[16px] text-white leading-[140%] lg:tracking-[-0.2px]`}
+      className={`${className} lg:hidden md:hidden block lg:w-full md:w-full max-w-[354px] w-full text-[16px] text-white leading-[140%] lg:tracking-[-0.2px]`}
     >
       Danske Gas powers industries, engines, and champions. From
       high-performance racing fuels to technical gases.

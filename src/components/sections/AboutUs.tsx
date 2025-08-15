@@ -63,7 +63,8 @@ const STATS_DATA: StatItem[] = [
 ];
 
 const IMAGES = {
-  DANSKE_GAS: "/assets/danske-gas.png",
+  DANSKE_GAS: "/assets/danske-gas.webp",
+  DANSKE_GAS_compressed: "/assets/danske-gas-compressed.webp",
 } as const;
 
 // Custom hook for managing multiple counters
@@ -323,6 +324,9 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
                   width={634}
                   className="w-full h-full rounded-[16px]"
                   priority
+                  overrideSrc={IMAGES.DANSKE_GAS}
+                  placeholder="blur"
+                  blurDataURL={IMAGES.DANSKE_GAS_compressed}
                 />
               </div>
 

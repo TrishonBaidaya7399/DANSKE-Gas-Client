@@ -109,7 +109,7 @@ const FAQS = () => {
           <h2 className="text-[34px] lg:text-[48px] w-[90%] font-normal text-black leading-tight">
             Don't stress, we've got The Answers
           </h2>
-          <p className="lg:text-[18px] text-[16px] text-black lg:w-[503px] md:w-[496px] text-wrap mt-[8px] w-[370px]">
+          <p className="lg:text-[18px] text-[16px] text-black lg:max-w-[503px] md:max-w-[496px] text-wrap mt-[8px] max-w-[370px]">
             Danske Gas powers industries, engines, and champions — and we make
             sure working with us is just as smooth. Below are answers to common
             questions from new clients and partners.

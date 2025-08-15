@@ -10,6 +10,7 @@ interface EventCard {
   title: string;
   description: string;
   imageUrl: string;
+  compressedImageUrl?: string;
   imageAlt: string;
 }
 
@@ -26,7 +27,8 @@ const News = () => {
       title: "Fuel Innovation Talk at Industry Summit",
       description:
         "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial",
-      imageUrl: "/assets/news-pic-1.png",
+      imageUrl: "/assets/news-pic-1.webp",
+      compressedImageUrl: "/assets/news-pic-1-compressed.webp",
       imageAlt: "Industry Summit Meeting",
     },
     {
@@ -35,7 +37,8 @@ const News = () => {
       title: "Speaking at the Chemical Safety Conference",
       description:
         "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial.",
-      imageUrl: "/assets/news-pic-2.png",
+      imageUrl: "/assets/news-pic-2.webp",
+      compressedImageUrl: "/assets/news-pic-2-compressed.webp",
       imageAlt: "Energy Conference",
     },
     {
@@ -44,7 +47,8 @@ const News = () => {
       title: "Partnering at the Sustainable Transport Forum",
       description:
         "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial.",
-      imageUrl: "/assets/news-pic-3.png",
+      imageUrl: "/assets/news-pic-3.webp",
+      compressedImageUrl: "/assets/news-pic-3-compressed.webp",
       imageAlt: "Gas Symposium",
     },
   ];
@@ -206,6 +210,9 @@ const News = () => {
                 <div className="relative rounded-lg">
                   <Image
                     src={event.imageUrl}
+                    overrideSrc={event.imageUrl}
+                    placeholder="blur"
+                    blurDataURL={event.compressedImageUrl}
                     alt={event.imageAlt}
                     className={`rounded-[10px] ${
                       originalIndex === 2
