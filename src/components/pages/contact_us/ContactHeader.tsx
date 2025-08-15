@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { Icons } from "@/components/icons/icons";
+import { useRouter } from "next/navigation";
 
 // Domain Models
 interface NavItem {
@@ -58,6 +59,7 @@ const IMAGES = {
 
 const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
   // Simple state
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
@@ -171,7 +173,10 @@ const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
               <div className="lg:mt-[32px] mt-[16px]">
                 <nav className="flex items-center justify-between">
                   {/* Logo */}
-                  <div className="flex-shrink-0">
+                  <div
+                    className="flex-shrink-0 cursor-pointer"
+                    onClick={() => router.push("/")}
+                  >
                     <Image
                       src={
                         isMobileLogo ? IMAGES.MOBILE_LOGO : IMAGES.DESKTOP_LOGO

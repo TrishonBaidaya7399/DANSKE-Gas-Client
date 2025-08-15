@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { gsap } from "gsap";
 import { Icons } from "../Icons";
+import { useRouter } from "next/navigation";
 
 // Domain Models
 interface NavItem {
@@ -82,6 +83,7 @@ const IMAGES = {
 
 const Header: React.FC<HeaderProps> = ({ className = "" }) => {
   // Simple state
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
@@ -215,7 +217,10 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               <div className="lg:mt-[45px] mt-[24px]">
                 <nav className="flex items-center justify-between">
                   {/* Logo */}
-                  <div className="flex-shrink-0">
+                  <div
+                    className="flex-shrink-0 cursor-pointer"
+                    onClick={() => router.push("/")}
+                  >
                     <Image
                       src={
                         isMobileLogo ? IMAGES.MOBILE_LOGO : IMAGES.DESKTOP_LOGO
