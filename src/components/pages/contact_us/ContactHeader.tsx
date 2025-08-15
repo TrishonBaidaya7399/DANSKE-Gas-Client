@@ -368,15 +368,15 @@ const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="flex items-end justify-start mt-auto">
                     <div className="lg:mb-[60px] md:mb-[20px] mb-[23px]">
-                      <nav className="text-white text-[14px] font-normal">
+                      <nav className="text-gray-200 text-[14px] font-normal">
                         <Link
                           href="/"
                           className="hover:underline transition-all duration-300"
                         >
                           Homepage
                         </Link>
-                        <span className="mx-2">{">"}</span>
-                        <span>Contact Us</span>
+                        <span className="mx-2">{"/"}</span>
+                        <span className="font-semibold">Contact Us</span>
                       </nav>
 
                       {/* <h1 className="text-white lg:text-[164px] only-lg:text-[164px] md:text-[148px] text-[72px] lg:font-medium md:font-normal leading-[123%] font-medium">
