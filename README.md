@@ -155,4 +155,4 @@ The project is deployed on Vercel with automatic deployments from the main branc
 
 ---
 
-**Built with ❤️ for Danske Gas**
+**Built with ❤️ for Fiver Client**
