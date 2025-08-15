@@ -153,7 +153,9 @@ const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
   return (
     <div className={`w-full relative ${className}`}>
       <div
-        className="w-full relative bg-cover bg-center bg-no-repeat overflow-hidden lg:h-[480px] md:h-[400px] h-[344px]"
+        className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden lg:h-[480px] md:h-[400px] ${
+          (isMobileMenu && isMenuOpen) ? "h-[420px]" : "h-[344px]"
+        }`}
         style={backgroundStyle}
       >
         <div className="flex app-container justify-center w-full h-full">
