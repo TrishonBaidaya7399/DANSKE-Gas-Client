@@ -95,7 +95,7 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
         </div>
       </div>
 
-      <div className="bg-red-800 py-4 overflow-hidden">
+      <div className="bg-red-800 py-4 overflow-hidden flex">
         <Marquee speed={50} gradient={false} className="flex">
           {MARQUEE_ITEMS.map((item, index) => (
             <span
