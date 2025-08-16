@@ -411,10 +411,10 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="flex-1 flex items-center">
                     <div className="3xl:mb-[110px] 2xl:mb-[90px] only-lg:mb-[80px] md:mb-[195px] lg:mb-0 mb-[170px]">
-                      <h1 className="text-white lg:text-[64px]  only-lg:text-[58px] md:text-[48px] text-[38px] lg:font-medium md:font-normal  leading-[130%] only-lg:w-[668px] md:w-[596px] lg:w-[668px] w-[370px] font-medium">
+                      <h1 className="text-white lg:text-[64px]  only-lg:text-[58px] md:text-[48px] text-[38px] lg:font-medium md:font-normal  leading-[130%] only-lg:w-[668px] md:w-[596px] lg:w-[668px] ma-w-[370px] font-medium">
                         Global Fuels. Local Delivery. Industrial Precision.
                       </h1>
-                      <p className="lg:hidden md:block block text-white  mt-[16px] md:text-[24px] text-[20px] font-normal  md:w-[596px] w-[370px] tracking-[-1%] leading-[150%]">
+                      <p className="lg:hidden md:block block text-white  mt-[16px] md:text-[24px] text-[20px] font-normal  md:w-[596px] max-w-[370px] tracking-[-1%] leading-[150%]">
                         Supplying high-performance energy solutions to
                         industries, businesses, and global motorsports.
                       </p>
