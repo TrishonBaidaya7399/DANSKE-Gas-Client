@@ -153,9 +153,7 @@ const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
   return (
     <div className={`w-full relative ${className}`}>
       <div
-        className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden lg:h-[480px] md:h-[400px] ${
-          (isMobileMenu && isMenuOpen) ? "h-[420px]" : "h-[344px]"
-        }`}
+        className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden lg:h-[480px] md:h-[400px] h-[344px]`}
         style={backgroundStyle}
       >
         <div className="flex app-container justify-center w-full h-full">
@@ -284,7 +282,7 @@ const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
 
               {/* Mobile Menu */}
               {isMobileMenu && isMenuOpen && (
-                <div className="absolute top-[90px] left-0 right-0 rounded-b-2xl bg-off-white backdrop-blur-lg shadow-2xl border border-white/30 z-40">
+                <div className="fixed app-container top-[90px] left-0 right-0 rounded-b-2xl bg-off-white backdrop-blur-lg shadow-2xl border border-white/30 z-40" style={{maxWidth: 'calc(100% - 32px)'}}>
                   <div className="mt-4 mb-2">
                     {NAV_ITEMS.map((item, index) => (
                       <Link
