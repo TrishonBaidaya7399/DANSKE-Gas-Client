@@ -281,7 +281,7 @@ const OurValues: React.FC<OurValuesProps> = ({ className = "" }) => {
             {VALUE_CARDS.map((card) => (
               <div
                 key={card.id}
-                className="rounded-2xl lg:h-[202px] md:h-[225px]  h-[142px] w-full flex flex-col justify-end lg:pl-[22px] lg:pr-[15px] lg:pb-[20px] pl-4 pr-4 pb-[24px] pt-[24px]"
+                className="rounded-2xl lg:min-h-[202px] md:min-h-[225px]  min-h-[142px] max-h-fit w-full flex flex-col justify-end lg:pl-[22px] lg:pr-[15px] lg:pb-[20px] pl-4 pr-4 pb-[24px] pt-[24px]"
                 style={card.bgStyle}
               >
                 <div>

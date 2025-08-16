@@ -47,7 +47,7 @@ const OurSupply = () => {
     sectionTitle: "OUR PRODUCTS",
     mainHeading: "What We Supply",
     description:
-      "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial.",
+      "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial",
     buttonText: "Learn More",
     buttonHref: "/products",
   };
@@ -271,7 +271,7 @@ const OurSupply = () => {
       className={"app-container  "}
       style={{ height: "610vh" }}
     >
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-8 sticky top-0 lg:h-[94vh] items-center md:h-[94vh] h-[63vh]">
+      <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-[153px] md:gap-5 gap-10 sticky top-0 lg:h-[94vh] items-center md:h-[94vh] h-[63vh]">
         {/* Column 1 - Main Heading */}
         <div className="md:col-span-1">
           <span
@@ -289,7 +289,7 @@ const OurSupply = () => {
           <h2 className="text-[34px] md:text-[38px] lg:text-[48px] font-normal text-black leading-tight">
             {OUR_SUPPLY_CONTENT.mainHeading}
           </h2>
-          <p className="lg:text-[20px] text-[16px]  text-black lg:w-[503px] md:w-[339px] w-full text-wrap mt-[8px]">
+          <p className="lg:text-[19px] text-[16px]  text-black lg:w-[544px] md:w-[339px] w-full text-wrap mt-[8px]">
             {OUR_SUPPLY_CONTENT.description}
           </p>
           <div className="mt-8">

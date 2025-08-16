@@ -346,11 +346,13 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
 
           {/* Right Grid - Content */}
           <div className="w-full grid-cols-1 flex flex-col justify-between lg:pl-[56px] lg:h-[370px] mt-[24px] md:mt-8 lg:mt-0">
-            <div className="space-y-6">
+            <div className="">
               {ABOUT_CONTENT.description.split("\n").map((paragraph, index) => (
                 <p
                   key={index}
-                  className=" w-full lg:text-[20px] md:text-[20px] text-[16px] font-normal text-black leading-[150%] tracking-[-1%]  "
+                  className={` w-full lg:text-[20px] md:text-[20px] text-[16px] font-normal text-black leading-[150%] tracking-[-1%] ${
+                    index === 0 && "mb-4"
+                  }`}
                 >
                   {paragraph}
                 </p>
@@ -358,7 +360,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
             </div>
 
             {/* Learn Button - Positioned at the very bottom */}
-            <div className="flex mt-8 lg:mt-0">
+            <div className="flex lg:mt-[60px] md:mt-10 mt-8">
               <Button
                 variant="cta-gradient"
                 size="cta"
