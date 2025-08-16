@@ -214,7 +214,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
           <div className="flex flex-col w-full relative h-full">
             <div className="relative z-10 flex flex-col h-full">
               {/* Navigation */}
-              <div className="lg:mt-[45px] mt-[24px]">
+              <div className="2xl:mt-[45px] lg:mt-[36px] mt-[24px]">
                 <nav className="flex items-center justify-between">
                   {/* Logo */}
                   <div
