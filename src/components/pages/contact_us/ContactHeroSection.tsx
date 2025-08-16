@@ -105,7 +105,7 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
               {item}
             </span>
           ))}
-        </Marquee>
+        </Marquee>s
       </div>
     </div>
   );
