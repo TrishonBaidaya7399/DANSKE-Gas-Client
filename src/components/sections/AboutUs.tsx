@@ -331,12 +331,12 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
               </div>
 
               {/* Text Overlay */}
-              <div className="relative z-10 lg:pl-[40px] lg:pt-[40px] md:pl-[40px] md:pt-[40px] pl-[16px] pt-[24px] pr-[40px] h-full flex flex-col justify-start">
+              <div className="relative z-10 lg:px-[40px] lg:pt-[40px] md:px-[40px] md:pt-[40px] pl-[16px] px-4 pt-6 h-full flex flex-col justify-start">
                 <div className="text-white">
                   <span className=" lg:text-[16px] md:text-[16px]  text-[12px] text-off-white font-medium tracking-wide block">
                     {ABOUT_CONTENT.sectionTitle}
                   </span>
-                  <h2 className="lg:text-[40px] md:text-[34px] md:font-normal only-lg:w-[450px] text-[28px] text-off-white leading-[133%] tracking-[0%] font-medium lg:w-[550px] md:w-[538px] w-[350px]">
+                  <h2 className="lg:text-[40px] md:text-[34px] md:font-normal only-lg:max-:w-[450px] text-[28px] text-off-white leading-[133%] tracking-[0%] font-medium lg:max-w-[550px] md:max-w-[538px] max-w-[350px]">
                     {ABOUT_CONTENT.mainHeading}
                   </h2>
                 </div>

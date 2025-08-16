@@ -129,7 +129,7 @@ const FAQS = () => {
             >
               <div className="flex justify-between items-center">
                 <h3
-                  className={`text-[20px] lg:w-full md:w-[45%] w-[290px] font-medium transition-all duration-700 ease-out ${
+                  className={`text-[20px] lg:w-full md:w-[45%] w-full max-w-[290px] font-medium transition-all duration-700 ease-out ${
                     openFAQ === faq.id ? "text-white" : "text-black"
                   }`}
                 >

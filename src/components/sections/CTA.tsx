@@ -45,10 +45,10 @@ const CTA = () => {
             <span className="lg:text-[16px] md:text-[14px] text-[12px] text-light-gray font-medium tracking-wide block">
               {CTA_CONTENT.sectionTitle}
             </span>
-            <h2 className="lg:text-[40px] md:text-[37px] text-[28px] lg:w-[480px] md:w-[280px] w-[280px] text-off-white md:font-normal font-medium leading-[133%] tracking-[0%] lg:block md:hidden block">
+            <h2 className="lg:text-[40px] md:text-[37px] text-[28px] lg:max-w-[480px] md:max-w-[280px]  max-w-[280px] text-off-white md:font-normal font-medium leading-[133%] tracking-[0%] lg:block md:hidden block">
               {CTA_CONTENT.mainHeading}
             </h2>{" "}
-            <h2 className="lg:text-[40px] md:text-[37px] text-[28px] lg:w-[480px] md:w-[100%] w-[280px] text-off-white md:font-normal font-medium leading-[133%] tracking-[0%] lg:hidden md:block hidden">
+            <h2 className="lg:text-[40px] md:text-[37px] text-[28px] lg:w-[480px] md:w-[100%] max-w-[280px] text-off-white md:font-normal font-medium leading-[133%] tracking-[0%] lg:hidden md:block hidden">
               Trusted to Fuel <br /> the FIA World Rally <br /> Championship
             </h2>
           </div>
