@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { gsap } from "gsap";
-import { Icons } from "@/components/icons/icons";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
@@ -14,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Icons } from "@/components/Icons";
 
 interface NavItem {
   label: string;
