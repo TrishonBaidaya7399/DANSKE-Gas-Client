@@ -3,6 +3,7 @@ import AboutUs from "@/components/sections/AboutUs";
 import ContactUs from "@/components/sections/ContactUs";
 import CTA from "@/components/sections/CTA";
 import FAQS from "@/components/sections/FAQS";
+import HeroSection from "@/components/sections/HeroSection";
 import News from "@/components/sections/News";
 import OurSupply from "@/components/sections/OurSupply";
 import OurValues from "@/components/sections/OurValues";
@@ -12,9 +13,8 @@ const page = () => {
   return (
     <div>
       <div className="h-full">
-        <Header />
+        <HeroSection />
       </div>
-
       <AboutUs />
       <OurValues />
       <CTA />
