@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface FAQItem {
   id: number;
@@ -10,7 +10,28 @@ interface FAQItem {
 
 const FAQS = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const [windowWidth, setWindowWidth] = useState(1200);
+  const BREAKPOINTS = {
+    MOBILE_LOGO: 786,
+    MOBILE_MENU: 1025,
+    DESKTOP_LARGE: 1275,
+  } as const;
+  const isMobileMenu = windowWidth <= BREAKPOINTS.MOBILE_MENU;
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
 
+    if (typeof window !== "undefined") {
+      setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, []);
+  
   const faqData: FAQItem[] = [
     {
       id: 1,
@@ -156,9 +177,10 @@ const FAQS = () => {
               >
                 <div className="overflow-hidden">
                   <p
-                    className={`text-[16px] leading-relaxed transition-all duration-700 ease-out ${
+                    className={`text-[16px] leading-relaxed transition-all duration-700 ease-out xl:mr-[109px] lg:mr-[80px] mr-10  ${
                       openFAQ === faq.id ? "text-white" : "text-gray-600"
                     }`}
+                    // style={{maxWidth: 'calc(100% - 109px)'}}
                   >
                     {faq.answer}
                   </p>

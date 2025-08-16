@@ -2,7 +2,7 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { gsap } from "gsap";
+import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
 
 interface ContactHeroSectionProps {
@@ -24,7 +24,6 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
   className = "",
 }) => {
   const [windowWidth, setWindowWidth] = useState(1200);
-  const marqueeRef = useRef<HTMLDivElement>(null);
 
   const isMobileMenu = windowWidth <= BREAKPOINTS.MOBILE_MENU;
   const isMobileLogo = windowWidth <= BREAKPOINTS.MOBILE_LOGO;
@@ -37,26 +36,6 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
   };
-
-  useEffect(() => {
-    if (marqueeRef.current) {
-      const marqueeItems = marqueeRef.current.children;
-      const itemWidth = 300;
-      const totalWidth = itemWidth * MARQUEE_ITEMS.length;
-
-      gsap.set(marqueeRef.current, { x: 0 });
-
-      gsap.to(marqueeRef.current, {
-        x: -totalWidth,
-        duration: 15,
-        ease: "none",
-        repeat: -1,
-        modifiers: {
-          x: gsap.utils.unitize((x) => Number.parseFloat(x) % totalWidth),
-        },
-      });
-    }
-  }, []);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -117,22 +96,16 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
       </div>
 
       <div className="bg-red-800 py-4 overflow-hidden">
-        <div
-          ref={marqueeRef}
-          className="flex whitespace-nowrap gap-[100px]"
-          style={{ width: "max-content" }}
-        >
-          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map(
-            (item, index) => (
-              <span
-                key={index}
-                className="text-white font-bold xl:text-[48px] lg:text-[32px] text-[28px]  uppercase tracking-wider"
-              >
-                {item}
-              </span>
-            )
-          )}
-        </div>
+        <Marquee speed={50} gradient={false} className="flex">
+          {MARQUEE_ITEMS.map((item, index) => (
+            <span
+              key={index}
+              className="text-white font-bold xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider mr-[100px]"
+            >
+              {item}
+            </span>
+          ))}
+        </Marquee>
       </div>
     </div>
   );
