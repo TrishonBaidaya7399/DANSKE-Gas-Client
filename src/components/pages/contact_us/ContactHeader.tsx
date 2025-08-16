@@ -8,6 +8,12 @@ import { gsap } from "gsap";
 import { Icons } from "@/components/icons/icons";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface NavItem {
   label: string;
@@ -266,100 +272,112 @@ const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
                       </>
                     )}
 
-                    {/* Mobile Hamburger */}
+                    {/* Mobile Hamburger with Shadcn Dropdown */}
                     {isMobileMenu && (
-                      <button
-                        onClick={toggleMenu}
-                        aria-label="Toggle menu"
-                        className="cursor-pointer z-50"
+                      <DropdownMenu
+                        open={isMenuOpen}
+                        onOpenChange={setIsMenuOpen}
                       >
-                        <Icons.HamBurger />
-                      </button>
+                        <DropdownMenuTrigger asChild>
+                          <button
+                            aria-label="Toggle menu"
+                            className="cursor-pointer z-50"
+                          >
+                            <Icons.HamBurger />
+                          </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          className="w-[calc(100vw-32px)] mt-4 rounded-b-2xl bg-off-white backdrop-blur-lg shadow-2xl border border-white/30 z-[60]"
+                          align="end"
+                          sideOffset={8}
+                          style={{ borderRadius: "0 0 20px 20px" }}
+                        >
+                          <div className="mt-4 mb-2">
+                            {NAV_ITEMS.map((item, index) => (
+                              <DropdownMenuItem key={index} asChild>
+                                <Link
+                                  href={item.href}
+                                  onClick={closeMenu}
+                                  className={`block px-6 py-2 font-normal text-[20px] transition-all duration-300 relative group cursor-pointer ${
+                                    item.isActive
+                                      ? "text-charcoal font-bold"
+                                      : "text-charcoal"
+                                  }`}
+                                >
+                                  <span className="relative inline-block">
+                                    <span
+                                      className={`transition-opacity duration-300 ${
+                                        item.isActive
+                                          ? ""
+                                          : "group-hover:opacity-0"
+                                      }`}
+                                    >
+                                      {item.label}
+                                    </span>
+
+                                    {!item.isActive && (
+                                      <span className="absolute inset-0 font-bold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                        {item.label}
+                                      </span>
+                                    )}
+
+                                    <span
+                                      className={`absolute left-0 -bottom-0 h-[1px] bg-charcoal transition-all duration-300 ${
+                                        item.isActive
+                                          ? "w-full"
+                                          : "w-0 group-hover:w-full"
+                                      }`}
+                                    ></span>
+                                  </span>
+                                </Link>
+                              </DropdownMenuItem>
+                            ))}
+
+                            <div className="relative" ref={languageDropdownRef}>
+                              <button
+                                onClick={toggleLanguageDropdown}
+                                className="flex items-center px-6 py-3 font-normal text-[18px] text-charcoal transition-opacity duration-300 hover:opacity-80 w-full text-left cursor-pointer"
+                              >
+                                {selectedLanguage}
+                                <ChevronDown
+                                  className={`ml-2 w-4 h-4 transition-transform duration-300 ${
+                                    isLanguageDropdownOpen ? "rotate-180" : ""
+                                  }`}
+                                />
+                              </button>
+
+                              {isLanguageDropdownOpen && (
+                                <div className="px-6 pb-2">
+                                  {LANGUAGES.filter(
+                                    (lang) => lang.code !== selectedLanguage
+                                  ).map((language) => (
+                                    <button
+                                      key={language.code}
+                                      onClick={() =>
+                                        selectLanguage(language.code)
+                                      }
+                                      className="block w-full text-left py-1 text-charcoal font-normal text-[18px] leading-[150%] uppercase transition-opacity duration-300 hover:opacity-80 cursor-pointer"
+                                      style={{
+                                        fontWeight: 400,
+                                        fontSize: "18px",
+                                        lineHeight: "150%",
+                                        letterSpacing: "0%",
+                                        textTransform: "uppercase",
+                                      }}
+                                    >
+                                      {language.code}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     )}
                   </nav>
                 </div>
               </motion.div>
-
-              {/* Mobile Menu */}
-              {isMobileMenu && isMenuOpen && (
-                <div className="fixed app-container top-[90px] left-0 right-0 rounded-b-2xl bg-off-white backdrop-blur-lg shadow-2xl border border-white/30 z-40" style={{maxWidth: 'calc(100% - 32px)'}}>
-                  <div className="mt-4 mb-2">
-                    {NAV_ITEMS.map((item, index) => (
-                      <Link
-                        key={index}
-                        href={item.href}
-                        onClick={closeMenu}
-                        className={`block px-6 py-2 font-normal text-[20px] transition-all duration-300 relative group ${
-                          item.isActive
-                            ? "text-charcoal font-bold"
-                            : "text-charcoal"
-                        }`}
-                      >
-                        <span className="relative inline-block">
-                          <span
-                            className={`transition-opacity duration-300 ${
-                              item.isActive ? "" : "group-hover:opacity-0"
-                            }`}
-                          >
-                            {item.label}
-                          </span>
-
-                          {!item.isActive && (
-                            <span className="absolute inset-0 font-bold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                              {item.label}
-                            </span>
-                          )}
-
-                          <span
-                            className={`absolute left-0 -bottom-0 h-[1px] bg-charcoal transition-all duration-300 ${
-                              item.isActive
-                                ? "w-full"
-                                : "w-0 group-hover:w-full"
-                            }`}
-                          ></span>
-                        </span>
-                      </Link>
-                    ))}
-
-                    <div className="relative" ref={languageDropdownRef}>
-                      <button
-                        onClick={toggleLanguageDropdown}
-                        className="flex items-center px-6 py-3 font-normal text-[18px] text-charcoal transition-opacity duration-300 hover:opacity-80 w-full text-left cursor-pointer"
-                      >
-                        {selectedLanguage}
-                        <ChevronDown
-                          className={`ml-2 w-4 h-4 transition-transform duration-300 ${
-                            isLanguageDropdownOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-
-                      {isLanguageDropdownOpen && (
-                        <div className="px-6 pb-2">
-                          {LANGUAGES.filter(
-                            (lang) => lang.code !== selectedLanguage
-                          ).map((language) => (
-                            <button
-                              key={language.code}
-                              onClick={() => selectLanguage(language.code)}
-                              className="block w-full text-left py-1 text-charcoal font-normal text-[18px] leading-[150%] uppercase transition-opacity duration-300 hover:opacity-80 cursor-pointer"
-                              style={{
-                                fontWeight: 400,
-                                fontSize: "18px",
-                                lineHeight: "150%",
-                                letterSpacing: "0%",
-                                textTransform: "uppercase",
-                              }}
-                            >
-                              {language.code}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
 
               {/* Hero Section */}
               {!(isMobileMenu && isMenuOpen) && (
@@ -377,9 +395,6 @@ const ContactUsHeader: React.FC<ContactHeaderProps> = ({ className = "" }) => {
                         <span className="font-semibold">Contact Us</span>
                       </nav>
 
-                      {/* <h1 className="text-white lg:text-[164px] only-lg:text-[164px] md:text-[148px] text-[72px] lg:font-medium md:font-normal leading-[123%] font-medium">
-                        Contact Us
-                      </h1> */}
                       <motion.h1
                         initial={{ x: -100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
