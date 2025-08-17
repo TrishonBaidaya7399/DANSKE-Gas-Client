@@ -121,7 +121,7 @@ const FormField: React.FC<FormFieldProps> = ({
           placeholder={placeholder}
           rows={rows}
           className={`${commonClasses} resize-none ${
-            name === "comment" ? "h-24" : ""
+            name === "comment" ? "h-26" : ""
           }`}
           style={{
             borderBottomColor: getBorderColor(),
@@ -182,7 +182,7 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
   const isMobile = layout === "mobile";
 
   const titleClass = isDesktop
-    ? "text-[22px] font-bold mb-[30px]"
+    ? "3xl:text-[22px] font-bold mb-[30px] leading-[110%]"
     : isTablet
     ? "text-[22px] font-bold  mb-[30px]"
     : "text-[18px] font-bold mb-[8px]";
@@ -233,7 +233,7 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
           <Separator className="bg-white h-px w-full" />
         </div>
 
-        <div>
+        <div className="3xl:ml-[10px]">
           <h3 className={titleClass} style={{ color: STYLES.colors.textWhite }}>
             Address
           </h3>
@@ -265,7 +265,7 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
   return (
     <div className="relative lg:w-full w-[400px]">
       {/* Grid container with perfect center alignment */}
-      <div className="grid grid-cols-2 gap-8 relative">
+      <div className="grid grid-cols-2 gap-8 relative 3xl:w-[441px]">
         <div>
           <h3 className={titleClass} style={{ color: STYLES.colors.textWhite }}>
             Get in touch
@@ -292,7 +292,7 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
           </div>
         </div>
 
-        <div className="">
+        <div className="3xl:ml-[10px]">
           <h3 className={titleClass} style={{ color: STYLES.colors.textWhite }}>
             Address
           </h3>
@@ -319,7 +319,7 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
         </div>
 
         {/* Vertical separator - always perfectly centered */}
-        <div className="absolute top-0 bottom-0 left-[35%] ml-[40px] transform -translate-x-1/2">
+        <div className="absolute top-0 bottom-0 left-[38%] ml-[40px] transform -translate-x-1/2">
           <Separator orientation="vertical" className="bg-white h-full w-px" />
         </div>
       </div>
@@ -349,18 +349,20 @@ const ContactForm: React.FC<{
   const isMobile = layout === "mobile";
 
   const titleSize = isDesktop
-    ? "lg:text-[40px] md:text-[32px] text-[30px]"
+    ? "lg:text-[40px] md:text-[32px] text-[30px] font-semibold leading-[133%] tracking-tight"
     : isTablet
     ? "text-xl md:text-[28px]"
     : "text-[28px]";
 
   const containerClass = isDesktop
-    ? "rounded-[24px] h-full pt-[24px] pl-[34px] pr-[34px]"
+    ? "rounded-[24px] h-full 3xl:pt-[24px] 3xl:px-[37px] 3xl:h-[572px] 3xl:w-[572px] 3xl:ml-[11px]"
     : isTablet
     ? "rounded-[12px] py-[24px] px-[16px]"
     : "rounded-[12px] px-[16px] py-[24px]";
 
-  const formClass = isDesktop ? "space-y-8 flex-1 flex flex-col" : "space-y-6";
+  const formClass = isDesktop
+    ? "3xl:pb-4 flex-1 flex flex-col 3xl:gap-5 3xl:mt-7 3xl:font-normal text-[16px] leading-[140%]"
+    : "space-y-6";
 
   return (
     <div
@@ -375,8 +377,8 @@ const ContactForm: React.FC<{
       }}
     >
       <h3
-        className={`${titleSize} contact-text font-medium mb-8 leading-tight`}
-        style={{ color: STYLES.colors.textPrimary }}
+        className={`${titleSize}`}
+        style={{ color: STYLES.colors.textPrimary, letterSpacing: "0px" }}
       >
         {isDesktop ? (
           <>
@@ -432,7 +434,7 @@ const ContactForm: React.FC<{
           />
         </div>
 
-        <div className={isDesktop ? "mt-auto" : "pt-6"}>
+        <div className={isDesktop ? "3xl:mt-[16px]" : "pt-6"}>
           <Button
             type="submit"
             variant="cta-gradient"
@@ -452,13 +454,15 @@ const ContactForm: React.FC<{
 
 const HeaderSection: React.FC = () => (
   <div className="text-white mb-12">
-    <h2 className="text-3xl lg:text-[40px] xl:text-5xl font-normal leading-tight mb-6">
+    <h2
+      className="3xl:text-[40px] text-xl font-normal leading-[133%] mb-4 mt-2 tracking-wide"
+    >
       Place Your Request —<br />
       We'll Handle the Rest
     </h2>
     <p
-      className="text-[20px] leading-relaxed lg:w-[85%]"
-      style={{ color: STYLES.colors.textSecondary }}
+      className="3xl:text-[20px] leading-[133%] 3xl:w-[443px] 3xl:mt-2 tracking-tight"
+      style={{ color: STYLES.colors.textSecondary}}
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua.
@@ -469,10 +473,10 @@ const HeaderSection: React.FC = () => (
 // Main Component - The orchestrator of our domains
 const ContactUs: React.FC = () => {
   return (
-    <div className="app-container lg:mt-[170px] md:mt-[100px] mt-[130px]">
+    <div className="container-custom lg:mt-[170px] md:mt-[100px] mt-[130px]">
       <div className="relative">
         <div
-          className={`lg:rounded-[40px] md:rounded-[40px] rounded-[24px]  ${STYLES.spacing.containerPadding.desktop} lg:h-full relative h-full overflow-hidden`}
+          className={`lg:rounded-[40px] md:rounded-[40px] rounded-[24px]  3xl:w-[1280px] 3xl:h-[705px] 3xl:ml-[-9px] ${STYLES.spacing.containerPadding.desktop} lg:h-full relative h-full overflow-hidden`}
           style={{ background: STYLES.colors.gradientBackground }}
         >
           {/* Desktop Layout */}
@@ -484,7 +488,7 @@ const ContactUs: React.FC = () => {
                   <ContactInfo layout="desktop" />
                 </div>
               </div>
-              <div className="lg:ml-8 flex items-center justify-center h-full">
+              <div className=" flex items-center justify-center h-full">
                 <ContactForm layout="desktop" />
               </div>
             </div>
@@ -493,7 +497,7 @@ const ContactUs: React.FC = () => {
           {/* Tablet Layout */}
           <div className="hidden sm:block lg:hidden">
             <div className="text-white mb-12">
-              <h2 className="text-3xl md:text-[34px] font-normal leading-tight mb-6">
+              <h2 className="3xl:text-[40px] md:text-[34px] font-normal leading-[133%] mb-4 tracking-tight">
                 Place Your Request — We'll Handle the Rest
               </h2>
               <p
