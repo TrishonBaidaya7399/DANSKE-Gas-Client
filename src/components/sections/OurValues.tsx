@@ -249,26 +249,26 @@ const OurValues: React.FC<OurValuesProps> = ({ className = "" }) => {
   };
 
   return (
-    <div className={`  lg:mt-[170px] md:mt-[100px] mt-[110px] ${className}`}>
+    <div className="pt-[128px] md:pt-[105px] lg:pt-[167px]">
       {/* 3 Column Grid - 1 col for heading, 2 cols for description + cards */}
-      <div className=" app-container grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 ">
+      <div className="container-custom grid grid-cols-1 lg:grid-cols-4">
         {/* Column 1 - Main Heading */}
-        <div className="lg:col-span-1">
+        <div className="col-span-1">
           <span
-            className="text-[16px] font-medium  tracking-wide inline-block"
+            className="text-[12px] md:text-[16px] leading-[140%] font-medium inline-block"
             style={sectionTitleGradient}
           >
             {VALUES_CONTENT.sectionTitle}
           </span>
-          <h2 className="text-[34px] md:text-[38px] lg:text-[48px]  font-normal text-black leading-tight">
+          <h2 className="text-black text-[34px] lg:text-[48px] leading-[133%]">
             {VALUES_CONTENT.mainHeading}
           </h2>
         </div>
 
         {/* Column 2-3 - Description + Cards */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3 pl-[3px] 3xl:pl-0">
           {/* Description */}
-          <div className="lg:text-[30px] md:text-[28px] text-[22px]  text-black leading-relaxed  flex items-end ">
+          <div className="text-black text-[22px] md:text-[28px] lg:text-[32px] leading-[150%] md:leading-[133%] pt-[21.5px] md:pt-[27px] ml-[-2px] md:ml-0 md:pl-1 lg:pl-0 lg:pt-[2px] tracking-[-0.1px] md:tracking-[0px] 3xl:tracking-[-0.1px]">
             <span
               dangerouslySetInnerHTML={{
                 __html: renderHighlightedText(VALUES_CONTENT.description),
@@ -277,21 +277,21 @@ const OurValues: React.FC<OurValuesProps> = ({ className = "" }) => {
           </div>
 
           {/* Value Cards - Only under the description */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] mt-[44px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[14px] md:gap-[19px] 3xl:gap-0 pt-[38px] md:pt-[44px] 3xl:pr-[8px]">
             {VALUE_CARDS.map((card) => (
               <div
                 key={card.id}
-                className="rounded-2xl lg:min-h-[202px] md:min-h-[225px]  min-h-[142px] max-h-fit w-full flex flex-col justify-end lg:pl-[22px] lg:pr-[15px] lg:pb-[20px] pl-4 pr-4 pb-[24px] pt-[24px]"
+                className="w-full rounded-[16px] overflow-hidden px-[13px] mx:px-4 py-6 md:max-w-[307px]"
                 style={card.bgStyle}
               >
-                <div>
+                <div className="pt-[1px] md:pt-[34px]">
                   <h3
-                    className={`lg:text-[22px] md:text-[22px] text-[18px] font-bold ${card.textColor} mb-1`}
+                    className={`text-[18px] md:text-[22px] leading-[110%] font-bold ${card.textColor}`}
                   >
                     {card.title}
                   </h3>
                   <p
-                    className={` text-[16px] font-normal leading-[140%] tracking-[-1%] ${card.textColor} `}
+                    className={`text-[16px] leading-[140%] pt-[8px] tracking-[-0.2px] md:max-w-[263px] w-full ${card.textColor} `}
                   >
                     {card.description}
                   </p>
@@ -303,7 +303,7 @@ const OurValues: React.FC<OurValuesProps> = ({ className = "" }) => {
       </div>
 
       {/* Marquee Text Component */}
-      <div className="lg:mt-[60px] md:mt-[32px] mt-[40px] h-[102px]   grid items-center">
+      <div className="lg:mt-[60px] md:mt-[26px] mt-[24px] h-[102px] grid items-center">
         <MarqueeText />
       </div>
     </div>

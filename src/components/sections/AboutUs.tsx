@@ -154,41 +154,42 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
   return (
     <div
       ref={sectionRef}
-      className={`app-container lg:mt-[70px] md:mt-[40px] mt-[60px] ${className}`}
+      className=""
     >
       {/* Desktop Layout */}
-      <div className="hidden lg:grid lg:grid-cols-4 h-[194px]  items-center gap-[14px] lg:gap-16">
+      <div className="hidden lg:grid grid-cols-4 pt-[70px] gap-[26px] 3xl:gap-0">
         {STATS_DATA.map((stat, index) => {
           const count = counters[index] || 0;
 
           return (
             <React.Fragment key={stat.id}>
-              <div className="relative flex flex-col">
+              <div className="relative w-full h-full">
                 {/* Desktop Vertical Divider - Only show on desktop and not on last item */}
                 {index < STATS_DATA.length - 1 && (
                   <div
-                    className="absolute left-[calc(100%+2rem)] top-1/2 transform -translate-y-1/2 w-[2px] h-[194px]"
+                    className="absolute z-10 -right-[13px] 3xl:right-[10px] top-0 w-[1.5px] h-full shrink-0"
                     style={gradientStyle}
                   />
                 )}
 
                 {/* Stat Content */}
-                <div className="flex flex-col">
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-[48px] lg:text-[52px] font-medium text-black leading-none">
+                <div className="px-[20px] py-[30px] h-full">
+                  <div className="">
+                    <span className="text-[52px] font-medium text-black leading-[150%]">
                       {stat.value % 1 !== 0
                         ? count.toFixed(1)
                         : Math.floor(count).toLocaleString()}
                     </span>
-                    <span className="text-[48px] lg:text-[52px] font-medium text-black leading-none">
+                    <span className="text-[52px] font-medium text-black leading-[150%]">
                       {stat.suffix}
                     </span>
                   </div>
 
-                  <p className="text-[20px] text-black leading-[1.4] lg:w-full w-[235px]">
+                  <p className="text-[20px] text-black leading-[145%] w-full max-w-[258px]">
                     {stat.label}
                   </p>
                 </div>
+                
               </div>
             </React.Fragment>
           );
@@ -196,10 +197,10 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
       </div>
 
       {/* Tablet Layout - 2x2 Grid */}
-      <div className="hidden md:grid lg:hidden h-[454px] items-center w-full">
+      <div className="hidden md:grid lg:hidden pt-[46px] items-center w-full">
         <div className=" ">
           {/* Top Row */}
-          <div className="grid grid-cols-2 mb-8 relative">
+          <div className="grid grid-cols-2 mb-5 relative">
             {/* Centered Vertical Divider for top row */}
             <div
               className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1.5px] h-[194px]"
@@ -212,18 +213,18 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
               return (
                 <div key={stat.id} className="flex flex-col">
                   <div className="p-[24px]">
-                    <div className="flex items-baseline gap-1 mb-6">
-                      <span className="text-[48px] font-medium text-black leading-none">
+                    <div className="">
+                      <span className="text-[52px] leading-[150%] font-medium text-black tracking-[-0.3px]">
                         {stat.value % 1 !== 0
                           ? count.toFixed(1)
                           : Math.floor(count).toLocaleString()}
                       </span>
-                      <span className="text-[48px] font-medium text-black leading-none">
+                      <span className="text-[52px] leading-[150%] font-medium text-black tracking-[-0.3px]">
                         {stat.suffix}
                       </span>
                     </div>
 
-                    <p className="text-[20px] text-black leading-[1.4] lg:w-full w-[280px]">
+                    <p className="text-[20px] text-black leading-[150%] w-full max-w-[260px] tracking-[-0.2px]">
                       {stat.label}
                     </p>
                   </div>
@@ -233,7 +234,7 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
           </div>
 
           {/* Horizontal Divider */}
-          <div className="w-full h-[1.5px] mb-8" style={gradientStyle} />
+          <div className="w-full h-[1.5px] mb-6" style={gradientStyle} />
 
           {/* Bottom Row */}
           <div className="grid grid-cols-2 relative">
@@ -249,18 +250,18 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
               return (
                 <div key={stat.id} className="flex flex-col">
                   <div className="p-[24px]">
-                    <div className="flex items-baseline gap-1 mb-6">
-                      <span className="text-[48px] font-medium text-black leading-none">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-[52px] leading-[150%] font-medium text-black tracking-[-0.3px]">
                         {stat.value % 1 !== 0
                           ? count.toFixed(1)
                           : Math.floor(count).toLocaleString()}
                       </span>
-                      <span className="text-[48px] font-medium text-black leading-none">
+                      <span className="text-[52px] leading-[150%] font-medium text-black tracking-[-0.3px]">
                         {stat.suffix}
                       </span>
                     </div>
 
-                    <p className="text-[20px] text-black leading-[1.4] lg:w-full w-[280px]">
+                    <p className="text-[20px] text-black leading-[150%] w-full max-w-[255px] tracking-[-0.2px]">
                       {stat.label}
                     </p>
                   </div>
@@ -272,25 +273,25 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="flex flex-col md:hidden gap-[14px]">
+      <div className="flex flex-col md:hidden pt-[61px] gap-[2.5px]">
         {STATS_DATA.map((stat, index) => {
           const count = counters[index] || 0;
 
           return (
             <React.Fragment key={stat.id}>
               <div className="flex flex-col py-6">
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-[48px] font-medium text-black leading-none">
+                <div className="">
+                  <span className="text-[52px] leading-[150%] font-medium text-black tracking-[-0.3px]">
                     {stat.value % 1 !== 0
                       ? count.toFixed(1)
                       : Math.floor(count).toLocaleString()}
                   </span>
-                  <span className="text-[48px] font-medium text-black leading-none">
+                  <span className="text-[52px] leading-[150%] font-medium text-black tracking-[-0.3px]">
                     {stat.suffix}
                   </span>
                 </div>
 
-                <p className="text-[20px] text-black leading-[1.4]  w-[260px]">
+                <p className="text-[20px] text-black leading-[150%] w-full max-w-[260px] tracking-[-0.2px]">
                   {stat.label}
                 </p>
               </div>
@@ -309,80 +310,78 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
 
 const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
   return (
-    <div className="bg-white relative z-20 lg:mt-[68px] md:mt-[100px] mt-[110px]">
+    <div className="bg-white relative container-custom 
+      pt-[110px] md:pt-[98px] lg:pt-[169.5px] 3xl:pt-[148.5px]"
+    >
       {/* About Us Section */}
-      <div className="app-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="w-full grid-cols-1">
-            <div className="relative rounded-2xl h-[265px] md:h-[250px] lg:h-[370px]">
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <Image
-                  src={IMAGES.DANSKE_GAS}
-                  alt="Danske Gas Industrial Facility"
-                  height={370}
-                  width={634}
-                  className="w-full h-full rounded-[16px]"
-                  priority
-                  overrideSrc={IMAGES.DANSKE_GAS}
-                  placeholder="blur"
-                  blurDataURL={IMAGES.DANSKE_GAS_compressed}
-                />
-              </div>
-
-              {/* Text Overlay */}
-              <div className="relative z-10 lg:px-[40px] lg:pt-[40px] md:px-[40px] md:pt-[40px] pl-[16px] px-4 pt-6 h-full flex flex-col justify-start">
-                <div className="text-white">
-                  <span className=" lg:text-[16px] md:text-[16px]  text-[12px] text-off-white font-medium tracking-wide block">
-                    {ABOUT_CONTENT.sectionTitle}
-                  </span>
-                  <h2 className="lg:text-[40px] md:text-[34px] md:font-normal only-lg:max-:w-[450px] text-[28px] text-off-white leading-[133%] tracking-[0%] font-medium lg:max-w-[550px] md:max-w-[538px] max-w-[350px]">
-                    {ABOUT_CONTENT.mainHeading}
-                  </h2>
-                </div>
-              </div>
-            </div>
+      <div className="flex flex-col lg:flex-row items-start gap-[22px] md:gap-[24px] lg:gap-[56px]">
+        
+        <div className="relative rounded-[16px] px-4 py-[19px] md:py-[39px] md:px-[41px] lg:p-[38px] 3xl:p-[39px] overflow-hidden
+              lg:max-w-[632px] w-full h-[265px] md:h-[250px] lg:h-[370px]"
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src={IMAGES.DANSKE_GAS}
+              alt="Danske Gas Industrial Facility"
+              fill
+              className="w-full h-full object-cover"
+              priority
+              overrideSrc={IMAGES.DANSKE_GAS}
+              placeholder="blur"
+              blurDataURL={IMAGES.DANSKE_GAS_compressed}
+            />
           </div>
 
-          {/* Right Grid - Content */}
-          <div className="w-full grid-cols-1 flex flex-col justify-between lg:pl-[56px] lg:h-[370px] mt-[24px] md:mt-8 lg:mt-0">
-            <div className="">
-              {ABOUT_CONTENT.description.split("\n").map((paragraph, index) => (
-                <p
-                  key={index}
-                  className={` w-full lg:text-[20px] md:text-[20px] text-[16px] font-normal text-black leading-[150%] tracking-[-1%] ${
-                    index === 0 && "mb-4"
-                  }`}
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            {/* Learn Button - Positioned at the very bottom */}
-            <div className="flex lg:mt-[60px] md:mt-10 mt-8">
-              <Button
-                variant="cta-gradient"
-                size="cta"
-                className="font-medium lg:w-[205px] md:w-[205px] w-full h-[54px] text-[16px] relative z-10"
-              >
-                <Link
-                  href={ABOUT_CONTENT.buttonHref}
-                  className="inline-flex items-center gap-2 relative z-10"
-                >
-                  <span className="relative z-10">
-                    {ABOUT_CONTENT.buttonText}
-                  </span>
-                  <span className="relative z-10">
-                    <Icons.UpRightArrowLight />
-                  </span>
-                </Link>
-              </Button>
+          {/* Text Overlay */}
+          <div className="relative z-10 h-full w-full">
+            <div className="text-[#F9F7F7] font-medium md:font-normal lg:font-medium w-full max-w-[538px] lg:max-w-full">
+              <span className="text-[12px] md:text-[16px] leading-[140%]">
+                {ABOUT_CONTENT.sectionTitle}
+              </span>
+              <h2 className="text-[28px] md:text-[34px] lg:text-[40px] leading-[120%] md:leading-[133%]">
+                {ABOUT_CONTENT.mainHeading}
+              </h2>
             </div>
           </div>
         </div>
-      </div>
 
+        {/* Right Grid - Content */}
+        <div className="w-full">
+          <div className="lg:max-w-[544px] w-full">
+            {ABOUT_CONTENT.description.split("\n").map((paragraph, index) => (
+              <p
+                key={index}
+                className={`w-full text-[16px] md:text-[20px] leading-[139%] md:leading-[150%] text-black tracking-[-0.2px] 
+                    ${index === 0 && "mb-4"}`}
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          {/* Learn Button - Positioned at the very bottom */}
+          <div className="pt-[30px] md:pt-[40px] lg:pt-[60px]">
+            <Button
+              variant="cta-gradient"
+              size="cta"
+              className="w-full smd:w-[204px]"
+            >
+              <Link
+                href={ABOUT_CONTENT.buttonHref}
+                className="inline-flex items-center gap-2 relative z-10"
+              >
+                <span className="relative z-10">
+                  {ABOUT_CONTENT.buttonText}
+                </span>
+                <span className="relative z-10">
+                  <Icons.UpRightArrowLight />
+                </span>
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
       {/* Stats Section */}
       <Stats />
     </div>

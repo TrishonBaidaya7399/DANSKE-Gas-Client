@@ -58,7 +58,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
 
   // Responsive Logic
   const isMobile = windowWidth <= 768; // Mobile breakpoint
-  const isTablet = windowWidth > 768 && windowWidth <= 1025; // Tablet breakpoint
+  const isTablet = windowWidth <= 1024; // Tablet breakpoint
   const isDesktop = windowWidth > 1025; // Desktop breakpoint
 
   // Updated header image logic with three breakpoints
@@ -80,7 +80,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
 
   // GSAP Seamless Marquee Animation - For mobile only (2x slower)
   useEffect(() => {
-    if (isMobile && marqueeRef.current) {
+    if (isTablet && marqueeRef.current) {
       const cardWidth = 249; // 229px + 20px gap
       const originalCardsCount = FEATURE_CARDS.length;
       const singleSetWidth = cardWidth * originalCardsCount;
@@ -101,7 +101,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
         tl.kill();
       };
     }
-  }, [isMobile]);
+  }, [isTablet]);
 
   // Window resize handler
   useEffect(() => {
@@ -156,7 +156,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
               <Link className="text-[18px] leading-[140%] 
                     text-black rounded-full bg-white font-medium
                     inline-flex items-center justify-center gap-[10px]
-                    w-full md:w-[227px] lg:w-[251px] 
+                    w-full min-[596px]:w-[227px] lg:w-[251px] 
                     p-[14.5px] group transition-all duration-300
                     hover:text-white hover:bg-black"
                 href="#"
@@ -165,7 +165,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
                   See Our Products
                 </span>
 
-                <svg className="stroke-black transition-all duration-300 group-hover:stroke-white" 
+                <svg className="stroke-black transition-all duration-300 group-hover:stroke-white"
                   width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 1.47656H13M13 1.47656L13 10.4766M13 1.47656L1 13.4766" stroke-width="1.5" />
                 </svg>
@@ -178,128 +178,54 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
 
       {/* Content Section Below Header - PROPERLY CONTAINED */}
       <div
-        className={`w-full relative z-10 ${!isMobile ? "app-container" : ""}`}
+        className={`w-full relative z-10 ${!isTablet ? "container-custom" : ""}`}
         style={{ marginTop: "0px" }}
       >
         <div className="">
-          <div className="flex flex-col lg:flex-row justify-between">
+          <div className="flex flex-col lg:flex-row gap-2 justify-between relative">
             {/* Left Side - Paragraph (shows after 1025px) */}
-            {windowWidth > 1025 && (
-              <div className="flex-1 lg:max-w-[420px] mt-[30px]">
-                <p className="text-[24px] tracking-[-1%] leading-[150%] only-lg:text-[20px]   text-black  ">
-                  Supplying high-performance energy solutions to industries,
-                  businesses, and global motorsports.
-                </p>
-              </div>
-            )}
+            <p className="hidden lg:block text-black max-w-[415px] w-full
+                  text-[20px] md:text-[24px] leading-[150%] tracking-[-0.2px]
+                  pt-8"
+            >
+              Supplying high-performance energy solutions to industries,
+              businesses, and global motorsports.
+            </p>
 
             {/* Feature Cards */}
-            <div
-              className={`${windowWidth > 1025 ? "flex-1 lg:flex-grow" : "w-full"
-                }`}
-            >
+            <div>
               {/* Mobile - Marquee Animation (2x Slower) */}
-              {isMobile && (
-                <div className="overflow-hidden mt-[24px]">
-                  <div className="relative h-full flex items-center">
-                    <div
-                      ref={marqueeRef}
-                      className="flex gap-5"
-                      style={{ width: "max-content" }}
-                    >
-                      {/* Triple the cards for seamless loop */}
-                      {[
-                        ...FEATURE_CARDS,
-                        ...FEATURE_CARDS,
-                        ...FEATURE_CARDS,
-                      ].map((card, index) => (
+              <div className="overflow-hidden mt-[24px] block lg:hidden">
+                <div className="relative h-full flex items-center">
+                  <div
+                    ref={marqueeRef}
+                    className="flex gap-5"
+                    style={{ width: "max-content" }}
+                  >
+                    {/* Triple the cards for seamless loop */}
+                    {[
+                      ...FEATURE_CARDS,
+                      ...FEATURE_CARDS,
+                      ...FEATURE_CARDS,
+                    ].map((card, index) => (
+                      <div
+                        key={`${card.id}-${index}`}
+                        className="bg-[#F9F7F7] rounded-xl px-4 pt-4 pb-6 w-[229px] flex-shrink-0 relative"
+                      >
+                        {/* Icon at top right - Fixed positioning */}
                         <div
-                          key={`${card.id}-${index}`}
-                          className="bg-off-white rounded-xl p-5 w-[229px] h-[180px] flex-shrink-0 relative"
-                        >
-                          {/* Icon at top right - Fixed positioning */}
-                          <div className="absolute top-5 right-5">
-                            <div
-                              className="w-[46px] h-[46px] rounded-full flex items-center justify-center shadow-md"
-                              style={gradientStyle}
-                            >
-                              {card.icon}
-                            </div>
-                          </div>
-
-                          {/* Content at bottom left */}
-                          <div className="absolute bottom-5 left-5 right-5">
-                            <h3 className="text-[18px] font-bold text-black leading-tight mb-2">
-                              {card.title}
-                            </h3>
-                            <p className="text-black text-[16px] tracking-[-1%] leading-[140%] ">
-                              {card.description}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Tablet - Static 3 Cards */}
-              {isTablet && (
-                <div className="flex justify-center mt-[24px] items-center lg:gap-5 md:gap-[33px]  gap-5">
-                  {FEATURE_CARDS.map((card) => (
-                    <div
-                      key={card.id}
-                      className="bg-off-white rounded-xl p-5 w-[229px] h-[180px] relative"
-                    >
-                      {/* Icon at top right - Fixed positioning */}
-                      <div className="absolute top-5 right-5">
-                        <div
-                          className="w-[46px] h-[46px] rounded-full flex items-center justify-center"
+                          className="ml-auto size-[46px] rounded-full flex items-center justify-center"
                           style={gradientStyle}
                         >
                           {card.icon}
                         </div>
-                      </div>
-
-                      {/* Content at bottom left */}
-                      <div className="absolute bottom-5 left-5 right-5">
-                        <h3 className="text-[18px] font-bold text-black leading-tight mb-2">
-                          {card.title}
-                        </h3>
-                        <p className="text-black text-[16px] tracking-[-1%] leading-[140%] ">
-                          {card.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Desktop - Static Grid with positioning (shows after 1025px) */}
-              {windowWidth > 1025 && (
-                <div>
-                  <div className="flex flex-row justify-end gap-[25px]">
-                    {FEATURE_CARDS.map((card) => (
-                      <div
-                        key={card.id}
-                        className="bg-off-white rounded-xl p-[16px] -top-[80px] w-[229px] h-[210px] only-lg:w-[200px] only-lg:h-[190px] relative"
-                      >
-                        {/* Icon at top right - Fixed positioning */}
-                        <div className="absolute top-5 right-5">
-                          <div
-                            className="w-[46px] h-[46px] only-lg:w-8 only-lg:h-8 rounded-full flex items-center justify-center"
-                            style={gradientStyle}
-                          >
-                            {card.icon}
-                          </div>
-                        </div>
 
                         {/* Content at bottom left */}
-                        <div className="absolute bottom-[16px]">
-                          <h3 className="text-[22px] only-lg:text-[18px] font-bold text-black leading-tight mb-2">
+                        <div className="text-black">
+                          <h3 className="text-[18px] min-[1320px]:text-[22px] leading-[110%] font-bold pt-[22px] pb-[9px] min-[1320px]:pt-[40px] min-[1320px]:pb-[16px]">
                             {card.title}
                           </h3>
-                          <p className="text-black text-[16px] only-lg:text-[14px] tracking-[-1%] leading-[140%] ">
+                          <p className="text-[16px] min-[1320px]:text-[16px] leading-[140%] tracking-[-0.2px]">
                             {card.description}
                           </p>
                         </div>
@@ -307,7 +233,43 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
                     ))}
                   </div>
                 </div>
-              )}
+              </div>
+
+              {/* Desktop - Static Grid with positioning (shows after 1025px) */}
+              <div className="hidden lg:flex justify-end w-full 
+                min-[1320px]:absolute
+                relative top-[-50px] min-[1320px]:top-auto 
+                min-[1320px]:left-0 min-[1320px]:bottom-0 
+                gap-[10px] min-[1320px]:gap-[25px]
+                min-[1320px]:pr-[1px] 3xl:pr-[25px]"
+              >
+                {FEATURE_CARDS.map((card) => (
+                  <div
+                    key={card.id}
+                    className="bg-[#F9F7F7] rounded-[16px] p-[16px]
+                      w-[200px] min-[1320px]:w-[229px]
+                      px-4 pt-4 pb-6"
+                  >
+                    {/* Icon at top right - Fixed positioning */}
+                    <div
+                      className="ml-auto size-[46px] rounded-full flex items-center justify-center"
+                      style={gradientStyle}
+                    >
+                      {card.icon}
+                    </div>
+
+                    {/* Content at bottom left */}
+                    <div className="text-black">
+                      <h3 className="text-[18px] min-[1320px]:text-[22px] leading-[110%] font-bold pt-[20px] pb-[20px] min-[1320px]:pt-[40px] min-[1320px]:pb-[16px]">
+                        {card.title}
+                      </h3>
+                      <p className="text-[14px] min-[1320px]:text-[16px] leading-[140%] tracking-[-0.2px]">
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
