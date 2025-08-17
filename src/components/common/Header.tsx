@@ -33,6 +33,7 @@ interface Language {
 const NAV_ITEMS: NavItem[] = [
   { label: "About Us", href: "#" },
   { label: "Our Products", href: "#" },
+  { label: "News", href: "#" },
   { label: "Art", href: "#" },
   { label: "Career", href: "#" },
   { label: "Contact Us", href: "/contact" },
@@ -135,8 +136,13 @@ const Navbar: React.FC<HeaderProps> = ({
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`absolute top-0 left-0 right-0 w-full transition-all duration-300 z-50 ${className}`}
     >
-      <div className="app-container">
-        <div className="lg:mt-[32px] mt-[16px]">
+      <div className="
+          pl-4 pr-4 pt-6 pb-0
+          md:pl-[40px] md:pr-[40px] md:pt-6 md:pb-0
+          lg:pl-[80px] lg:pr-[54px] lg:pt-[45.48px] lg:pb-[16px] 
+          3xl:pl-0 3xl:pr-0 3xl:max-w-[1306px] 3xl:pt-[36px] 3xl:pb-[16px]
+          w-full mx-auto"
+      >
           <nav className="flex items-center justify-between">
             <div
               className="flex-shrink-0 cursor-pointer"
@@ -154,13 +160,13 @@ const Navbar: React.FC<HeaderProps> = ({
 
             {/* Desktop Navigation */}
             {!isMobileMenu && (
-              <>
-                <div className="flex justify-center items-center gap-5 lg:gap-10 flex-1 max-w-fit only-lg:px-3 only-lg:ml-0 ml-[150px] ">
+              <div className="flex items-center gap-[80px]">
+                <div className="flex items-center gap-10">
                   {navItemsWithActive.map((item, index) => (
                     <Link
                       key={index}
                       href={item.href}
-                      className={`cursor-pointer font-normal text-[20px] only-lg:text-[18px] transition-all duration-300 whitespace-nowrap relative group ${
+                      className={`cursor-pointer inline-block font-normal text-[20px] leading-[150%] only-lg:text-[18px] transition-all duration-300 whitespace-nowrap relative group ${
                         item.isActive ? "text-white font-bold" : "text-white"
                       }`}
                     >
@@ -225,7 +231,7 @@ const Navbar: React.FC<HeaderProps> = ({
                     </div>
                   )}
                 </div>
-              </>
+              </div>
             )}
 
             {/* Mobile Hamburger with Shadcn Dropdown */}
@@ -325,7 +331,6 @@ const Navbar: React.FC<HeaderProps> = ({
               </DropdownMenu>
             )}
           </nav>
-        </div>
       </div>
     </motion.div>
   );

@@ -12,9 +12,7 @@ import React from "react";
 const page = () => {
   return (
     <div>
-      <div className="h-full">
-        <HeroSection />
-      </div>
+      <HeroSection />
       <AboutUs />
       <OurValues />
       <CTA />

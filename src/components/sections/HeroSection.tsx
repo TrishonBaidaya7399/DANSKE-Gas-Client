@@ -123,68 +123,54 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
     <div className={`w-full relative ${className}`}>
       {/* Header Container - Fixed height */}
       <div
-        className="w-full relative bg-cover bg-center bg-no-repeat overflow-hidden 3xl:h-[649px] 2xl:h-[657px] xl:h-[657px] lg:h-[600px] md:h-[594px] h-[594px]"
-        style={{
-          backgroundImage: `url('${headerImage}')`,
-        }}
+        className="w-full relative bg-cover bg-center bg-no-repeat overflow-hidden
+          3xl:bg-[url('/assets/header-pic/bg.webp')] 3xl:h-[649px]
+          lg:bg-[url('/assets/header-pic/lg-bg.webp')] lg:h-[657px]
+          md:bg-[url('/assets/header-pic/md-bg.webp')] md:h-[594px]
+          bg-[url('/assets/header-pic/sm-bg.webp')] h-[594px]
+        "
       >
         {/* Content Container */}
-        <div className="flex app-container justify-center w-full h-full">
-          <div className="flex flex-col w-full relative h-full">
-            <div className="relative z-10 flex flex-col h-full">
-              {/* Learn More Button - Fixed positioning to bottom with 40px margin */}
-              <div className="absolute lg:hidden  block bottom-[40px] left-0 right-0  z-30">
-                <Button
-                  variant="cta"
-                  size="cta"
-                  asChild
-                  className="lg:w-0 md:w-[227px] w-full h-[54px] group"
-                >
-                  <Link href="#" className="font-medium justify-center">
-                    Learn More
-                    <div className="group-hover:hidden group-active:hidden">
-                      <Icons.UpRightArrowDark />
-                    </div>
-                    <div className="hidden group-hover:block group-active:block">
-                      <Icons.UpRightArrowLight />
-                    </div>
-                  </Link>
-                </Button>
-              </div>
+        <div className="container-custom w-full h-full relative z-10">
+          {/* Hero Content */}
+          <div className="w-full h-full 
+            max-w-[596px] lg:max-w-[668px] 
+            pt-[130px] md:pt-[128px] lg:pt-[185px] 3xl:pt-[175px]"
+          >
+            <div className="">
+              <h1 className="text-white 
+                text-[38px] leading-[123%] font-medium
+                md:text-[48px] md:leading-[133%] md:font-normal
+                lg:text-[64px] lg:leading-[123%] lg:font-medium">
+                Global Fuels. Local Delivery. Industrial Precision.
+              </h1>
+              <p className="block lg:hidden text-white
+                text-[20px] md:text-[24px] leading-[150%] tracking-[-0.2px]
+                pt-4">
+                Supplying high-performance energy solutions to industries,
+                businesses, and global motorsports.
+              </p>
+            </div>
 
-              {/* Hero Content */}
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="flex-1 flex items-center">
-                  <div className="3xl:mb-[110px] 2xl:mb-[90px] only-lg:mb-[80px] md:mb-[195px] lg:mb-0 mb-[170px]">
-                    <h1 className="text-white lg:text-[64px]  only-lg:text-[58px] md:text-[48px] text-[38px] lg:font-medium md:font-normal  leading-[130%] only-lg:w-[668px] md:w-[596px] lg:w-[668px] ma-w-[370px] font-medium">
-                      Global Fuels. Local Delivery. Industrial Precision.
-                    </h1>
-                    <p className="lg:hidden md:block block text-white  mt-[16px] md:text-[24px] text-[20px] font-normal  md:w-[596px] max-w-[370px] tracking-[-1%] leading-[150%]">
-                      Supplying high-performance energy solutions to industries,
-                      businesses, and global motorsports.
-                    </p>
-                  </div>
-                </div>
+            <div className="relative pt-[125px] md:pt-[156px] lg:pt-[140px]">
+              <Link className="text-[18px] leading-[140%] 
+                    text-black rounded-full bg-white font-medium
+                    inline-flex items-center justify-center gap-[10px]
+                    w-full md:w-[227px] lg:w-[251px] 
+                    p-[14.5px] group transition-all duration-300
+                    hover:text-white hover:bg-black"
+                href="#"
+              >
+                <span>
+                  See Our Products
+                </span>
 
-                <div className="pb-8 md:pb-10 lg:block md:hidden hidden relative">
-                  <Button
-                    className="w-[254px] h-[54px] only-lg:w-[220px]  group absolute bottom-[40px]"
-                    variant="cta"
-                    size="cta"
-                    asChild
-                  >
-                    <Link className="only-lg:text-[16px]" href="#">
-                      See Our Products
-                      <div className="group-hover:hidden group-active:hidden">
-                        <Icons.UpRightArrowDark />
-                      </div>
-                      <div className="hidden group-hover:block group-active:block">
-                        <Icons.UpRightArrowLight />
-                      </div>
-                    </Link>
-                  </Button>
-                </div>
-              </div>
+                <svg className="stroke-black transition-all duration-300 group-hover:stroke-white" 
+                  width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 1.47656H13M13 1.47656L13 10.4766M13 1.47656L1 13.4766" stroke-width="1.5" />
+                </svg>
+
+              </Link>
             </div>
           </div>
         </div>
@@ -209,9 +195,8 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
 
             {/* Feature Cards */}
             <div
-              className={`${
-                windowWidth > 1025 ? "flex-1 lg:flex-grow" : "w-full"
-              }`}
+              className={`${windowWidth > 1025 ? "flex-1 lg:flex-grow" : "w-full"
+                }`}
             >
               {/* Mobile - Marquee Animation (2x Slower) */}
               {isMobile && (

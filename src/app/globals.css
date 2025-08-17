@@ -154,6 +154,21 @@
   }
 }
 
+@theme {
+  --breakpoint-3xl: 1536px;
+}
+
+@layer components {
+  .container-custom {
+    @apply pl-4 pr-4
+           md:pl-[40px] md:pr-[40px]
+           lg:pl-[80px] lg:pr-[54px] 
+           3xl:pl-0 3xl:pr-0 3xl:max-w-[1306px]
+           w-full mx-auto;
+  }
+}
+
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/WEB/fonts/Satoshi-Light.woff2") format("woff2"),
