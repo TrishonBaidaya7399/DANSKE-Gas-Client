@@ -167,7 +167,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
 
                 <svg className="stroke-black transition-all duration-300 group-hover:stroke-white"
                   width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 1.47656H13M13 1.47656L13 10.4766M13 1.47656L1 13.4766" stroke-width="1.5" />
+                  <path d="M4 1.47656H13M13 1.47656L13 10.4766M13 1.47656L1 13.4766" strokeWidth="1.5" />
                 </svg>
 
               </Link>

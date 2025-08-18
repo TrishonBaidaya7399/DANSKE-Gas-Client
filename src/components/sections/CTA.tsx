@@ -9,8 +9,8 @@ const CTA_CONTENT = {
 
 const CTA = () => {
   return (
-    <div className="lg:mt-[170px] md:mt-[100px] mt-[110px] lg:mb-0 md:mb-[0px] mb-[110px] app-container">
-      <div className="relative ">
+    <div className="container-custom pt-[93px] md:pt-[90px] lg:pt-[170px]">
+      <div className="relative max-w-[1285px]">
         {/* Desktop Image and Tablet Image*/}
         <Image
           src={"/assets/trusted-section.webp"}
@@ -20,7 +20,7 @@ const CTA = () => {
           alt={"trusted-section"}
           width={1000}
           height={500}
-          className="w-full lg:h-[370px] md:h-[320px] h-full rounded-[24px] md:block hidden lg:block"
+          className="w-full lg:h-[370px] md:h-[320px] h-full object-cover rounded-[24px] md:block hidden lg:block"
           style={{
             objectPosition: "70% center", // Change this value to control position
           }}
@@ -35,31 +35,54 @@ const CTA = () => {
           alt={"trusted-section-mobile"}
           width={1000}
           height={500}
-          className="w-full h-[600px] rounded-[12px] block lg:hidden md:hidden"
+          className="w-full h-[600px] object-cover rounded-[12px] block lg:hidden md:hidden"
         />
 
         {/* Text overlay */}
-        <div className="absolute inset-0 lg:pl-[40px] lg:pt-[57px] md:pl-[24px] md:pt-[40px] pl-[16px] pt-[24px] flex flex-col">
+        <div className="absolute inset-0 
+          px-[16px] py-[20px]
+          md:px-[24px] md:py-[40px]
+          lg:px-[38.5px] lg:py-[55px]
+          flex flex-col justify-between
+          md:flex-none md:justify-normal"
+        >
           {/* Text content */}
           <div className="text-white relative">
-            <span className="lg:text-[16px] md:text-[14px] text-[12px] text-light-gray font-medium tracking-wide block">
+            <span className="text-[12px] md:text-[16px] font-medium leading-[140%]">
               {CTA_CONTENT.sectionTitle}
             </span>
-            <h2 className="lg:text-[40px] md:text-[37px] text-[28px] lg:max-w-[480px] md:max-w-[280px]  max-w-[280px] text-off-white md:font-normal font-medium leading-[133%] tracking-[0%] lg:block md:hidden block">
-              {CTA_CONTENT.mainHeading}
-            </h2>{" "}
-            <h2 className="lg:text-[40px] md:text-[37px] text-[28px] lg:w-[480px] md:w-[100%] max-w-[280px] text-off-white md:font-normal font-medium leading-[133%] tracking-[0%] lg:hidden md:block hidden">
-              Trusted to Fuel <br /> the FIA World Rally <br /> Championship
+            <h2 className="leading-[133%]
+              font-medium md:font-normal lg:font-medium
+              text-[28px] md:text-[34px] lg:text-[40px] 
+              max-w-[300px] lg:max-w-[520px] w-full"
+            >
+              <span className="hidden lg:block">
+                {CTA_CONTENT.mainHeading}
+              </span>
+              <span className="hidden md:block lg:hidden">
+                Trusted to Fuel <br/>
+                the FIA World Rally <br/>
+                Championship
+              </span>
+              <span className="block md:hidden">
+                Trusted to Fuel the <br/>
+                FIA World Rally <br/>
+                Championship
+              </span>
             </h2>
           </div>
           {/* Logos */}
-          <div className="flex items-center lg:justify-normal md:justify-normal justify-center gap-[51px] lg:mt-[40px] md:mt-[30px] mt-auto mb-[40px] lg:mb-0 md:mb-0 ">
-            <div className="w-[88px] h-[36px]">
-              <div className="mt-[14px]">
+          <div className="flex items-center 
+            justify-center md:justify-normal
+            gap-[50px] lg:gap-[55px] 
+            pt-[31px] lg:pt-[38px]"
+          >
+            <div className="w-[80px] lg:w-[88px] lg:h-[36px]">
+              <div className="mt-[11px]">
                 <Icons.wrcLogo />
               </div>
             </div>
-            <div className="w-[77px] h-[44px]">
+            <div className="">
               <Icons.oilLogo />
             </div>
           </div>
