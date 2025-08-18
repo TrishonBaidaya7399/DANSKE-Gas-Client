@@ -55,24 +55,29 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
   return (
     <div className={`w-full relative ${className}`}>
       <div
-        className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden lg:h-[480px] md:h-[400px] h-[344px]`}
+        className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden 3xl:h-[480px] 2xl:h-[491px] md:h-[407px] h-[352px]`}
         style={backgroundStyle}
       >
-        <div className="flex app-container justify-center w-full h-full">
+        <div className="flex container-custom justify-center w-full h-full">
           <div className="flex flex-col w-full relative h-full">
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex-1 flex flex-col justify-between">
                 <div className="flex items-end justify-start mt-auto">
-                  <div className="lg:mb-[60px] md:mb-[20px] mb-[23px]">
-                    <nav className="text-gray-200 text-[14px] font-normal">
+                  <div className="lg:mb-[60px] md:mb-[20px] mb-[22px]">
+                    <nav
+                      className="text-gray-200 "
+                      style={{ letterSpacing: "-1%" }}
+                    >
                       <Link
                         href="/"
-                        className="hover:underline transition-all duration-300"
+                        className="hover:underline transition-all duration-300 text-[13px] font-normal leading-[140%]"
                       >
                         Homepage
                       </Link>
-                      <span className="mx-2">{"/"}</span>
-                      <span className="font-semibold">Contact Us</span>
+                      <span className="mx-1">{"/"}</span>
+                      <span className="font-semibold text-[13px] leading-[140%]">
+                        Contact Us
+                      </span>
                     </nav>
 
                     <motion.h1
@@ -83,7 +88,7 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
                         ease: "easeOut",
                         delay: 0.2,
                       }}
-                      className="text-white lg:text-[164px] only-lg:text-[164px] md:text-[148px] text-[72px] lg:font-medium md:font-normal leading-[123%] font-medium"
+                      className="text-white 2xl:text-[164px] md:text-[120px] text-[72px] leading-[123%] font-normal tracking-[0]"
                     >
                       Contact Us
                     </motion.h1>
@@ -95,7 +100,7 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
         </div>
       </div>
 
-      <div className="bg-red-800 py-4 overflow-hidden flex">
+      <div className="bg-red-800 py-4 overflow-hidden flex xl:h-[105px] lg:h-[80px] md:h-[80px] h-[62px]">
         <Marquee speed={50} gradient={false} className="flex">
           {MARQUEE_ITEMS.map((item, index) => (
             <span
@@ -105,7 +110,8 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
               {item}
             </span>
           ))}
-        </Marquee>s
+        </Marquee>
+        s
       </div>
     </div>
   );

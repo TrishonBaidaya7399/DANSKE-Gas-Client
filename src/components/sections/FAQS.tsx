@@ -112,9 +112,9 @@ const FAQS = () => {
   );
 
   return (
-    <div className="app-container lg:mt-[170px] md:mt-[100px] mt-[110px]">
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 lg:gap-12 ">
-        <div className="lg:col-span-1">
+    <div className="container-custom lg:mt-[170px] md:mt-[100px] mt-[110px] 3xl:w-[1281px]">
+      <div className="flex 2xl:flex-row flex-col gap-0 xs:gap-[46px] justify-between 3xl:ml-[-22px]">
+        <div className="flex flex-col 3xl:max-w-full 2xl:max-w-[80%] xs:max-w-full" >
           <span
             className="lg:text-[16px] md:text-[16px] text-[12px] font-medium tracking-wide inline-block"
             style={{
@@ -127,37 +127,38 @@ const FAQS = () => {
           >
             FAQ
           </span>
-          <h2 className="text-[34px] lg:text-[48px] w-[90%] font-normal text-black leading-tight">
+          <h2 className="text-[34px] lg:text-[48px] w-[90%] font-normal text-black leading-tight 2xl:mt-[6px] 2xl:max-w-[541px]">
             Don't stress, we've got The Answers
           </h2>
-          <p className="lg:text-[18px] text-[16px] text-black lg:max-w-[503px] md:max-w-[496px] text-wrap mt-[8px] max-w-[370px]">
+          <p className="2xl:text-[18px] font-normal xs:text-[16px] text-black lg:max-w-[503px] md:max-w-[496px] text-wrap max-w-[370px] 2xl:leading-[170%] xs:leading-[140%] 3xl:mt-[13px] 2xl:mt-[11px] md:mt-[9px] mt-[12px]" style={{letterSpacing: '-1%'}} >
             Danske Gas powers industries, engines, and champions — and we make
             sure working with us is just as smooth. Below are answers to common
             questions from new clients and partners.
           </p>
         </div>
 
-        <div className="space-y-6 md:space-y-4">
+        <div className="flex flex-col 2xl:gap-6 xs:gap-4 2xl:w-[651px] 2xl:mr-[23px]">
           {faqData.map((faq) => (
             <div
               key={faq.id}
-              className={`lg:rounded-2xl rounded-[8px] lg:px-8 lg:py-6 p-[16px] cursor-pointer transition-all duration-700 ease-out ${
+              style={{letterSpacing: '-1%'}}
+              className={`lg:rounded-2xl rounded-[8px] 2xl:px-8 xs:px-4 2xl:py-6 xs:py-4 cursor-pointer transition-all duration-700  ease-out 2xl:w-[651px] ${
                 openFAQ === faq.id
-                  ? "bg-gradient-to-r from-[#B91C1C] via-[#DC2626] to-[#F97316] text-white"
-                  : "bg-[#F8F8F8] text-black hover:bg-gray-100"
+                  ? "bg-gradient-to-r from-[#B91C1C] via-[#DC2626] to-[#F97316] text-white 2xl:h-[150px] md:h-[156px] xs:h-[200px]"
+                  : "bg-[#F8F8F8] text-black hover:bg-gray-100 2xl:h-[78px] md:h-[86px]"
               }`}
               onClick={() => toggleFAQ(faq.id)}
             >
               <div className="flex justify-between items-center">
                 <h3
-                  className={`text-[20px] lg:w-full md:w-[45%] w-full max-w-[290px] font-medium transition-all duration-700 ease-out ${
-                    openFAQ === faq.id ? "text-white" : "text-black"
+                  className={`2xl:text-[20px] xs:text-[18px] lg:w-full md:w-[45%] 2xl:max-w-[100%] xs:max-w-[280px] xs:w-[280px] font-medium transition-all duration-700 ease-out 2xl:leading-[100%] md:leading-[150%]  ${
+                    openFAQ === faq.id ? "text-white 3xl:mt-4 2xl:mt-3 xs:mt-[6px]" : "text-black 3xl:mt-2 2xl:mt-1"
                   }`}
                 >
                   {faq.question}
                 </h3>
                 <div
-                  className={`ml-4 flex-shrink-0 transition-all duration-700 ease-out ${
+                  className={`2xl:mr-0 md:ml-4 xs:mr-2 xs:mt-[4px] flex-shrink-0 transition-all duration-700 ease-out  ${
                     openFAQ === faq.id ? "rotate-180" : "rotate-0"
                   }`}
                 >
@@ -177,7 +178,7 @@ const FAQS = () => {
               >
                 <div className="overflow-hidden">
                   <p
-                    className={`text-[16px] leading-relaxed transition-all duration-700 ease-out xl:mr-[109px] lg:mr-[80px] mr-10  ${
+                    className={`text-[16px] leading-[140%] font-normal transition-all duration-700 ease-out 3xl:mr-[80px] lg:mr-[80px] xs:mr-10 mr-10  ${
                       openFAQ === faq.id ? "text-white" : "text-gray-600"
                     }`}
                     // style={{maxWidth: 'calc(100% - 109px)'}}

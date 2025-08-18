@@ -36,14 +36,17 @@ export default function MapSection() {
   };
 
   return (
-    <div className="flex app-container justify-center w-full h-full mt-[60px]">
-      <section className="w-full lg:h-[550px] md:h-[430px] h-[560px] relative rounded-[40px]"  style={backgroundStyle}>
+    <div className="flex container-custom justify-center w-full h-full mt-[60px] 3xl:max-w-[1281px]">
+      <section
+        className="w-full lg:h-[550px] md:h-[430px] h-[560px] relative md:rounded-[40px] xs:rounded-[20px] 3xl:ml-[-42px]"
+        style={backgroundStyle}
+      >
         {/* Loading or Error State - Show Fallback Image */}
         {(isLoading || hasError) && (
-          <div className="absolute inset-0 z-10 rounded-[40px]">
+          <div className="absolute inset-0 z-10 md:rounded-[40px] xs:rounded-[20px]">
             {isLoading && (
               <div
-                className="absolute inset-0 bg-black/10 flex items-center justify-center rounded-[40px]"
+                className="absolute inset-0 bg-black/10 flex items-center justify-center md:rounded-[40px] xs:rounded-[20px]"
                 style={backgroundStyle}
               >
                 <div className="bg-white px-4 py-2 rounded-lg shadow-lg">
