@@ -82,7 +82,7 @@ const FooterDescription: React.FC<{ className?: string }> = ({
 }) => (
   <div>
     <p
-      className={`${className} 3xl:w-[394px] lg:block md:block hidden md:text-[16px] text-white leading-[140%] lg:tracking-[-0.2px]`}
+      className={`${className} md:w-[394px] lg:block md:block hidden md:text-[16px] text-white leading-[140%] lg:tracking-[-0.2px]`}
     >
       Danske Gas powers industries, engines, and champions. From
       high-performance racing fuels to technical gases.
@@ -111,7 +111,7 @@ const LinksSection: React.FC<LinksSectionProps> = ({
   linkClass = "text-[16px] font-normal leading-[132%] tracking-tight",
   containerClass = COMMON_CLASSES.linkSpacing,
 }) => (
-  <div>
+  <div className={` ${title === "Legal" ? "lg:mt-0 lg:ml-0 md:mt-[22px] md:ml-[-16px]" : ""}`}>
     <h3 className={`${COMMON_CLASSES.sectionTitle} ${titleClass}`}>{title}</h3>
     <ul className={containerClass}>
       {links.map((link, index) => (
@@ -141,7 +141,7 @@ const OfficeSection: React.FC<OfficeSectionProps> = ({
   textClass = "text-[16px]",
   containerClass = COMMON_CLASSES.officeSpacing,
 }) => (
-  <div className="3xl:w-[170px]">
+  <div className="2xl:w-[170px] lg:mt-0 lg:ml-0 md:mt-[6px] md:ml-[10px]">
     <h3 className={`${COMMON_CLASSES.sectionTitle} ${titleClass}`}>Office</h3>
     <div className={containerClass}>
       <div>
@@ -184,17 +184,17 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="lg:mt-[170px] md:mt-[100px] mt-[110px] bg-brown text-white">
+    <footer className="2xl:mt-[170px] md:mt-[100px] xs:mt-[109px] bg-brown text-white">
       <div className="container-custom">
         {/* Desktop Layout */}
-        <div className="hidden lg:block pt-[56px] pb-[42px] 3xl:ml-[-9px]">
+        <div className="hidden lg:block pt-[56px] pb-[42px] 3xl:ml-[-9px] 2xl:ml-0">
           <div className="flex  flex-row ">
-            <div className="3xl:mr-[247px]">
+            <div className="2xl:mr-[247px]">
               <FooterLogo />
               <FooterDescription />
             </div>
-            <div className=" flex 3xl:gap-[100px] 3xl:mt-[3px] gap-[110px]">
-              <div className="3xl:w-[117px]">
+            <div className=" flex 2xl:gap-[100px] 3xl:mt-[3px] 2xl:mt-[-1px] gap-[110px]">
+              <div className="2xl:w-[117px]">
                 <LinksSection
                   title="Links"
                   links={footerData.links}
@@ -215,12 +215,12 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Tablet Layout */}
-        <div className="hidden sm:block lg:hidden pt-[56px] pb-[42px]">
+        <div className="hidden sm:block lg:hidden 2xl:pt-[56px] md:pt-10 pb-[42px]">
           <div className="">
             <FooterLogo />
             <FooterDescription />
           </div>
-          <div className="flex gap-[146px] mt-[40px]">
+          <div className="flex lg:gap-[146px] md:gap-[129px] mt-[40px]">
             <LinksSection
               title="Links"
               links={footerData.links}
@@ -241,7 +241,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="block sm:hidden pt-[56px] pb-[65px]">
+        <div className="block sm:hidden pt-[56px] pb-[65px] lg:ml-0 xs:ml-[9px]">
           <div className="mb-[60px]">
             <FooterLogo />
             <FooterDescription className="text-sm" />
@@ -275,15 +275,15 @@ const Footer: React.FC = () => {
 
       {/* Desktop and Tablet - Border with container spacing */}
       <div className="hidden lg:block md:block">
-        <div className="container-custom 3xl:w-[1280px]">
-          <div className="border-t border-dark-gray pt-[14px] lg:pb-[56px] pb-[40px] 3xl:ml-[-22px] 3xl:mt-[-5px]">
+        <div className="container-custom 2xl:w-[1280px] lg:mt-0 md:mt-[-3px]">
+          <div className="border-t border-dark-gray pt-[14px] lg:pb-[56px] pb-[40px] 3xl:ml-[-22px] 2xl:ml-[-79px] 2xl:mt-[-5px] 2xl:w-[1280px]">
             <div className="flex flex-row justify-between items-center gap-4">
               <p className="text-[16px] text-white">
                 © 2025. All rights reserved.
               </p>
               <Link
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-200 3xl:mr-[22px]"
+                className="text-gray-400 hover:text-white transition-colors duration-200 "
                 aria-label="LinkedIn"
               >
                 <LinkedInIcon />
@@ -295,15 +295,15 @@ const Footer: React.FC = () => {
 
       {/* Mobile - Full width border, content with container spacing */}
       <div className="block lg:hidden md:hidden">
-        <div className="border-t border-dark-gray pt-[14px] pb-[40px]">
-          <div className="app-container">
-            <div className="flex flex-row justify-between items-center gap-4">
+        <div className="border-t border-dark-gray lg:pt-[14px] xs:pt-[22px] lg:pb-[40px] xs:pb-[64px] mt-2 ml-2">
+          <div className="container-custom">
+            <div className="flex flex-row justify-between items-center gap-4 -mt-2">
               <p className="text-[16px] text-white">
                 © 2025. All rights reserved.
               </p>
               <Link
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-400 hover:text-white transition-colors duration-200 mr-2"
                 aria-label="LinkedIn"
               >
                 <LinkedInIcon />
