@@ -241,7 +241,7 @@ const OurValues: React.FC<OurValuesProps> = ({ className = "" }) => {
       const regex = new RegExp(`(${term})`, "gi");
       result = result.replace(
         regex,
-        `<span style="background: linear-gradient(266.49deg, rgba(249, 150, 57, 0.1) -15.12%, rgba(216, 10, 0, 0.1) 58.77%, rgba(104, 16, 0, 0.1) 118.54%); padding: 3px 10px; border-radius: 60px; font-weight: 500; ">$1</span>`
+        `<span style="background: linear-gradient(266.49deg, rgba(249, 150, 57, 0.1) -15.12%, rgba(216, 10, 0, 0.1) 58.77%, rgba(104, 16, 0, 0.1) 118.54%); padding: 1px 10px 6px 10px; border-radius: 60px; font-weight: 500; ">$1</span>`
       );
     });
 
@@ -251,7 +251,7 @@ const OurValues: React.FC<OurValuesProps> = ({ className = "" }) => {
   return (
     <div className="pt-[128px] md:pt-[105px] lg:pt-[167px]">
       {/* 3 Column Grid - 1 col for heading, 2 cols for description + cards */}
-      <div className="container-custom grid grid-cols-1 lg:grid-cols-4">
+      <div className="container-custom grid grid-cols-1 xl:grid-cols-4">
         {/* Column 1 - Main Heading */}
         <div className="col-span-1">
           <span
@@ -266,14 +266,10 @@ const OurValues: React.FC<OurValuesProps> = ({ className = "" }) => {
         </div>
 
         {/* Column 2-3 - Description + Cards */}
-        <div className="lg:col-span-3 pl-[3px] 3xl:pl-0">
+        <div className="lg:col-span-3">
           {/* Description */}
-          <div className="text-black text-[22px] md:text-[28px] lg:text-[32px] leading-[150%] md:leading-[133%] pt-[21.5px] md:pt-[27px] ml-[-2px] md:ml-0 md:pl-1 lg:pl-0 lg:pt-[2px] tracking-[-0.1px] md:tracking-[0px] 3xl:tracking-[-0.1px]">
-            <span
-              dangerouslySetInnerHTML={{
-                __html: renderHighlightedText(VALUES_CONTENT.description),
-              }}
-            />
+          <div className="text-black text-[22px] md:text-[28px] lg:text-[32px] leading-[150%] md:leading-[133%] pt-[21.5px] md:pt-[27px] xl:pt-[2px] tracking-[-0.1px] md:tracking-[0px] 3xl:tracking-[-0.1px]">
+            At Danske Gas, our mission is to deliver  <span className="bg-red-100 font-[500] rounded-full px-[10px] pb-[4px]">top-tier energy</span>  products while contributing to a more sustainable, innovative, and digitally connected  <span className="bg-red-100 font-[500] rounded-full px-[10px] pb-[4px]">future</span>  for the industries we serve  <span className="bg-red-100 font-[500] rounded-full px-[10px] pb-[4px]">across Europe.</span>
           </div>
 
           {/* Value Cards - Only under the description */}

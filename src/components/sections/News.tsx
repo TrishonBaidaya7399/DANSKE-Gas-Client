@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 interface EventCard {
   id: string;
@@ -141,16 +142,15 @@ const News = () => {
   };
 
   return (
-    <div className="app-container lg:mt-0 mt-[100px]" ref={sectionRef}>
+    <div className="container-custom mt-[100px] md:mt-0" ref={sectionRef}>
       <div>
         {/* Header Section */}
         <div
-          className={`flex lg:justify-center lg:items-center lg:text-center flex-col mb-10 transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`flex lg:justify-center lg:items-center lg:text-center flex-col mb-10 transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <span
-            className="text-[16px] font-medium tracking-wide inline-block capitalize bg-clip-text text-transparent"
+            className="text-[12px] md:text-[16px] leading-[140%] font-medium inline-block capitalize bg-clip-text text-transparent"
             style={{
               background:
                 "linear-gradient(266.49deg, #F99639 -15.12%, #D80A00 58.77%, #A01800 118.54%)",
@@ -161,35 +161,37 @@ const News = () => {
           >
             MEET THE TEAM
           </span>
-          <h2 className="text-2xl md:text-3xl lg:text-[48px] font-normal text-black leading-tight lg:block hidden ">
+
+          <h2 className="text-[48px] leading-[133%] lg:block hidden ">
             From the Stage. <br /> From the Field. From Us.
           </h2>{" "}
-          <h2 className="text-2xl md:text-3xl lg:text-[48px] font-normal text-black leading-tight lg:hidden md:block hidden">
-            From the Stage.From the Field. From Us.
+          <h2 className="text-[34px] leading-[133%] lg:hidden md:block hidden">
+            From the Stage. From the Field. From Us.
           </h2>{" "}
-          <h2 className="text-[34px] md:text-3xl lg:text-[48px] font-normal text-black leading-tight lg:hidden md:hidden block">
+          <h2 className="text-[34px] md:text-[48px] leading-[133%] lg:hidden md:hidden block">
             From the Stage. <br /> From the Field. From Us.
           </h2>
-          <p className="lg:text-[20px] md:text-lg text-[16px] text-black max-w-xl mt-2 ">
+          <p className="text-[16px] lg:text-[20px] 
+              leading-[140%] lg:leading-[150%] 
+              max-w-[494px] lg:max-w-[600px] tracking-[-0.2px] w-full 
+              pt-[7px] lg:pt-[8px]">
             Our leadership team brings decades of expertise in fuel import,
             logistics and energy distribution across Europe.
           </p>
         </div>
 
         {/* Event Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[12px] md:gap-[20px] lg:gap-[32px] mx-auto ">
+        <div className="pl-[3px] pt-[2px] 3xl:pt-[3px] 3xl:pl-[15px] 3xl:pr-[15px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[26px] sm:gap-y-[30px] md:gap-x-[25px] md:gap-y-[40px] lg:gap-x-[40px] lg:gap-y-[40px] mx-auto ">
           {getOrderedCards().map(({ event, originalIndex }, sortedIndex) => (
             <div
               key={event.id}
-              className={`bg-off-white p-[20px] rounded-2xl transition-all duration-600 ease-out overflow-hidden w-full h-full cursor-pointer hover:-translate-y-1 ${
-                originalIndex === 2
-                  ? "md:flex md:flex-row md:col-span-2 md:mb-[32px] lg:flex lg:flex-col lg:col-span-1 lg:mb-0"
+              className={`bg-off-white flex flex-col gap-[17px] sm:gap-y-[20px] lg:gap-y-[0] p-[20px] rounded-2xl transition-all duration-600 ease-out overflow-hidden w-full h-full cursor-pointer hover:-translate-y-1 
+                ${originalIndex === 2 ? "md:flex md:flex-row md:col-span-2 lg:flex lg:flex-col lg:col-span-1 lg:mb-0"
                   : ""
-              } ${
-                isVisible
+                } ${isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-12"
-              }`}
+                }`}
               style={{
                 transitionDelay: isVisible ? `${sortedIndex * 150}ms` : "0ms",
                 transitionProperty: "all",
@@ -201,11 +203,10 @@ const News = () => {
             >
               {/* Image-Container */}
               <div
-                className={`relative ${
-                  originalIndex === 2
-                    ? "md:w-[347px] md:h-[242px] w-full md:flex-shrink-0 md:order-2 lg:w-full lg:h-[242px] lg:order-none h-[242px]"
-                    : "h-[242px] md:h-[240px] lg:h-[240px]"
-                }`}
+                className={`relative ${originalIndex === 2
+                  ? "md:w-[347px] md:h-[242px] w-full md:flex-shrink-0 md:order-2 lg:w-full lg:h-[242px] lg:order-none h-[242px]"
+                  : "h-[242px] md:h-[240px] lg:h-[240px]"
+                  }`}
               >
                 <div className="relative rounded-lg">
                   <Image
@@ -214,11 +215,10 @@ const News = () => {
                     placeholder="blur"
                     blurDataURL={event.compressedImageUrl}
                     alt={event.imageAlt}
-                    className={`rounded-[10px] ${
-                      originalIndex === 2
-                        ? "md:w-[347px] w-full h-[242px] md:h-[242px] lg:w-[100%] lg:h-[242px]"
-                        : "w-[100%] h-[242px] md:h-[241px] lg:h-[241px]"
-                    }`}
+                    className={`rounded-[10px] object-cover ${originalIndex === 2
+                      ? "md:w-[347px] w-full h-[242px] md:h-[242px] lg:w-[100%] lg:h-[242px]"
+                      : "w-[100%] h-[242px] md:h-[241px] lg:h-[241px]"
+                      }`}
                     priority={event.id === "1"}
                     height={242}
                     width={originalIndex === 2 ? 347 : 357}
@@ -227,29 +227,27 @@ const News = () => {
               </div>
               {/* Content Container */}
               <div
-                className={`flex flex-col ${
-                  originalIndex === 2
+                className={`flex flex-col lg:pt-[8px] pl-[1px] lg:pl-0 
+                  ${originalIndex === 2
                     ? "md:flex-1 md:order-1 md:pr-6 lg:pr-0 lg:order-none"
                     : ""
-                }`}
+                  }`}
               >
                 {/* Date with Vending Machine Animation */}
-                <div className="text-[16px] text-dark-gray font-normal mt-[12px] mb-[10px] h-5 overflow-hidden relative">
+                <div className="text-[14px] md:text-[16px] text-dark-gray font-normal lg:mt-[12px] h-5 overflow-hidden relative">
                   <div
-                    className={`transform transition-transform duration-400 ease-in-out ${
-                      hoveredCard === event.id
-                        ? "-translate-y-5"
-                        : "translate-y-0"
-                    }`}
+                    className={`transform transition-transform duration-400 ease-in-out ${hoveredCard === event.id
+                      ? "-translate-y-5"
+                      : "translate-y-0"
+                      }`}
                   >
                     {event.date}
                   </div>
                   <div
-                    className={`absolute top-5 left-0 transform transition-transform duration-400 ease-in-out ${
-                      hoveredCard === event.id
-                        ? "-translate-y-5"
-                        : "translate-y-0"
-                    }`}
+                    className={`absolute top-5 left-0 transform transition-transform duration-400 ease-in-out ${hoveredCard === event.id
+                      ? "-translate-y-5"
+                      : "translate-y-0"
+                      }`}
                   >
                     <Link
                       href="/about"
@@ -261,21 +259,26 @@ const News = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[24px] font-normal text-black leading-tight mb-1">
+                <h3 className="max-w-[300px] w-full lg:max-w-full text-[20px] lg:text-[24px] pt-[6px] tracking-[-0.2px] leading-[150%] font-normal text-black mb-1">
                   {event.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[16px] text-black leading-relaxed mb-6 flex-grow">
+                <p className="text-[16px] leading-[140%] tracking-[-0.2px]">
                   {event.description}
                 </p>
 
                 {/* Read More Button */}
                 <Link
                   href={`/news/${event.id}`}
-                  className="inline-flex items-center gap-2 transition-all duration-300 self-start group"
+                  className={`inline-flex items-center gap-[18px] transition-all duration-300 self-start group
+                    ${originalIndex === 2
+                      ? "mt-[26px] md:mt-[58px] lg:mt-[26px]"
+                      : "mt-[26px] md:mt-[25px] lg:mt-[26px]"
+                    }
+                    `}
                 >
-                  <span className="text-[16px] font-medium tracking-wide bg-gradient-to-r from-[#A01800] via-[#D80A00] to-[#F99639] bg-clip-text text-transparent">
+                  <span className="text-[12px] md:text-[16px] leading-[140%] font-medium bg-gradient-to-r from-[#A01800] via-[#D80A00] to-[#F99639] bg-clip-text text-transparent">
                     READ MORE
                   </span>
                   <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -286,6 +289,24 @@ const News = () => {
             </div>
           ))}
         </div>
+
+        <div className="text-center pt-[49px] sm:pt-[45px]">
+          <Button
+            variant="cta-gradient"
+            size="cta"
+            className="font-medium lg:w-[205px] md:w-[226px] w-full h-[54px] text-[16px]"
+          >
+            <Link
+              href="#"
+              className="inline-flex items-center gap-2 relative z-10"
+            >
+              <span className="relative z-10 text-[18px] leading-[140%]">
+                Go to all articles
+              </span>
+            </Link>
+          </Button>
+        </div>
+
       </div>
     </div>
   );

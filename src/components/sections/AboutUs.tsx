@@ -157,7 +157,7 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
       className=""
     >
       {/* Desktop Layout */}
-      <div className="hidden lg:grid grid-cols-4 pt-[70px] gap-[26px] 3xl:gap-0">
+      <div className="hidden xl:grid grid-cols-4 pt-[70px] gap-[26px] 3xl:gap-0">
         {STATS_DATA.map((stat, index) => {
           const count = counters[index] || 0;
 
@@ -197,7 +197,7 @@ const Stats: React.FC<{ className?: string }> = ({ className = "" }) => {
       </div>
 
       {/* Tablet Layout - 2x2 Grid */}
-      <div className="hidden md:grid lg:hidden pt-[46px] items-center w-full">
+      <div className="hidden md:grid xl:hidden pt-[46px] items-center w-full">
         <div className=" ">
           {/* Top Row */}
           <div className="grid grid-cols-2 mb-5 relative">

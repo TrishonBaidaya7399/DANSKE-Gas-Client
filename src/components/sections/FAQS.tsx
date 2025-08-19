@@ -137,15 +137,15 @@ const FAQS = () => {
           </p>
         </div>
 
-        <div className="flex flex-col 2xl:gap-6 xs:gap-4 2xl:w-[651px] 2xl:mr-[23px]">
+        <div className="flex flex-col 2xl:gap-6 xs:gap-4 2xl:w-[651px] 3xl:mr-[23px]">
           {faqData.map((faq) => (
             <div
               key={faq.id}
               style={{letterSpacing: '-1%'}}
               className={`lg:rounded-2xl rounded-[8px] 2xl:px-8 xs:px-4 2xl:py-6 xs:py-4 cursor-pointer transition-all duration-700  ease-out 2xl:w-[651px] ${
                 openFAQ === faq.id
-                  ? "bg-gradient-to-r from-[#B91C1C] via-[#DC2626] to-[#F97316] text-white 2xl:h-[150px] md:h-[156px] xs:h-[200px]"
-                  : "bg-[#F8F8F8] text-black hover:bg-gray-100 2xl:h-[78px] md:h-[86px]"
+                  ? "bg-gradient-to-r from-[#B91C1C] via-[#DC2626] to-[#F97316] text-white"
+                  : "bg-[#F8F8F8] text-black hover:bg-gray-100"
               }`}
               onClick={() => toggleFAQ(faq.id)}
             >

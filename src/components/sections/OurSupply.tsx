@@ -198,23 +198,25 @@ const OurSupply = () => {
 
     const cardContent = (
       <>
-        <div className="absolute lg:top-[32px] top-[16px] lg:right-[24px] right-[16px]">
-          <motion.span
-            className={`lg:text-[22px] md:text-[18px] font-medium`}
-            style={{ color: textColor }}
-          >
-            {card.number}
-          </motion.span>
-        </div>
-        <div>
+        <div className="w-full">
+          <div className="text-end">
+            <motion.span
+              className={`text-[18px] lg:text-[22px] leading-[110%] font-medium text-center`}
+              style={{ color: textColor }}
+            >
+              {card.number}
+            </motion.span>
+          </div>
+          
           <motion.h3
-            className={`lg:text-[22px] md:text-[18px] font-bold mb-1`}
+            className={`text-[18px] lg:text-[22px] leading-[110%] font-bold`}
             style={{ color: textColor }}
           >
             {card.title}
           </motion.h3>
+
           <motion.p
-            className={`w-[90%] lg:text-[20px] md:text-[16px] font-normal`}
+            className={`text-[16px] leading-[140%] lg:text-[20px] pt-[7px] lg:leading-[150%] tracking-[-0.2px] max-w-[502px] w-full`}
             style={{ color: textColor }}
           >
             {card.description}
@@ -227,10 +229,11 @@ const OurSupply = () => {
       return (
         <motion.div
           style={{ opacity: staticOpacity, zIndex: 10 }}
-          className="lg:rounded-2xl md:rounded-[12px] rounded-[8px]  lg:h-[234px] h-[162px] w-full  flex flex-col justify-center items-center"
+          className="rounded-[8px] md:rounded-[16px] overflow-hidden"
         >
           <motion.div
-            className="w-full h-full rounded-2xl lg:pl-[32px] pl-[16px]  flex flex-col justify-center items-center relative"
+            className="w-full md:max-w-[367px] pl-[14px] pr-[19px] pt-[13px] pb-[32px]
+              lg:max-w-[577px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
             style={{
               background: backgroundStyle,
             }}
@@ -250,11 +253,12 @@ const OurSupply = () => {
           opacity: animatedOpacity,
           zIndex,
         }}
-        className="lg:rounded-2xl md:rounded-[12px] rounded-[8px] lg:h-[234px] h-[192px] w-full  flex flex-col justify-center items-center absolute top-0 left-0"
+        className="absolute top-0 left-0 w-full md:right-0 rounded-[8px] md:rounded-[16px] overflow-hidden"
         key={`motion-${card.id}`}
       >
         <motion.div
-          className="w-full h-full rounded-2xl lg:pl-[32px] pl-[16px] flex flex-col justify-center items-center relative"
+          className="w-full md:max-w-[367px] pl-[14px] pr-[19px] pt-[13px] pb-[32px]
+            lg:max-w-[577px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
           style={{
             background: backgroundStyle,
           }}
@@ -268,14 +272,17 @@ const OurSupply = () => {
   return (
     <div
       ref={containerRef}
-      className={"app-container  "}
+      className={"container-custom mt-[110px] md:mt-0"}
       style={{ height: "610vh" }}
     >
-      <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-[153px] md:gap-5 gap-10 sticky top-0 lg:h-[94vh] items-center md:h-[94vh] h-[63vh]">
+      <div className="items-center max-w-[1280px] grid md:grid-cols-2 grid-cols-1 
+        sticky top-0 lg:h-[94vh] md:h-[94vh] h-[63vh]
+        gap-[42px] md:gap-[30px] lg:gap-[123px]"
+      >
         {/* Column 1 - Main Heading */}
         <div className="md:col-span-1">
           <span
-            className="text-[16px] font-medium tracking-wide inline-block"
+            className="text-[12px] md:text-[16px] leading-[140%] lg:pl-[7px] font-medium inline-block"
             style={{
               background:
                 "linear-gradient(266.49deg, #F99639 -15.12%, #D80A00 58.77%, #A01800 118.54%)",
@@ -286,17 +293,17 @@ const OurSupply = () => {
           >
             {OUR_SUPPLY_CONTENT.sectionTitle}
           </span>
-          <h2 className="text-[34px] md:text-[38px] lg:text-[48px] font-normal text-black leading-tight">
+          <h2 className="text-[34px] lg:text-[48px] leading-[133%] lg:pl-[6px] lg:pt-[6px]">
             {OUR_SUPPLY_CONTENT.mainHeading}
           </h2>
-          <p className="lg:text-[19px] text-[16px]  text-black lg:w-[544px] md:w-[339px] w-full text-wrap mt-[8px]">
+          <p className="text-[16px] leading-[140%] lg:text-[20px] lg:leading-[150%] tracking-[-0.2px] lg:pl-[6px] pt-[5px] lg:pt-[9px]">
             {OUR_SUPPLY_CONTENT.description}
           </p>
-          <div className="mt-8">
+          <div className="mt-[30px] lg:mt-[40px] lg:ml-[8px]">
             <Button
               variant="cta-gradient"
               size="cta"
-              className="font-medium lg:w-[205px] md:w-[205px] w-full h-[54px] text-[16px]"
+              className="font-medium lg:w-[205px] md:w-[226px] w-full h-[54px] text-[16px]"
             >
               <Link
                 href={OUR_SUPPLY_CONTENT.buttonHref}
@@ -314,7 +321,7 @@ const OurSupply = () => {
         </div>
 
         {/* Column 2 - Stacked Cards */}
-        <div className="flex flex-col items-center justify-center md:col-span-1 relative md:h-[210px]">
+        <div className="w-full flex flex-col md:items-end justify-center md:col-span-1 relative h-[162px] lg:h-[234px]">
           {VALUE_CARDS.map((card, index) => (
             <AnimatedCard key={card.id} card={card} index={index} />
           ))}

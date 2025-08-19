@@ -1,4 +1,3 @@
-import Header from "@/components/common/Header";
 import AboutUs from "@/components/sections/AboutUs";
 import ContactUs from "@/components/sections/ContactUs";
 import CTA from "@/components/sections/CTA";

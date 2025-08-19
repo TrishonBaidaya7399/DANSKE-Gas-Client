@@ -246,7 +246,9 @@ const Navbar: React.FC<HeaderProps> = ({
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                  className="max-w-[calc(100vw-32px)] w-[calc(100vw-32px)] mx-4 mt-4 rounded-b-2xl bg-off-white backdrop-blur-lg shadow-2xl border border-white/30 z-[60]"
+                  className="max-w-[calc(100vw-32px)] w-[calc(100vw-32px)] mx-4 
+                  md:max-w-[calc(100vw-80px)] md:w-[calc(100vw-80px)] md:mx-[40px]
+                  mt-4 rounded-b-2xl bg-off-white backdrop-blur-lg shadow-2xl border border-white/30 z-[60]"
                   align="end"
                   sideOffset={8}
                   style={{ borderRadius: "0 0 20px 20px" }}

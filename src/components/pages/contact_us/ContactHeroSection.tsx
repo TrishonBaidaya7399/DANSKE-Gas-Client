@@ -100,18 +100,17 @@ const ContactHeroSection: React.FC<ContactHeroSectionProps> = ({
         </div>
       </div>
 
-      <div className="bg-red-800 py-4 overflow-hidden flex xl:h-[105px] lg:h-[80px] md:h-[80px] h-[62px]">
+      <div className="bg-red-800 py-4 overflow-hidden flex xl:h-[105px] lg:h-[80px] md:h-[80px] h-[62px] items-center justify-center">
         <Marquee speed={50} gradient={false} className="flex">
           {MARQUEE_ITEMS.map((item, index) => (
             <span
               key={index}
-              className="text-white font-bold xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider mr-[100px]"
+              className="text-white font-medium xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider mr-[100px]"
             >
               {item}
             </span>
           ))}
         </Marquee>
-        s
       </div>
     </div>
   );

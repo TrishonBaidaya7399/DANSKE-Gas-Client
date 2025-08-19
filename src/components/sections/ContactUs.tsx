@@ -355,10 +355,10 @@ const ContactForm: React.FC<{
     : "text-[28px] font-semibold leading-[133%] ";
 
   const containerClass = isDesktop
-    ? "rounded-[24px] h-full 2xl:pt-[24px] 2xl:px-[37px] 2xl:h-[572px] 2xl:w-[572px] 2xl:ml-[11px]"
+    ? "rounded-[24px] h-full lg:pt-[24px] lg:px-[37px] lg:h-[572px] lg:w-[572px] lg:ml-[11px]"
     : isTablet
     ? "rounded-[12px] py-[24px] px-[16px] lg:mt-0 md:mt-[3px] md:h-[495px]"
-    : "rounded-[12px] px-[16px] py-[24px] xs:h-[532px] mt-[6px]";
+    : "rounded-[12px] px-[16px] py-[24px] xs:h-auto mt-[6px]";
 
   const formClass = isDesktop
     ? "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[26px] 2xl:font-normal text-[16px] leading-[140%]"
@@ -478,7 +478,7 @@ const ContactUs: React.FC = () => {
     <div className="container-custom lg:mt-[170px] md:mt-[100px] mt-[130px]">
       <div className="relative">
         <div
-          className={`3xl:rounded-[40px] 2xl:rounded-[30px] rounded-[24px]  2xl:w-[1280px] 2xl:h-[705px] md:h-[902px] xs:h-[1099px] 3xl:ml-[-9px] ${STYLES.spacing.containerPadding.desktop} lg:h-full relative h-full overflow-hidden`}
+          className={`3xl:rounded-[40px] 2xl:rounded-[30px] rounded-[24px]  2xl:w-[1280px] 2xl:h-[705px] md:h-auto 3xl:ml-[-9px] ${STYLES.spacing.containerPadding.desktop} lg:h-full relative h-full overflow-hidden`}
           style={{ background: STYLES.colors.gradientBackground }}
         >
           {/* Desktop Layout */}
