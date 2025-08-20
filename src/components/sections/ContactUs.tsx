@@ -349,10 +349,10 @@ const ContactForm: React.FC<{
   const isMobile = layout === "mobile";
 
   const titleSize = isDesktop
-    ? "lg:text-[40px] md:text-[32px] text-[30px] font-semibold leading-[133%] tracking-tight"
+    ? "lg:text-[40px] md:text-[32px] text-[30px] font-medium leading-[133%] tracking-tight"
     : isTablet
-    ? "text-xl md:text-[28px] font-normal leading-[133%]"
-    : "text-[28px] font-semibold leading-[133%] ";
+    ? "text-xl md:text-[28px] font-medium leading-[133%]"
+    : "text-[28px] font-medium leading-[133%] ";
 
   const containerClass = isDesktop
     ? "rounded-[24px] h-full lg:pt-[24px] lg:px-[37px] lg:h-[572px] lg:w-[572px] lg:ml-[11px]"

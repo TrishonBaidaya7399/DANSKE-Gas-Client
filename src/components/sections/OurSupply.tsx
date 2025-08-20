@@ -229,11 +229,11 @@ const OurSupply = () => {
       return (
         <motion.div
           style={{ opacity: staticOpacity, zIndex: 10 }}
-          className="rounded-[8px] md:rounded-[16px] overflow-hidden"
+          className="rounded-[8px] md:rounded-[16px] overflow-hidden w-full"
         >
           <motion.div
-            className="w-full md:max-w-[367px] pl-[14px] pr-[19px] pt-[13px] pb-[32px]
-              lg:max-w-[577px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
+            className="w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px]
+              lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
             style={{
               background: backgroundStyle,
             }}
@@ -253,12 +253,13 @@ const OurSupply = () => {
           opacity: animatedOpacity,
           zIndex,
         }}
-        className="absolute top-0 left-0 w-full md:right-0 rounded-[8px] md:rounded-[16px] overflow-hidden"
+        className="absolute top-0 w-full right-0"
         key={`motion-${card.id}`}
       >
         <motion.div
-          className="w-full md:max-w-[367px] pl-[14px] pr-[19px] pt-[13px] pb-[32px]
-            lg:max-w-[577px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
+          className="w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px]
+              lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]
+              rounded-[8px] md:rounded-[16px] overflow-hidden"
           style={{
             background: backgroundStyle,
           }}
@@ -321,7 +322,7 @@ const OurSupply = () => {
         </div>
 
         {/* Column 2 - Stacked Cards */}
-        <div className="w-full flex flex-col md:items-end justify-center md:col-span-1 relative h-[162px] lg:h-[234px]">
+        <div className="w-full md:max-w-[367px] lg:max-w-[577px] flex flex-col md:items-end justify-center md:col-span-1 relative h-[162px] lg:h-[234px]">
           {VALUE_CARDS.map((card, index) => (
             <AnimatedCard key={card.id} card={card} index={index} />
           ))}

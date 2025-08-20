@@ -139,7 +139,7 @@ const Navbar: React.FC<HeaderProps> = ({
       <div className="
           pl-4 pr-4 pt-6 pb-0
           md:pl-[40px] md:pr-[40px] md:pt-6 md:pb-0
-          lg:pl-[80px] lg:pr-[54px] lg:pt-[45.48px] lg:pb-[16px] 
+          lg:pl-[80px] lg:pr-[80px] lg:pt-[45.48px] lg:pb-[16px] 
           3xl:pl-0 3xl:pr-0 3xl:max-w-[1306px] 3xl:pt-[36px] 3xl:pb-[16px]
           w-full mx-auto"
       >
@@ -166,24 +166,14 @@ const Navbar: React.FC<HeaderProps> = ({
                     <Link
                       key={index}
                       href={item.href}
-                      className={`cursor-pointer inline-block font-normal text-[20px] leading-[150%] only-lg:text-[18px] transition-all duration-300 whitespace-nowrap relative group ${
-                        item.isActive ? "text-white font-bold" : "text-white"
-                      }`}
+                      className={`cursor-pointer inline-block font-normal text-[20px] leading-[150%] only-lg:text-[18px] 
+                          hover:scale-110
+                          transition-all duration-300 whitespace-nowrap relative group text-white`
+                        }
                     >
-                      <span
-                        className={`transition-opacity duration-300 ${
-                          item.isActive ? "" : "group-hover:opacity-0"
-                        }`}
-                      >
-                        {item.label}
-                      </span>
 
-                      {!item.isActive && (
-                        <span className="absolute inset-0 font-bold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                          {item.label}
-                        </span>
-                      )}
-
+                      {item.label}
+                      
                       <span
                         className={`absolute left-0 -bottom-0 h-[1px] bg-white transition-all duration-300 ${
                           item.isActive ? "w-full" : "w-0 group-hover:w-full"
