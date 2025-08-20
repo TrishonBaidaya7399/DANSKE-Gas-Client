@@ -60,21 +60,36 @@ export default function MapSection() {
         )}
 
         {/* Google Maps Iframe */}
-        <iframe
+        {/* <iframe
           src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2458.2073667354407!2d20.998235676490534!3d52.21711585861033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWawelska%2045%2F58%2C%2002-034%20Warszawa%2C%20Poland!5e1!3m2!1sen!2sbd!4v1755268039023!5m2!1sen!2sbd"
           width="100%"
           height="100%"
-          style={{ border: 0, borderRadius: 40 }}
+          style={{ border: 0, borderRadius: 40, filter: "grayscale(100%)" }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           onLoad={handleIframeLoad}
           onError={handleIframeError}
-          className={`w-full h-full ${
+          className={`w-full h-full  ${
             isLoading || hasError ? "opacity-0" : "opacity-100"
           } transition-opacity duration-500`}
           title="DANSKE GAS Office Location - Wawelska 45/58, Warsaw, Poland"
+        /> */}
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2458.2073667354407!2d20.998235676490534!3d52.21711585861033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWawelska%2045%2F58%2C%2002-034%20Warszawa%2C%20Poland!5e0!3m2!1sen!2sbd!4v1755268039023!5m2!1sen!2sbd"
+          width="100%"
+          height="100%"
+          style={{ border: 0, borderRadius: 40, filter: "grayscale(100%)" }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          onLoad={handleIframeLoad}
+          onError={handleIframeError}
+          className={`w-full h-full ${isLoading || hasError ? "opacity-0" : "opacity-100"
+            } transition-opacity duration-500`}
+          title="DANSKE GAS Office Location - Wawelska 45/58, Warsaw, Poland"
         />
+
       </section>
     </div>
   );

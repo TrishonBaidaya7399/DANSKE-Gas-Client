@@ -201,7 +201,7 @@ const OurSupply = () => {
         <div className="w-full">
           <div className="text-end">
             <motion.span
-              className={`text-[18px] lg:text-[22px] leading-[110%] font-medium text-center`}
+              className={`text-[18px] lg:text-[22px] leading-[110%] font-medium`}
               style={{ color: textColor }}
             >
               {card.number}
