@@ -122,58 +122,69 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
   return (
     <div className={`w-full relative ${className}`}>
       {/* Header Container - Fixed height */}
-      <div
-        className="w-full relative bg-cover bg-bottom bg-no-repeat overflow-hidden
-          3xl:bg-[url('/assets/header-pic/bg.webp')] 3xl:h-[649px]
-          lg:bg-[url('/assets/header-pic/lg-bg.webp')] lg:h-[657px]
-          md:bg-[url('/assets/header-pic/md-bg.webp')] md:h-[594px]
-          bg-[url('/assets/header-pic/sm-bg.webp')] h-[594px]
-        "
-      >
-        {/* Content Container */}
-        <div className="container-custom w-full h-full relative z-10">
-          {/* Hero Content */}
-          <div className="w-full h-full 
-            max-w-[596px] lg:max-w-[668px] 
-            pt-[130px] md:pt-[128px] lg:pt-[185px] 3xl:pt-[175px]"
-          >
-            <div className="">
-              <h1 className="text-white 
-                text-[38px] leading-[123%] font-medium
-                md:text-[48px] md:leading-[133%] md:font-normal
-                lg:text-[64px] lg:leading-[123%] lg:font-medium">
-                Global Fuels. Local Delivery. Industrial Precision.
-              </h1>
-              <p className="block lg:hidden text-white
-                text-[20px] md:text-[24px] leading-[150%] tracking-[-0.2px]
-                pt-4">
-                Supplying high-performance energy solutions to industries,
-                businesses, and global motorsports.
-              </p>
-            </div>
+      <div className="bg-[#F99639] relative">
+        <div
+          className="w-full relative bg-cover bg-bottom bg-no-repeat overflow-hidden
+            3xl:bg-[url('/assets/header-pic/bg.png')] 3xl:h-[649px]
+            lg:bg-[url('/assets/header-pic/lg-bg.png')] lg:h-[657px]
+            md:bg-[url('/assets/header-pic/md-bg.webp')] md:h-[594px]
+            bg-[url('/assets/header-pic/sm-bg.webp')] h-[594px]
+          "
+        >
+          {/* Content Container */}
+          <div className="container-custom w-full h-full relative z-10">
+            {/* Hero Content */}
+            <div className="w-full h-full 
+              max-w-[596px] lg:max-w-[668px] 
+              pt-[130px] md:pt-[128px] lg:pt-[185px] 3xl:pt-[175px]"
+            >
+              <div className="">
+                <h1 className="text-white 
+                  text-[38px] leading-[123%] font-medium
+                  md:text-[48px] md:leading-[133%] md:font-normal
+                  lg:text-[64px] lg:leading-[123%] lg:font-medium">
+                  Global Fuels. Local Delivery. Industrial Precision.
+                </h1>
+                <p className="block lg:hidden text-white
+                  text-[20px] md:text-[24px] leading-[150%] tracking-[-0.2px]
+                  pt-4">
+                  Supplying high-performance energy solutions to industries,
+                  businesses, and global motorsports.
+                </p>
+              </div>
 
-            <div className="relative pt-[125px] md:pt-[156px] lg:pt-[140px]">
-              <Link className="text-[18px] leading-[140%] 
-                    text-black rounded-full bg-white font-medium
-                    inline-flex items-center justify-center gap-[10px]
-                    w-full min-[596px]:w-[227px] lg:w-[251px] 
-                    p-[14.5px] group transition-all duration-300
-                    hover:text-white hover:bg-black"
-                href="#"
-              >
-                <span>
-                  See Our Products
-                </span>
+              <div className="relative pt-[125px] md:pt-[156px] lg:pt-[140px]">
+                <Link className="text-[18px] leading-[140%] 
+                      text-black rounded-full bg-white font-medium
+                      inline-flex items-center justify-center gap-[10px]
+                      w-full min-[596px]:w-[227px] lg:w-[251px] 
+                      p-[14.5px] group transition-all duration-300
+                      hover:text-white hover:bg-black"
+                  href="#"
+                >
+                  <span>
+                    See Our Products
+                  </span>
 
-                <svg className="stroke-black transition-all duration-300 group-hover:stroke-white"
-                  width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 1.47656H13M13 1.47656L13 10.4766M13 1.47656L1 13.4766" strokeWidth="1.5" />
-                </svg>
+                  <svg className="stroke-black transition-all duration-300 group-hover:stroke-white"
+                    width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 1.47656H13M13 1.47656L13 10.4766M13 1.47656L1 13.4766" strokeWidth="1.5" />
+                  </svg>
 
-              </Link>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* rounded area start */}
+        <div className="absolute -bottom-1 left-0 w-full hidden lg:block">
+          <svg className="w-full" viewBox="0 0 1492 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M485.7 110.79H0V114H1492V0H625.65C614.39 0 603.62 4.64 595.88 12.83L515.46 97.96C507.72 106.15 496.96 110.79 485.69 110.79H485.7Z" fill="#fff" />
+          </svg>
+        </div>
+        {/* rounded area start */}
+
       </div>
 
       {/* Content Section Below Header - PROPERLY CONTAINED */}

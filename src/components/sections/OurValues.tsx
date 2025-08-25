@@ -189,7 +189,7 @@ const MarqueeText: React.FC<MarqueeTextProps> = ({ className = "" }) => {
       // 🎯 SPEED CONTROL: Change duration value (higher = slower, lower = faster)
       const tween = gsap.to(marquee, {
         x: -singleSetWidth,
-        duration: 50, // 🎯 CONTROL SPEED HERE
+        duration: 20, // 🎯 CONTROL SPEED HERE
         ease: "none",
         repeat: -1,
         onUpdate: updateGradients,

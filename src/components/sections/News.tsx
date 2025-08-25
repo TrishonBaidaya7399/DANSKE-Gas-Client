@@ -290,7 +290,7 @@ const News = () => {
           ))}
         </div>
 
-        <div className="text-center pt-[49px] sm:pt-[45px]">
+        {/* <div className="text-center pt-[49px] sm:pt-[45px]">
           <Button
             variant="cta-gradient"
             size="cta"
@@ -305,7 +305,7 @@ const News = () => {
               </span>
             </Link>
           </Button>
-        </div>
+        </div> */}
 
       </div>
     </div>
