@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { Icons } from "../Icons";
 
 interface ValuesContent {
@@ -33,8 +33,7 @@ const OurSupply = () => {
   const OUR_SUPPLY_CONTENT: ValuesContent = {
     sectionTitle: "OUR PRODUCTS",
     mainHeading: "What We Supply",
-    description:
-      "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial",
+    description: "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial",
     buttonText: "Learn More",
     buttonHref: "/products",
   };
@@ -51,29 +50,33 @@ const OurSupply = () => {
   ];
 
   const AnimatedCard = ({ card, index }: { card: ValueCard; index: number }) => {
-    const totalCards = VALUE_CARDS.length + 1;
+    const totalCards = VALUE_CARDS.length + 2;
     const step = 1 / totalCards;
 
-    const start = step * index;
-    const end = index === totalCards - 1 ? 1 : step * (index + 1); // Last card end = 1
+    // Determine the active card index based on scroll
+    const activeIndex = useTransform(smoothScroll, [0, 1], [0, totalCards - 1]);
 
-    // Only one card active at a time (simulate cinematic handoff)
-    const isActive = useTransform(smoothScroll, [start, end], [0, 1]);
-    const springActive = useSpring(isActive, { damping: 25, stiffness: 120 });
+    // Smoothly animate z-index, background, and text
+    const isActive = useTransform(activeIndex, (i) => Math.round(i) === index ? 1 : 0);
+    const springActive = useSpring(isActive as unknown as MotionValue<number>, { damping: 25, stiffness: 120 });
 
-    // Smooth fade and slide
-    const y = useTransform(smoothScroll, [start, end], [300, 0]);
-    const opacity = useTransform(smoothScroll, [start, end], [0, 1]);
+    // Slide animation
+    const y = useTransform(smoothScroll, [step * index, step * (index + 1)], [550, 0]);
 
-    const inactiveBg = "#F9F7F7";
-    const activeBg = "linear-gradient(266.49deg, #F99639 -15.12%, #D80A00 58.77%, #A01800 118.54%)";
-    const inactiveText = "#000000";
-    const activeText = "#F9F7F7";
+    // const inactiveBg = "#F9F7F7";
+    // const activeBg = "linear-gradient(266.49deg, #F99639 -15.12%, #D80A00 58.77%, #A01800 118.54%)";
+    // const inactiveText = "#000000";
+    // const activeText = "#F9F7F7";
+
+    const inactiveBg = "linear-gradient(266.49deg, #F99639 -15.12%, #D80A00 58.77%, #A01800 118.54%)";
+    const activeBg = "#F9F7F7";
+    const inactiveText = "#F9F7F7";
+    const activeText = "#000";
 
     return (
-      <motion.div style={{ y, opacity, zIndex: 10 + index }} className="absolute top-0 w-full right-0" key={card.id}>
+      <motion.div style={{ y, zIndex: 10 + index }} className="absolute top-0 w-full right-0" key={card.id}>
         <div className="relative w-full rounded-[8px] md:rounded-[16px] overflow-hidden">
-          {/* Background */}
+          {/* Background layers */}
           <motion.div
             className="absolute inset-0"
             style={{ background: inactiveBg, opacity: useTransform(springActive, [0, 1], [1, 0]) }}
@@ -84,7 +87,7 @@ const OurSupply = () => {
           />
           {/* Content */}
           <motion.div
-            className="relative w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
+            className="min-h-[236px] relative w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
             style={{ color: useTransform(springActive, [0, 1], [inactiveText, activeText]) }}
           >
             <div className="text-end">
@@ -97,6 +100,7 @@ const OurSupply = () => {
       </motion.div>
     );
   };
+
 
   return (
     <div ref={containerRef} className="container-custom mt-[110px] md:mt-0" style={{ height: "800vh" }}>
