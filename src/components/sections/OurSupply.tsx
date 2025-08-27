@@ -87,7 +87,7 @@ const OurSupply = () => {
           />
           {/* Content */}
           <motion.div
-            className="min-h-[236px] relative w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
+            className="min-h-[180px] md:min-h-[236px] relative w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
             style={{ color: useTransform(springActive, [0, 1], [inactiveText, activeText]) }}
           >
             <div className="text-end">
@@ -131,10 +131,12 @@ const OurSupply = () => {
         </div>
 
         {/* Right Column */}
-        <div className="w-full md:max-w-[367px] lg:max-w-[577px] flex flex-col md:items-end justify-center md:col-span-1 relative h-[162px] lg:h-[234px]">
-          {VALUE_CARDS.map((card, index) => (
-            <AnimatedCard key={card.id} card={card} index={index} />
-          ))}
+        <div className="w-full md:max-h-[600px] md:overflow-hidden h-full flex flex-col items-center justify-center">
+          <div className="w-full md:max-w-[367px] lg:max-w-[577px] flex flex-col md:items-end justify-center md:col-span-1 relative h-[162px] lg:h-[234px]">
+            {VALUE_CARDS.map((card, index) => (
+              <AnimatedCard key={card.id} card={card} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
