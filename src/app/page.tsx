@@ -18,7 +18,7 @@ const page = () => {
       <OurSupply />
       <News />
       <div className="container-custom">
-        <div className="max-w-[1280px] mx-auto w-full">
+        <div className="w-full max-w-[1280px] mx-auto">
           <FAQS />
         </div>
       </div>
