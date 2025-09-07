@@ -8,6 +8,7 @@ import React, {
   MutableRefObject,
 } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 type Project = {
   title: string;
@@ -248,14 +249,24 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
 
           <div className="relative w-full h-[220px] md:h-full shrink-0 overflow-hidden">
             <motion.div className="w-full h-full" style={{ scale: imageScale }}>
-              <img
+
+              <Image
                 src={`/assets/OurProduct-page/conventional-energy/${src_lg}`}
-                alt={title}
+                overrideSrc={`/assets/OurProduct-page/conventional-energy/${src_lg}`}
+                placeholder='blur'
+                blurDataURL={`/assets/OurProduct-page/conventional-energy/${src_lg}`}
+                alt={"img"}
+                fill
                 className="w-full h-full object-cover object-center hidden lg:block"
               />
-              <img
+
+              <Image
                 src={`/assets/OurProduct-page/conventional-energy/${src_sm}`}
-                alt={title}
+                overrideSrc={`/assets/OurProduct-page/conventional-energy/${src_sm}`}
+                placeholder='blur'
+                blurDataURL={`/assets/OurProduct-page/conventional-energy/${src_sm}`}
+                alt={"img"}
+                fill
                 className="w-full h-full object-cover object-center block lg:hidden"
               />
             </motion.div>
