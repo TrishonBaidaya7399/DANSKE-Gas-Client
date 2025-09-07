@@ -341,7 +341,7 @@ const ContactForm: React.FC<{
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
-    // Handle form submission here
+
   };
 
   const isDesktop = layout === "desktop";
