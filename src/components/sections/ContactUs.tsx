@@ -10,12 +10,9 @@ import { Button } from "../ui/button";
 
 // Zod Schema for Form Validation
 const formSchema = z.object({
-  firstName: z.string().min(1, "This field is required!"),
-  phone: z.string().min(1, "This field is required!"),
-  email: z
-    .string()
-    .min(1, "This field is required!")
-    .email("Please enter a valid email"),
+  firstName: z.string().min(1, "First name is required"),
+  phone: z.string().min(1, "Phone is required"),
+  email: z.string().email("Invalid email address"),
   comment: z.string().optional(),
 });
 
@@ -107,10 +104,8 @@ const FormField: React.FC<FormFieldProps> = ({
 
   // Handle numeric input for phone field
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // Allow only numbers, spaces, +, -, (, ) for phone formatting
-    const numericValue = value.replace(/[^0-9+\-\s()]/g, "");
-    e.target.value = numericValue;
+    e.target.value = e.target.value.replace(/[^0-9+\-\s()]/g, "");
+    return e;
   };
 
   if (type === "textarea") {
@@ -120,8 +115,9 @@ const FormField: React.FC<FormFieldProps> = ({
           {...register(name)}
           placeholder={placeholder}
           rows={rows}
-          className={`${commonClasses} resize-none ${name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
-            }`}
+          className={`${commonClasses} resize-none ${
+            name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
+          }`}
           style={{
             borderBottomColor: getBorderColor(),
             color: getTextColor(),
@@ -146,7 +142,9 @@ const FormField: React.FC<FormFieldProps> = ({
   return (
     <div className="relative">
       <input
-        {...register(name)}
+        {...register(name, {
+          onChange: type === "tel" ? handlePhoneInput : undefined,
+        })}
         type={type}
         placeholder={placeholder}
         className={commonClasses}
@@ -156,9 +154,8 @@ const FormField: React.FC<FormFieldProps> = ({
         }}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onChange={type === "tel" ? handlePhoneInput : undefined}
-        onInput={type === "tel" ? handlePhoneInput : undefined}
       />
+
       <style jsx>{`
         input::placeholder {
           color: #716b6b;
@@ -183,20 +180,20 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
   const titleClass = isDesktop
     ? "2xl:text-[22px] font-bold mb-[30px] leading-[110%]"
     : isTablet
-      ? "text-[22px] font-bold  mb-[30px]"
-      : "text-[18px] font-bold mb-[8px]";
+    ? "text-[22px] font-bold  mb-[30px]"
+    : "text-[18px] font-bold mb-[8px]";
 
   const textClass = isDesktop
     ? "text-[16px]"
     : isTablet
-      ? "text-sm"
-      : "text-sm";
+    ? "text-sm"
+    : "text-sm";
 
   const spacingClass = isDesktop
     ? "space-y-1"
     : isTablet
-      ? "space-y-1"
-      : "space-y-0 text-[16px] font-normal leading-[140%]";
+    ? "space-y-1"
+    : "space-y-0 text-[16px] font-normal leading-[140%]";
 
   if (isMobile) {
     return (
@@ -332,32 +329,89 @@ const ContactForm: React.FC<{
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful, isSubmitting },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    mode: "onSubmit", // Changed to trigger validation only on submit
+    mode: "onSubmit",
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
-    // Handle form submission here
+  const onSubmit = async (data: FormData) => {
+    console.log({ data });
+    const { firstName, phone, email, comment } = data;
+
+    const contents = `
+      First Name: ${firstName}
+      Phone: ${phone}
+      Email: ${email}
+      Comment: ${comment || "N/A"}
+      Submitted on: ${new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Dhaka",
+      })}
+    `;
+
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("contents", contents);
+    console.log({formData, firstName, phone, email, comment });
+    const jsonFormData = JSON.stringify({firstName, phone, email, comment });
+    console.log({ jsonFormData });
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        body: jsonFormData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log({ response });
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Email sent successfully, messageId:", result.messageId);
+        reset();
+      } else {
+        const errorText = await response.text();
+        console.error("Failed to send email:", errorText);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
   const isDesktop = layout === "desktop";
   const isTablet = layout === "tablet";
   const isMobile = layout === "mobile";
 
-  const titleSize = isDesktop ? "lg:text-[40px] md:text-[32px] text-[30px] font-medium leading-[133%] tracking-tight"
-    : isTablet ? "text-xl md:text-[28px] font-medium leading-[133%]"
-      : "text-[28px] font-medium leading-[133%] ";
+  const titleSize = isDesktop
+    ? "lg:text-[40px] md:text-[32px] text-[30px] font-medium leading-[133%] tracking-tight"
+    : isTablet
+    ? "text-xl md:text-[28px] font-medium leading-[133%]"
+    : "text-[28px] font-medium leading-[133%] ";
 
-  const containerClass = isDesktop ? "rounded-[24px] h-full lg:pt-[24px] lg:px-[37px] lg:w-[572px] lg:ml-[11px]"
-    : isTablet ? "rounded-[12px] py-[24px] px-[16px] lg:mt-0 md:mt-[3px]"
-      : "rounded-[12px] px-[16px] py-[24px] xs:h-auto mt-[6px]";
+  const containerClass = isDesktop
+    ? "rounded-[24px] h-full lg:pt-[24px] lg:px-[37px] lg:w-[572px] lg:ml-[11px]"
+    : isTablet
+    ? "rounded-[12px] py-[24px] px-[16px] lg:mt-0 md:mt-[3px]"
+    : "rounded-[12px] px-[16px] py-[24px] xs:h-auto mt-[6px]";
 
   const formClass = isDesktop
     ? "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[32px] 2xl:font-normal text-[16px] leading-[140%]"
     : "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[26px] xs:mt-[20px] md:gap-5 2xl:font-normal text-[16px] leading-[140%] md:gap-0 xs:gap-5";
+
+  // Reset form and clear errors on successful submission
+  // React.useEffect(() => {
+  //   if (isSubmitSuccessful) {
+  //     reset(
+  //       {
+  //         firstName: "",
+  //         phone: "",
+  //         email: "",
+  //         comment: "",
+  //       },
+  //       { keepErrors: false }
+  //     );
+  //   }
+  // }, [isSubmitSuccessful, reset]);
 
   return (
     <div
@@ -437,11 +491,12 @@ const ContactForm: React.FC<{
           <Button
             type="submit"
             variant="cta-gradient"
-            className={`w-full ${isDesktop ? "mb-2 3xl:mb-5" : ""
-              } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300  flex items-center justify-center `}
+            className={`w-full ${
+              isDesktop ? "mb-2 3xl:mb-5" : ""
+            } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300 flex items-center justify-center`}
+            disabled={isSubmitting}
           >
             <span className="relative z-10">Get in touch</span>
-
             <Icons.UpRightArrowLight />
           </Button>
         </div>
@@ -471,7 +526,8 @@ const ContactUs: React.FC = () => {
   return (
     <div className="w-full">
       <div className="relative">
-        <div className={`3xl:rounded-[40px] 2xl:rounded-[30px] rounded-[24px] ${STYLES.spacing.containerPadding.desktop} lg:h-full relative h-full overflow-hidden`}
+        <div
+          className={`3xl:rounded-[40px] 2xl:rounded-[30px] rounded-[24px] ${STYLES.spacing.containerPadding.desktop} lg:h-full relative h-full overflow-hidden`}
           style={{ background: STYLES.colors.gradientBackground }}
         >
           {/* Desktop Layout */}
