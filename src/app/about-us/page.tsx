@@ -5,6 +5,8 @@ import OurStory from "@/components/pages/about_us/OurStory";
 import Swiper1 from "@/components/pages/about_us/Swiper1";
 import WhoIsBehind from "@/components/pages/about_us/WhoIsBehind";
 import SupervisoryBoard from "@/components/pages/about_us/SupervisoryBoard";
+import BrandName from "@/components/pages/about_us/BrandName";
+import ContactUs from "@/components/sections/ContactUs";
 
 function sustainableEnergy() {
     return (
@@ -22,6 +24,16 @@ function sustainableEnergy() {
             <div className="py-[105px] md:py-[100px] lg:py-[170px]">
                 <SupervisoryBoard/>
             </div>
+
+            <div className="px-4 md:px-10 lg:px-0 lg:max-w-[1280px] mx-auto">
+                <BrandName/>
+            </div>
+
+            <div className="px-4 md:px-10 lg:px-0 lg:max-w-[1280px] mx-auto py-[110px] md:py-[100px] lg:py-[170px]">
+                <ContactUs/>
+            </div>
+
+            
 
 
         </div>

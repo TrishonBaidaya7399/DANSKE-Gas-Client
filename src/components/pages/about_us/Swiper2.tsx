@@ -64,7 +64,7 @@ export default function Swiper2({
         >
             {members.map((member) => (
                 <SwiperSlide key={member.id}>
-                    <div className="space-y-[14px] md:space-y-[19px]">
+                    <div className="space-y-[16px] md:space-y-[19px]">
                         <div className="relative w-full h-[220px] md:h-[260px] lg:h-[295px] 3xl:h-[270px] bg-[rgba(204,14,14,0.05)] rounded-2xl overflow-hidden">
                             <Image src={member.image} alt={member.name} fill className="object-cover" />
                         </div>
