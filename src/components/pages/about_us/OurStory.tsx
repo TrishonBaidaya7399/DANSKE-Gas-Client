@@ -326,7 +326,7 @@ const OurStory: React.FC<OurStoryProps> = ({ className = "" }) => {
                 </div>
 
                 {/* right image start */}
-                <div className="relative mx-auto max-w-[754px] xl:max-w-[613px] w-full h-[265px] md:h-[250px] xl:h-[390px] rounded-2xl xl:rounded-l-3xl overflow-hidden">
+                <div className="relative max-w-[754px] mx-auto xl:mx-0 xl:max-w-[613px] w-full h-[265px] md:h-[250px] xl:h-[390px] rounded-l-2xl rounded-r-2xl xl:rounded-l-3xl xl:rounded-r-[0px] overflow-hidden">
                     <Image
                         src={"/assets/AboutUs-page/whatMovesRight.png"}
                         overrideSrc={"/assets/AboutUs-page/whatMovesLeft.png"}

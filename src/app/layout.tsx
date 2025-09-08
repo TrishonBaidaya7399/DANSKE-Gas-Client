@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 import Navbar from "@/components/common/Header";
+import FooterWrapper from "@/components/common/FooterWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -98,6 +99,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <body
@@ -105,7 +107,7 @@ export default function RootLayout({
       >
         <Navbar/>
         {children}
-        <Footer />
+        <FooterWrapper/>
       </body>
     </html>
   );

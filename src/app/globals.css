@@ -284,6 +284,11 @@ html {
 }
 
 /* Button size */
+.mySwiper1 {
+  overflow: visible!important;
+}
+
+
 .mySwiper1
 .swiper-button-prev {
   width: 40px;
@@ -341,6 +346,14 @@ html {
 .swiper-button-prev::before {
   transform: scaleX(-1);
   background-image: url("data:image/svg+xml;utf8,<svg width='19' height='15' viewBox='0 0 19 15' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10.8362 0.92015L17.2001 7.28411M17.2001 7.28411L10.8362 13.6481M17.2001 7.28411L0.229563 7.28411' stroke='%23171515' stroke-width='1.5'/></svg>");
+}
+
+.mySwiper1 .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: -41px!important;
+}
+
+.mySwiper1 .swiper-pagination-bullet {
+  background-color: white!important;
 }
 
 

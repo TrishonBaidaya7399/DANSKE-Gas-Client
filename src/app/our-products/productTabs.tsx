@@ -247,7 +247,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
             <div className="prose prose-sm max-w-none">{content}</div>
           </div>
 
-          <div className="relative w-full h-[220px] md:h-full shrink-0 overflow-hidden">
+          <div className="relative w-full h-[220px] lg:h-full shrink-0 overflow-hidden">
             <motion.div className="w-full h-full" style={{ scale: imageScale }}>
 
               <Image
