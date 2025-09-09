@@ -118,7 +118,7 @@ const ProductTabs = ({ projects }: ProductTabsProps) => {
   return (
     <main ref={containerRef} className="relative w-full container-custom">
       {/* Navigation buttons */}
-      <div className="max-w-[1280px] mx-auto sticky top-0 z-50 bg-white/80 backdrop-blur
+      <div className="max-w-[1280px] mx-auto sticky top-[62px] md:top-[74px] lg:top-[100px] z-50 bg-white/80 backdrop-blur
         lg:pl-[4px] 3xl:pl-[7px] 3xl:pr-[7px] py-4
         flex flex-wrap items-center 
         justify-normal lg:justify-center 3xl:justify-normal 
@@ -227,7 +227,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           localRef.current = el;
         }}
         className="xl:h-screen flex items-start justify-center 3xl:justify-normal 
-          z-0 relative xl:sticky 3xl:top-[100px] xl:top-0
+          z-0 relative xl:sticky xl:top-[100px] 3xl:top-[100px]
           pt-[40px] xl:pt-[82px] pl-[7px]"
       >
         <motion.div
