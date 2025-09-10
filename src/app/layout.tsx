@@ -7,6 +7,7 @@ import Navbar from "@/components/common/Header";
 import FooterWrapper from "@/components/common/FooterWrapper";
 import Script from "next/script";
 import CookiebotScript from "@/components/common/CookiebotScript";
+import CookiebotReact from "@/components/common/CookiebotReact";
 
 
 const geistSans = Geist({
@@ -108,7 +109,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
-        <CookiebotScript/>
+        {/* <CookiebotReact/> */}
+        <CookiebotScript />
 
         <Navbar />
         {children}
