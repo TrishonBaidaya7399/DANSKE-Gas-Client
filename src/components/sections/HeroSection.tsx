@@ -131,9 +131,9 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
             bg-[url('/assets/header-pic/sm-bg.webp')] h-[594px]
           "
         >
-          {/* <div className="w-full h-full absolute top-0 left-0">
+          <div className="w-full h-full absolute top-0 left-0">
             <video src="/assets/header-pic/hero-video.mp4" autoPlay muted loop className="w-full h-full object-cover"></video>
-          </div> */}
+          </div>
 
           {/* Content Container */}
           <div className="container-custom w-full h-full relative z-10">

@@ -4,6 +4,9 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/common/Header";
 import FooterWrapper from "@/components/common/FooterWrapper";
+import Script from "next/script";
+import CookiebotScript from "@/components/common/CookiebotScript";
+import CookiebotReact from "@/components/common/CookiebotReact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -102,14 +105,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
+        {/* <CookiebotReact/> */}
+        <CookiebotScript />
         <Navbar />
         {children}
         <Toaster
-          position="top-right" 
-          reverseOrder={false} 
-          gutter={8} 
+          position="top-right"
+          reverseOrder={false}
+          gutter={8}
           toastOptions={{
-            duration: 5000, 
+            duration: 5000,
             style: {
               background: "#333",
               color: "#fff",
