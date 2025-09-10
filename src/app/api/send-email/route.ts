@@ -1,67 +1,79 @@
-import nodemailer from "nodemailer";
+"use server";
 
-interface EmailRequest {
-  firstName: string;
-  phone: string;
-  email: string;
-  comment: string;
-  recaptchaToken: string;
-  contents: string;
-}
+import { Resend } from "resend";
+import { EmailTemplate } from "@/components/email-template";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-    const body: EmailRequest = await req.json();
-    const { firstName, phone, email, comment, recaptchaToken, contents } = body;
+    const body = await req.json();
+    console.log({ body });
+    const { firstName, phone, email, contents: text, recaptchaToken } = body;
+    console.log({ recaptchaToken });
+    if (!recaptchaToken) {
+      return new Response(
+        JSON.stringify({
+          message: "reCAPTCHA token is required",
+          success: false,
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     if (!secretKey) throw new Error("reCAPTCHA Secret Key not configured");
 
     const recaptchaResponse = await fetch(
       `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`,
-      {
-        method: "POST",
-      }
+      { method: "POST" }
     );
     const recaptchaResult = await recaptchaResponse.json();
-    console.log({ recaptchaResult });
+    console.log("reCAPTCHA Result:", recaptchaResult); // Debug log
+
     if (!recaptchaResult.success) {
-      throw new Error("reCAPTCHA validation failed");
+      throw new Error(
+        `reCAPTCHA validation failed: ${JSON.stringify(recaptchaResult)}`
+      );
     }
 
-    // Use Mailgun SMTP configuration
-    const smtpConfig = {
-      host: "smtp.mailgun.org",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.MAILGUN_SMTP_USERNAME,
-        pass: process.env.MAILGUN_SMTP_PASSWORD,
-      },
-    };
+    const contents = `
+      First Name: ${firstName}
+      Phone: ${phone}
+      Email: ${email}
+      Comment: 
+      ${text || "N/A"}
+      Submitted on: ${new Date().toLocaleString("en-US", { timeZone: "Europe/Warsaw" })}
+    `;
 
-    const transporter = nodemailer.createTransport(smtpConfig);
-
-    await transporter.sendMail({
-      from: "noreply@contact.danskegas.com ",
-      to: "danskegas@gmail.com",
+    const { data, error } = await resend.emails.send({
+      from: `${process.env.FROM}`,
+      to: `${process.env.TO}`,
       subject: "New Contact Form Submission",
-      text: contents,
+      react: EmailTemplate({ username: firstName, contents }),
     });
 
-    return new Response(
-      JSON.stringify({ message: "Email sent successfully", success: true }),
-      {
-        status: 200,
+    if (error) {
+      return new Response(JSON.stringify({ error, success: false }), {
+        status: 500,
         headers: { "Content-Type": "application/json" },
-      }
-    );
-  } catch (error) {
+      });
+    }
+
+    return new Response(JSON.stringify({ data, success: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error: unknown) {
     console.error("Error sending email:", error);
     return new Response(
       JSON.stringify({
         message: "Failed to send email",
-        error: true,
         success: false,
+        error: error instanceof Error ? error.message : String(error),
       }),
       {
         status: 500,

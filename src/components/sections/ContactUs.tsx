@@ -8,12 +8,13 @@ import { Separator } from "@/components/ui/separator";
 import { Icons } from "../Icons";
 import { Button } from "../ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   phone: z.string().min(1, "Phone is required"),
   email: z.string().email("Invalid email address"),
-  comment: z.string().optional(),
+  comment: z.string().min(1, "Comment is required"),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -160,20 +161,20 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
   const titleClass = isDesktop
     ? "2xl:text-[22px] font-bold mb-[30px] leading-[110%]"
     : isTablet
-    ? "text-[22px] font-bold  mb-[30px]"
-    : "text-[18px] font-bold mb-[8px]";
+      ? "text-[22px] font-bold  mb-[30px]"
+      : "text-[18px] font-bold mb-[8px]";
 
   const textClass = isDesktop
     ? "text-[16px]"
     : isTablet
-    ? "text-sm"
-    : "text-sm";
+      ? "text-sm"
+      : "text-sm";
 
   const spacingClass = isDesktop
     ? "space-y-1"
     : isTablet
-    ? "space-y-1"
-    : "space-y-0 text-[16px] font-normal leading-[140%]";
+      ? "space-y-1"
+      : "space-y-0 text-[16px] font-normal leading-[140%]";
 
   if (isMobile) {
     return (
@@ -319,54 +320,42 @@ const ContactForm: React.FC<{
   const onSubmit = async (data: FormData) => {
     try {
       if (!recaptchaRef.current) {
-        // toast.error("reCAPTCHA not loaded");
-        console.error("reCAPTCHA not loaded");
+        toast.error("reCAPTCHA not loaded");
         return;
       }
+      console.log({ FormData: data });
 
       const token = await recaptchaRef.current.executeAsync();
-      console.log({ token });
       if (!token) {
-        // toast.error("Failed to get reCAPTCHA token");
-        console.error("Failed to get reCAPTCHA token");
+        toast.error("Failed to get reCAPTCHA token");
         return;
       }
       setIsSubmitting(true);
-
-      const contents = `
-        First Name: ${data.firstName}
-        Phone: ${data.phone}
-        Email: ${data.email}
-        Comment: ${data.comment || "N/A"}
-       Submitted on: ${new Date().toLocaleString("en-US", {
-         timeZone: "Europe/Warsaw",
-       })}
-      `;
 
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, recaptchaToken: token, contents }),
+        body: JSON.stringify({
+          ...data,
+          recaptchaToken: token,
+          contents: data.comment,
+        }),
       });
 
       const result = await response.json();
 
       if (result.success) {
-        // toast.success("Email sent successfully. We will contact you soon.");
+        toast.success("Email sent successfully. We will contact you soon.");
         reset();
       } else {
-        // toast.error(
-        //   result.message || "Failed to send email. Please try again."
-        // );
-        console.log(
+        toast.error(
           result.message || "Failed to send email. Please try again."
         );
       }
     } catch (error) {
-      // toast.error("An error occurred. Please try again.");
-      console.error("Submission error:", error);
+      toast.error("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
       if (recaptchaRef.current) recaptchaRef.current.reset();
@@ -380,14 +369,14 @@ const ContactForm: React.FC<{
   const titleSize = isDesktop
     ? "lg:text-[40px] md:text-[32px] text-[30px] font-medium leading-[133%] tracking-tight"
     : isTablet
-    ? "text-xl md:text-[28px] font-medium leading-[133%]"
-    : "text-[28px] font-medium leading-[133%] ";
+      ? "text-xl md:text-[28px] font-medium leading-[133%]"
+      : "text-[28px] font-medium leading-[133%] ";
 
   const containerClass = isDesktop
     ? "rounded-[24px] h-full lg:pt-[24px] lg:px-[37px] lg:w-[572px] lg:ml-[11px]"
     : isTablet
-    ? "rounded-[12px] py-[24px] px-[16px] lg:mt-0 md:mt-[3px]"
-    : "rounded-[12px] px-[16px] py-[24px] xs:h-auto mt-[6px]";
+      ? "rounded-[12px] py-[24px] px-[16px] lg:mt-0 md:mt-[3px]"
+      : "rounded-[12px] px-[16px] py-[24px] xs:h-auto mt-[6px]";
 
   const formClass = isDesktop
     ? "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[32px] 2xl:font-normal text-[16px] leading-[140%]"
@@ -457,7 +446,7 @@ const ContactForm: React.FC<{
           <FormField
             type="textarea"
             name="comment"
-            placeholder="Leave Your Comment"
+            placeholder="Leave Your Comment *"
             register={register}
             error={errors.comment?.message}
           />

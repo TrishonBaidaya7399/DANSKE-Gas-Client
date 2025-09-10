@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/common/Footer";
-import Header from "@/components/common/Header";
+import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/common/Header";
 import FooterWrapper from "@/components/common/FooterWrapper";
 
@@ -91,23 +90,33 @@ export const metadata: Metadata = {
     yandex: "your-yandex-verification-code",
   },
   category: "business",
-}
-
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
-        <Navbar/>
+        <Navbar />
         {children}
-        <FooterWrapper/>
+        <Toaster
+          position="top-right" 
+          reverseOrder={false} 
+          gutter={8} 
+          toastOptions={{
+            duration: 5000, 
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          }}
+        />
+        <FooterWrapper />
       </body>
     </html>
   );
