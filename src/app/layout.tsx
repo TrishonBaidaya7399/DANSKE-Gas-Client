@@ -5,6 +5,7 @@ import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 import Navbar from "@/components/common/Header";
 import FooterWrapper from "@/components/common/FooterWrapper";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,6 +76,7 @@ export const metadata: Metadata = {
     images: ["/assets/heroSectionImg.webp"],
     creator: "@danskegas",
   },
+
   robots: {
     index: true,
     follow: true,
@@ -99,15 +101,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Cookiebot script */}
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="b7172fe2-e48f-4a74-ad70-75b96c2daa16"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
-        <Navbar/>
+        <Navbar />
         {children}
-        <FooterWrapper/>
+        <FooterWrapper />
       </body>
     </html>
   );
