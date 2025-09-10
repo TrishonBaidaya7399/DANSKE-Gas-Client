@@ -13,8 +13,6 @@ export async function POST(req: Request) {
   try {
     const body: EmailRequest = await req.json();
     const { firstName, phone, email, comment, recaptchaToken, contents } = body;
-
-    // Validate reCAPTCHA
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     if (!secretKey) throw new Error("reCAPTCHA Secret Key not configured");
 

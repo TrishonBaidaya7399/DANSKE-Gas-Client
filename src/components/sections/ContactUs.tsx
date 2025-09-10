@@ -9,7 +9,6 @@ import { Icons } from "../Icons";
 import { Button } from "../ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
 
-// Zod Schema for Form Validation
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   phone: z.string().min(1, "Phone is required"),
@@ -19,7 +18,6 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-// Style Constants - Think of this as our design system
 const STYLES = {
   colors: {
     gradientBackground:
@@ -40,24 +38,6 @@ const STYLES = {
     },
   },
 } as const;
-
-// Reusable Components - Building blocks of our domain
-
-const ArrowIcon: React.FC = () => (
-  <svg
-    width="12"
-    height="12"
-    viewBox="0 0 14 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M4 1.07812H13M13 1.07812L13 10.0781M13 1.07812L1 13.0781"
-      stroke="white"
-      strokeWidth="1.5"
-    />
-  </svg>
-);
 
 interface FormFieldProps {
   type: "text" | "tel" | "email" | "textarea";
@@ -103,7 +83,6 @@ const FormField: React.FC<FormFieldProps> = ({
     setIsFocused(false);
   };
 
-  // Handle numeric input for phone field
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.value = e.target.value.replace(/[^0-9+\-\s()]/g, "");
     return e;
@@ -225,7 +204,6 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
           </div>
         </div>
 
-        {/* Horizontal separator for mobile - always centered */}
         <div className="flex justify-center md:mb-6 xs:mb-[13px]">
           <Separator className="bg-white h-px w-full" />
         </div>
@@ -261,7 +239,6 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
 
   return (
     <div className="relative lg:w-full w-[400px]">
-      {/* Grid container with perfect center alignment */}
       <div className="grid grid-cols-2 gap-8 relative 2xl:w-[441px] lg:mt-0 md:mt-[-15px]">
         <div>
           <h3 className={titleClass} style={{ color: STYLES.colors.textWhite }}>
@@ -315,7 +292,6 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
           </div>
         </div>
 
-        {/* Vertical separator - always perfectly centered */}
         <div className="absolute top-0 bottom-0 left-[38%] 2xl:ml-[40px] md:ml-[54px] transform -translate-x-1/2">
           <Separator orientation="vertical" className="bg-white h-full w-px" />
         </div>
@@ -323,7 +299,7 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
     </div>
   );
 };
-console.log({ siteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY });
+
 const ContactForm: React.FC<{
   layout: "desktop" | "tablet" | "mobile";
 }> = ({ layout }) => {
@@ -362,9 +338,9 @@ const ContactForm: React.FC<{
         Phone: ${data.phone}
         Email: ${data.email}
         Comment: ${data.comment || "N/A"}
-        Submitted on: ${new Date().toLocaleString("en-US", {
-          timeZone: "Asia/Dhaka",
-        })}
+       Submitted on: ${new Date().toLocaleString("en-US", {
+         timeZone: "Europe/Warsaw",
+       })}
       `;
 
       const response = await fetch("/api/send-email", {
@@ -530,7 +506,6 @@ const HeaderSection: React.FC = () => (
   </div>
 );
 
-// Main Component - The orchestrator of our domains
 const ContactUs: React.FC = () => {
   return (
     <div className="w-full">
