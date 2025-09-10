@@ -10,9 +10,22 @@ interface SustainableHeroProps {
 }
 
 const MARQUEE_ITEMS = [
-  "INDUSTRIAL FOCUS",
-  "RELIABLE DELIVERY",
-  "CERTIFIED IMPORTS",
+  "DISEL",
+  "LPG",
+  "PETROLEUM",
+  "RACING FUEL",
+  "SOLID FUELS",
+  "TECHNICAL GASES",
+  "AVIATION LUBRICANTS",
+  "CHEMICAL PRODUCTS",
+  "DISEL",
+  "LPG",
+  "PETROLEUM",
+  "RACING FUEL",
+  "SOLID FUELS",
+  "TECHNICAL GASES",
+  "AVIATION LUBRICANTS",
+  "CHEMICAL PRODUCTS",
 ];
 
 const BREAKPOINTS = {
@@ -47,10 +60,10 @@ const SustainableHero: React.FC<SustainableHeroProps> = ({
     <div className={`w-full relative ${className}`}>
       <div
         className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden   
-            3xl:bg-[url('/assets/OurProduct-page/conventional-energy/hero-1920.png')] 3xl:h-[670px]
-            lg:bg-[url('/assets/OurProduct-page/conventional-energy/hero-1440.png')] lg:h-[680px]
-            md:bg-[url('/assets/OurProduct-page/conventional-energy/hero-834.png')] md:h-[414px]
-            bg-[url('/assets/OurProduct-page/conventional-energy/hero-402.png')] h-[410px]
+            3xl:bg-[url('/assets/OurProduct-page/sustainable-energy/hero-1920.png')] 3xl:h-[670px]
+            lg:bg-[url('/assets/OurProduct-page/sustainable-energy/hero-1440.png')] lg:h-[680px]
+            md:bg-[url('/assets/OurProduct-page/sustainable-energy/hero-834.png')] md:h-[414px]
+            bg-[url('/assets/OurProduct-page/sustainable-energy/hero-402.png')] h-[410px]
         `}
       >
         <div className="container-custom w-full h-full text-white">
@@ -65,7 +78,7 @@ const SustainableHero: React.FC<SustainableHeroProps> = ({
             className="flex flex-col justify-end items-start h-full  
               pb-[64px] md:pb-[76px] lg:pb-[96px] 3xl:pb-[96px] 
               space-y-1"
-            >
+          >
             <nav
               className="text-gray-200 "
               style={{ letterSpacing: "-1%" }}
@@ -102,11 +115,11 @@ const SustainableHero: React.FC<SustainableHeroProps> = ({
         py-[8px] 3xl:py-[10px]
         bg-gradient-to-r from-[#A01800] via-[#D80A00] to-[#F99639]"
       >
-        <Marquee speed={50} gradient={false} className="flex">
+        <Marquee speed={50} gradient={false} className="">
           {MARQUEE_ITEMS.map((item, index) => (
             <span
               key={index}
-              className="text-white font-medium xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider mr-[100px]"
+              className="text-white font-medium xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider ml-[40px] lg:ml-[80px]"
             >
               {item}
             </span>

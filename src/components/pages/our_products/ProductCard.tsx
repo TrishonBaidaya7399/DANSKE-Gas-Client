@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     return (
         <div
             className="w-full relative 
-            h-[458px] md:h-[598px] lg:min-h-screen 
+            h-[50vh] lg:h-screen 
             overflow-hidden group"
         >
             {/* background image */}

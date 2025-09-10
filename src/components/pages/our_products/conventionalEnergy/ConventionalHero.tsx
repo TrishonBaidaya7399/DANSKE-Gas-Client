@@ -10,9 +10,22 @@ interface ConventionalHeroProps {
 }
 
 const MARQUEE_ITEMS = [
-  "INDUSTRIAL FOCUS",
-  "RELIABLE DELIVERY",
-  "CERTIFIED IMPORTS",
+  "DISEL",
+  "LPG",
+  "PETROLEUM",
+  "RACING FUEL",
+  "SOLID FUELS",
+  "TECHNICAL GASES",
+  "AVIATION LUBRICANTS",
+  "CHEMICAL PRODUCTS",
+  "DISEL",
+  "LPG",
+  "PETROLEUM",
+  "RACING FUEL",
+  "SOLID FUELS",
+  "TECHNICAL GASES",
+  "AVIATION LUBRICANTS",
+  "CHEMICAL PRODUCTS",
 ];
 
 const BREAKPOINTS = {
@@ -65,7 +78,7 @@ const ConventionalHero: React.FC<ConventionalHeroProps> = ({
             className="flex flex-col justify-end items-start h-full  
               pb-[64px] md:pb-[76px] lg:pb-[96px] 3xl:pb-[96px] 
               space-y-1"
-            >
+          >
             <nav
               className="text-gray-200 "
               style={{ letterSpacing: "-1%" }}
@@ -102,11 +115,11 @@ const ConventionalHero: React.FC<ConventionalHeroProps> = ({
         py-[8px] 3xl:py-[10px]
         bg-gradient-to-r from-[#A01800] via-[#D80A00] to-[#F99639]"
       >
-        <Marquee speed={50} gradient={false} className="flex">
+        <Marquee speed={50} gradient={false} className="">
           {MARQUEE_ITEMS.map((item, index) => (
             <span
               key={index}
-              className="text-white font-medium xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider mr-[100px]"
+              className="text-white font-medium xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider ml-[40px] lg:ml-[80px]"
             >
               {item}
             </span>

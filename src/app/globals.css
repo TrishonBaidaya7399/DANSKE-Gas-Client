@@ -61,19 +61,24 @@
   --color-white: #fdfcfc;
 
   /* Gradient - red to orange transition */
-  --gradient-red-orange: linear-gradient(
-    90deg,
-    #a01800 100% #d80a00 0%,
-    #f99639 50%
-  );
+  --gradient-red-orange: linear-gradient(90deg,
+      #a01800 100% #d80a00 0%,
+      #f99639 50%);
 
-  --breakpoint-xs: 321px; /* extra small */
-  --breakpoint-sm: 785px; /* small */
-  --breakpoint-md: 786px; /* medium */
-  --breakpoint-lg: 1025px; /* large */
-  --breakpoint-xl: 1281px; /* extra large */
-  --breakpoint-2xl: 1440px; /* double extra large */
-  --breakpoint-3xl: 1920px; /* ultra-wide screens */
+  --breakpoint-xs: 321px;
+  /* extra small */
+  --breakpoint-sm: 785px;
+  /* small */
+  --breakpoint-md: 786px;
+  /* medium */
+  --breakpoint-lg: 1025px;
+  /* large */
+  --breakpoint-xl: 1281px;
+  /* extra large */
+  --breakpoint-2xl: 1440px;
+  /* double extra large */
+  --breakpoint-3xl: 1920px;
+  /* ultra-wide screens */
 }
 
 :root {
@@ -149,6 +154,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -162,11 +168,7 @@
 
 @layer components {
   .container-custom {
-    @apply pl-4 pr-4
-           md:pl-[40px] md:pr-[40px]
-           lg:pl-[80px] lg:pr-[80px] 
-           3xl:pl-0 3xl:pr-0 3xl:max-w-[1306px]
-           w-full mx-auto;
+    @apply pl-4 pr-4 md:pl-[40px] md:pr-[40px] lg:pl-[80px] lg:pr-[80px] 3xl:pl-0 3xl:pr-0 3xl:max-w-[1306px] w-full mx-auto;
   }
 }
 
@@ -227,14 +229,134 @@ html {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .app-container {
   width: 100%;
   max-width: 1312px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 16px; /* default for screens above 1024px */
+  padding: 0 16px;
+  /* default for screens above 1024px */
   box-sizing: border-box;
 }
+
+.gradientText {
+  background: linear-gradient(266.49deg, #F99639 -15.12%, #D80A00 58.77%, #A01800 118.54%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+
+/* Make swiper buttons visible */
+.mySwiper1 .swiper-button-next {
+  color: #000 !important;
+  /* white arrows */
+  width: 40px;
+  height: 40px;
+  background-color: white !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+  margin-top: -10px!important;
+}
+
+.mySwiper1 .swiper-button-prev {
+  color: #000 !important;
+  /* white arrows */
+  width: 40px;
+  height: 40px;
+  background-color: white !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+  margin-top: -10px!important;
+}
+
+/* Remove default Swiper arrows */
+.mySwiper1 .swiper-button-next::after
+{
+  content: ""!important;
+}
+
+.mySwiper1 .swiper-button-prev::after 
+{
+  content: ""!important;
+}
+
+/* Button size */
+.mySwiper1 {
+  overflow: visible!important;
+}
+
+
+.mySwiper1
+.swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mySwiper1
+.swiper-button-next
+{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Arrow inside (smaller than button) */
+.mySwiper1
+.swiper-button-next::before {
+  content: "";
+  display: block;
+  width: 18px;
+  /* arrow width */
+  height: 14px;
+  /* arrow height */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mySwiper1
+.swiper-button-prev::before {
+  content: "";
+  display: block;
+  width: 18px;
+  /* arrow width */
+  height: 14px;
+  /* arrow height */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Right arrow */
+.mySwiper1
+.swiper-button-next::before {
+  background-image: url("data:image/svg+xml;utf8,<svg width='19' height='15' viewBox='0 0 19 15' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10.8362 0.92015L17.2001 7.28411M17.2001 7.28411L10.8362 13.6481M17.2001 7.28411L0.229563 7.28411' stroke='%23171515' stroke-width='1.5'/></svg>");
+}
+
+/* Left arrow (flipped) */
+.mySwiper1
+.swiper-button-prev::before {
+  transform: scaleX(-1);
+  background-image: url("data:image/svg+xml;utf8,<svg width='19' height='15' viewBox='0 0 19 15' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10.8362 0.92015L17.2001 7.28411M17.2001 7.28411L10.8362 13.6481M17.2001 7.28411L0.229563 7.28411' stroke='%23171515' stroke-width='1.5'/></svg>");
+}
+
+.mySwiper1 .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: -41px!important;
+}
+
+.mySwiper1 .swiper-pagination-bullet {
+  background-color: white!important;
+}
+
+
 
 /* From 1024px down to 768px */
 @media (max-width: 1024px) and (min-width: 769px) {
@@ -250,6 +372,7 @@ html {
     padding: 0 16px;
   }
 }
+
 @media (max-width: 512px) {
   .app-container {
     max-width: 402px;

@@ -8,6 +8,7 @@ import React, {
   MutableRefObject,
 } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 type Project = {
   title: string;
@@ -117,7 +118,7 @@ const ProductTabs = ({ projects }: ProductTabsProps) => {
   return (
     <main ref={containerRef} className="relative w-full container-custom">
       {/* Navigation buttons */}
-      <div className="max-w-[1280px] mx-auto sticky top-0 z-50 bg-white/80 backdrop-blur
+      <div className="max-w-[1280px] mx-auto sticky top-[62px] md:top-[74px] lg:top-[100px] z-50 bg-white/80 backdrop-blur
         lg:pl-[4px] 3xl:pl-[7px] 3xl:pr-[7px] py-4
         flex flex-wrap items-center 
         justify-normal lg:justify-center 3xl:justify-normal 
@@ -226,7 +227,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           localRef.current = el;
         }}
         className="xl:h-screen flex items-start justify-center 3xl:justify-normal 
-          z-0 relative xl:sticky 3xl:top-[100px] xl:top-0
+          z-0 relative xl:sticky xl:top-[100px] 3xl:top-[100px]
           pt-[40px] xl:pt-[82px] pl-[7px]"
       >
         <motion.div
@@ -246,16 +247,26 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
             <div className="prose prose-sm max-w-none">{content}</div>
           </div>
 
-          <div className="relative w-full h-[220px] md:h-full shrink-0 overflow-hidden">
+          <div className="relative w-full h-[220px] lg:h-full shrink-0 overflow-hidden">
             <motion.div className="w-full h-full" style={{ scale: imageScale }}>
-              <img
+
+              <Image
                 src={`/assets/OurProduct-page/conventional-energy/${src_lg}`}
-                alt={title}
+                overrideSrc={`/assets/OurProduct-page/conventional-energy/${src_lg}`}
+                placeholder='blur'
+                blurDataURL={`/assets/OurProduct-page/conventional-energy/${src_lg}`}
+                alt={"img"}
+                fill
                 className="w-full h-full object-cover object-center hidden lg:block"
               />
-              <img
+
+              <Image
                 src={`/assets/OurProduct-page/conventional-energy/${src_sm}`}
-                alt={title}
+                overrideSrc={`/assets/OurProduct-page/conventional-energy/${src_sm}`}
+                placeholder='blur'
+                blurDataURL={`/assets/OurProduct-page/conventional-energy/${src_sm}`}
+                alt={"img"}
+                fill
                 className="w-full h-full object-cover object-center block lg:hidden"
               />
             </motion.div>

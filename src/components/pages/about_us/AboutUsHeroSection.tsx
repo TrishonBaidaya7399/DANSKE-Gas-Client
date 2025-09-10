@@ -13,6 +13,9 @@ const MARQUEE_ITEMS = [
   "INDUSTRIAL FOCUS",
   "RELIABLE DELIVERY",
   "CERTIFIED IMPORTS",
+  "INDUSTRIAL FOCUS",
+  "RELIABLE DELIVERY",
+  "CERTIFIED IMPORTS",
 ];
 
 const BREAKPOINTS = {
@@ -47,10 +50,10 @@ const AboutUsHeroSection: React.FC<AboutUsHeroSectionProps> = ({
     <div className={`w-full relative ${className}`}>
       <div
         className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden   
-            3xl:bg-[url('/assets/contract-page/bg-1920.png')] 3xl:h-[480px]
-            lg:bg-[url('/assets/contract-page/bg-1440.png')] lg:h-[480px]
-            md:bg-[url('/assets/contract-page/bg-834.png')] md:h-[400px]
-            bg-[url('/assets/contract-page/bg-402.png')] h-[400px]
+            3xl:bg-[url('/assets/AboutUs-page/hero-1920.png')] 3xl:h-[476px]
+            lg:bg-[url('/assets/AboutUs-page/hero-1440.png')] lg:h-[479px]
+            md:bg-[url('/assets/AboutUs-page/hero-834.png')] md:h-[414px]
+            bg-[url('/assets/AboutUs-page/hero-402.png')] h-[411px]
         `}
       >
         <div className="container-custom w-full h-full text-white">
@@ -63,9 +66,9 @@ const AboutUsHeroSection: React.FC<AboutUsHeroSectionProps> = ({
               delay: 0.2,
             }}
             className="flex flex-col justify-end items-start h-full  
-              pb-[64px] md:pb-[86px] lg:pb-[96px] 3xl:pb-[96px] 
+              pb-[75px] md:pb-[51px] lg:pb-[96px] 3xl:pb-[91px] 
               space-y-1"
-            >
+          >
             <nav
               className="text-gray-200 "
               style={{ letterSpacing: "-1%" }}
@@ -82,11 +85,11 @@ const AboutUsHeroSection: React.FC<AboutUsHeroSectionProps> = ({
               </span>
             </nav>
 
-            <h1 className="text-[48px] font-normal lg:text-[64px] lg:font-medium leading-[123%]">
+            <h1 className="text-[40px] md:text-[48px] font-normal lg:text-[64px] lg:font-medium leading-[123%]">
               About Us
             </h1>
 
-            <p className="text-[20px] md:text-[24px] leading-[150%] max-w-[568px]">
+            <p className="text-[20px] md:text-[24px] leading-[150%] max-w-[450px] lg:max-w-[510px] 3xl:max-w-[568px] tracking-[-0.2]">
               Powering what matters — from traditional fuels to sustainable energy, we deliver solutions that move industries forward.
             </p>
 
@@ -98,11 +101,11 @@ const AboutUsHeroSection: React.FC<AboutUsHeroSectionProps> = ({
         py-[8px] 3xl:py-[10px]
         bg-gradient-to-r from-[#A01800] via-[#D80A00] to-[#F99639]"
       >
-        <Marquee speed={50} gradient={false} className="flex">
+        <Marquee speed={50} gradient={false} className="">
           {MARQUEE_ITEMS.map((item, index) => (
             <span
               key={index}
-              className="text-white font-medium xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider mr-[100px]"
+              className="text-white font-medium xl:text-[48px] lg:text-[32px] text-[28px] uppercase tracking-wider ml-[40px] lg:ml-[80px]"
             >
               {item}
             </span>
