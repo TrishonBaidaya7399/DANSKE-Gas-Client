@@ -104,7 +104,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
+      >
+
         {/* Cookiebot Script */}
         <Script
           id="Cookiebot"
@@ -114,10 +117,7 @@ export default function RootLayout({
           type="text/javascript"
           strategy="afterInteractive"
         />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
-      >
+        
         <Navbar />
         {children}
         <FooterWrapper />
