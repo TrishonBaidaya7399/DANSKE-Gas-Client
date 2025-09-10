@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Separator } from "@/components/ui/separator";
 import { Icons } from "../Icons";
 import { Button } from "../ui/button";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // Zod Schema for Form Validation
 const formSchema = z.object({
@@ -322,59 +323,77 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
     </div>
   );
 };
-
+console.log({ siteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY });
 const ContactForm: React.FC<{
   layout: "desktop" | "tablet" | "mobile";
 }> = ({ layout }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful, isSubmitting },
+    formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     mode: "onSubmit",
   });
 
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onSubmit = async (data: FormData) => {
-    console.log({ data });
-    const { firstName, phone, email, comment } = data;
-
-    const contents = `
-      First Name: ${firstName}
-      Phone: ${phone}
-      Email: ${email}
-      Comment: ${comment || "N/A"}
-      Submitted on: ${new Date().toLocaleString("en-US", {
-        timeZone: "Asia/Dhaka",
-      })}
-    `;
-
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("contents", contents);
-    console.log({formData, firstName, phone, email, comment });
-    const jsonFormData = JSON.stringify({firstName, phone, email, comment });
-    console.log({ jsonFormData });
     try {
+      if (!recaptchaRef.current) {
+        // toast.error("reCAPTCHA not loaded");
+        console.error("reCAPTCHA not loaded");
+        return;
+      }
+
+      const token = await recaptchaRef.current.executeAsync();
+      console.log({ token });
+      if (!token) {
+        // toast.error("Failed to get reCAPTCHA token");
+        console.error("Failed to get reCAPTCHA token");
+        return;
+      }
+      setIsSubmitting(true);
+
+      const contents = `
+        First Name: ${data.firstName}
+        Phone: ${data.phone}
+        Email: ${data.email}
+        Comment: ${data.comment || "N/A"}
+        Submitted on: ${new Date().toLocaleString("en-US", {
+          timeZone: "Asia/Dhaka",
+        })}
+      `;
+
       const response = await fetch("/api/send-email", {
         method: "POST",
-        body: jsonFormData,
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({ ...data, recaptchaToken: token, contents }),
       });
-      console.log({ response });
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Email sent successfully, messageId:", result.messageId);
+
+      const result = await response.json();
+
+      if (result.success) {
+        // toast.success("Email sent successfully. We will contact you soon.");
         reset();
       } else {
-        const errorText = await response.text();
-        console.error("Failed to send email:", errorText);
+        // toast.error(
+        //   result.message || "Failed to send email. Please try again."
+        // );
+        console.log(
+          result.message || "Failed to send email. Please try again."
+        );
       }
     } catch (error) {
-      console.error("Error sending email:", error);
+      // toast.error("An error occurred. Please try again.");
+      console.error("Submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+      if (recaptchaRef.current) recaptchaRef.current.reset();
     }
   };
 
@@ -397,21 +416,6 @@ const ContactForm: React.FC<{
   const formClass = isDesktop
     ? "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[32px] 2xl:font-normal text-[16px] leading-[140%]"
     : "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[26px] xs:mt-[20px] md:gap-5 2xl:font-normal text-[16px] leading-[140%] md:gap-0 xs:gap-5";
-
-  // Reset form and clear errors on successful submission
-  // React.useEffect(() => {
-  //   if (isSubmitSuccessful) {
-  //     reset(
-  //       {
-  //         firstName: "",
-  //         phone: "",
-  //         email: "",
-  //         comment: "",
-  //       },
-  //       { keepErrors: false }
-  //     );
-  //   }
-  // }, [isSubmitSuccessful, reset]);
 
   return (
     <div
@@ -500,6 +504,11 @@ const ContactForm: React.FC<{
             <Icons.UpRightArrowLight />
           </Button>
         </div>
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+          ref={recaptchaRef}
+          size="invisible"
+        />
       </form>
     </div>
   );
