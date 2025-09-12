@@ -9,12 +9,14 @@ import { Icons } from "../Icons";
 import { Button } from "../ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
+import { Upload } from "lucide-react";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   phone: z.string().min(1, "Phone is required"),
   email: z.string().email("Invalid email address"),
   comment: z.string().min(1, "Comment is required"),
+  attachment: z.any().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -316,6 +318,61 @@ const ContactForm: React.FC<{
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [attachment, setAttachment] = useState<File | null>(null);
+  const [attachmentError, setAttachmentError] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // file validation
+  const validateAttachment = (file: File) => {
+    const maxSize = 10 * 1024 * 1024;
+    const allowedTypes = [
+      "application/pdf",
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/gif",
+      "text/plain",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "application/vnd.ms-excel",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ];
+
+    const unsupportedTypes = [
+      "application/x-executable",
+      "application/x-msdownload",
+      "application/x-shockwave-flash",
+      "video/x-msvideo",
+      "audio/mpeg",
+    ];
+
+    if (file.size > maxSize) {
+      setAttachmentError("File size must be less than 10MB");
+      return false;
+    }
+
+    if (
+      unsupportedTypes.some(
+        (type) =>
+          file.type === type ||
+          file.name.toLowerCase().match(/\.(exe|bat|scr|js|vbs|dll|com)$/)
+      )
+    ) {
+      setAttachmentError(
+        "Unsupported file type. Please use PDF, images, or documents."
+      );
+      return false;
+    }
+
+    if (!allowedTypes.includes(file.type)) {
+      setAttachmentError(
+        "File type not supported. Please use common document formats."
+      );
+      return false;
+    }
+
+    return true;
+  };
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -323,7 +380,10 @@ const ContactForm: React.FC<{
         toast.error("reCAPTCHA not loaded");
         return;
       }
-      console.log({ FormData: data });
+
+      if (attachment && !validateAttachment(attachment)) {
+        return;
+      }
 
       const token = await recaptchaRef.current.executeAsync();
       if (!token) {
@@ -332,16 +392,23 @@ const ContactForm: React.FC<{
       }
       setIsSubmitting(true);
 
+      const formData = new FormData();
+      formData.append("firstName", data.firstName);
+      formData.append("phone", data.phone);
+      formData.append("email", data.email);
+      formData.append("contents", data.comment);
+      formData.append("recaptchaToken", token);
+
+      if (attachment) {
+        formData.append("attachment", attachment);
+      }
+
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          recaptchaToken: token,
-          contents: data.comment,
-        }),
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        body: formData,
       });
 
       const result = await response.json();
@@ -349,6 +416,9 @@ const ContactForm: React.FC<{
       if (result.success) {
         toast.success("Email sent successfully. We will contact you soon.");
         reset();
+        setAttachment(null);
+        setAttachmentError("");
+        if (fileInputRef.current) fileInputRef.current.value = "";
       } else {
         toast.error(
           result.message || "Failed to send email. Please try again."
@@ -381,6 +451,19 @@ const ContactForm: React.FC<{
   const formClass = isDesktop
     ? "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[32px] 2xl:font-normal text-[16px] leading-[140%]"
     : "2xl:pb-4 flex-1 flex flex-col 2xl:gap-5 3xl:mt-7 2xl:mt-[26px] xs:mt-[20px] md:gap-5 2xl:font-normal text-[16px] leading-[140%] md:gap-0 xs:gap-5";
+
+  const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (validateAttachment(file)) {
+        setAttachment(file);
+        setAttachmentError("");
+      } else {
+        setAttachment(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+      }
+    }
+  };
 
   return (
     <div
@@ -451,7 +534,52 @@ const ContactForm: React.FC<{
             error={errors.comment?.message}
           />
         </div>
-
+        <div className="mb-4">
+          <div className="flex items-center">
+            <input
+              ref={fileInputRef}
+              type="file"
+              onChange={handleAttachmentChange}
+              className="hidden"
+              accept=".pdf,.jpg,.jpeg,.png,.gif,.doc,.docx,.txt,.xls,.xlsx"
+              id="attachment"
+            />
+            <label
+              htmlFor="attachment"
+              className={`
+        inline-flex items-center px-4 py-2 border border-gray-300 
+        rounded-md shadow-sm text-sm font-medium text-gray-700 
+        bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
+        focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer
+        ${attachmentError ? "border-red-300 text-red-700" : ""}
+      `}
+            >
+              {attachment ? (
+                <>
+                  <Upload className="w-4 h-4 mr-2" />
+                  Replace {attachment.name}
+                </>
+              ) : (
+                <>
+                  <Upload className="w-4 h-4 mr-2" />
+                  Upload Attachment (optional)
+                </>
+              )}
+            </label>
+          </div>
+          {/* {attachment && (
+            <p className="mt-1 text-sm text-gray-500">
+              Selected: {attachment.name} (
+              {(attachment.size / 1024 / 1024).toFixed(1)} MB)
+            </p>
+          )} */}
+          {attachmentError && (
+            <p className="mt-1 text-red-600 text-sm">{attachmentError}</p>
+          )}
+          <p className="mt-1 text-xs text-gray-500">
+            Max: 10MB (Supported: PDF, JPG, PNG, DOC, DOCX, TXT, XLS, XLSX)
+          </p>
+        </div>
         <div
           className={
             isDesktop ? "2xl:mt-[16px]" : "lg:pt-6 md:pt-[16px] xs:pt-[14px]"

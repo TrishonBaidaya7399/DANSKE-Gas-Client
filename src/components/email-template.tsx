@@ -10,31 +10,31 @@ import {
 } from "@react-email/components";
 
 interface EmailTemplateProps {
-  username?: string;
   contents?: string;
+  hasAttachment?: boolean;
 }
 
 export const EmailTemplate = ({
-  username = "Guest",
   contents = "No additional details provided",
+  hasAttachment = false,
 }: EmailTemplateProps) => (
   <Html>
     <Head />
     <Body style={main}>
-      <Preview>New Contact Form Submission from {username}</Preview>
+      <Preview>New Contact Form Submission</Preview>
       <Container style={container}>
         <Text style={title}>
           <strong>Hello Team!</strong>
         </Text>
         <Section style={section}>
-          <Text style={text}>
-            A new contact form submission has been received from{" "}
-            <strong>{username}</strong>.
-          </Text>
-          <Text style={text}>Details:</Text>
           <Text style={{ ...contentText, whiteSpace: "pre-wrap" }}>
             {contents}
           </Text>
+          {hasAttachment && (
+            <Text style={text}>
+              An attachment is added. Check below to find the attachment.
+            </Text>
+          )}
           <Button style={button} href="https://resend.com/emails">
             View All Submissions
           </Button>
@@ -67,11 +67,6 @@ const container = {
   boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
 };
 
-const logo = {
-  margin: "0 auto 20px",
-  display: "block",
-};
-
 const title = {
   fontSize: "28px",
   fontWeight: "bold",
@@ -101,6 +96,7 @@ const contentText = {
   margin: "10px 0",
   whiteSpace: "pre-wrap",
 };
+
 const button = {
   display: "block",
   width: "200px",
