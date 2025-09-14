@@ -569,15 +569,9 @@ const ContactForm: React.FC<{
               ) : attachmentError ? (
                 <>
                   <FileWarning className="w-6 h-6 mr-2" />
-                  {
-                    attachmentError === "Attachment size must be less than 2 MB"
-                      ? "Max file size is 2MB. Try again"
-                      : "Upload Failed. Try again"
-                    // attachmentError ===
-                    //     "Unsupported file type. Please use PDF, images, or documents."
-                    //   ? "Upload Failed. Try again"
-                    //   : attachmentError
-                  }
+                  {attachmentError === "File size must be less than 2 MB"
+                    ? "Max file size is 2MB. Try again"
+                    : "Upload Failed. Try again"}
                 </>
               ) : (
                 <>
