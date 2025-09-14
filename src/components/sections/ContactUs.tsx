@@ -306,7 +306,8 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
 
 const ContactForm: React.FC<{
   layout: "desktop" | "tablet" | "mobile";
-}> = ({ layout }) => {
+  careerPage? : boolean;
+}> = ({ layout, careerPage }) => {
   const {
     register,
     handleSubmit,
@@ -536,52 +537,58 @@ const ContactForm: React.FC<{
             error={errors.comment?.message}
           />
         </div>
-        <div className="pt-[5px]">
-          <div className="flex items-center justify-center">
-            <input
-              ref={fileInputRef}
-              type="file"
-              onChange={handleAttachmentChange}
-              className="hidden"
-              accept=".pdf,.jpg,.jpeg,.png,.gif,.doc,.docx,.txt,.xls,.xlsx"
-              id="attachment"
-            />
-            <label
-              htmlFor="attachment"
-              className={`w-full inline-flex items-center justify-center px-4 py-[14px] border border-dashed rounded-[30px] text-[18px] leading-[140%] font-medium cursor-pointer transition-colors duration-300 ${isUploading ? " text-[#0057FF] border-[#0057FF]" : attachment ? "text-[#0E8914] border-[#0E8914]" : attachmentError ? "text-[#B50F0F] border-[#B50F0F]" : " text-[#716B6B] border-[#716B6B] hover:bg-gray-50"}`}
-            >
-              {isUploading ? (
-                <>
-                  <Image
-                    src="/loader.svg"
-                    alt="loader"
-                    height={22}
-                    width={22}
-                    className="w-4 h-4 mr-2 animate-spin"
-                  />
-                  {attachment?.name || "Uploading..."}
-                </>
-              ) : attachment ? (
-                <>
-                  <File className="w-6 h-6 mr-2" />
-                  {attachment.name}
-                </>
-              ) : attachmentError ? (
-                <>
-                  <FileWarning className="w-6 h-6 mr-2" />
-                  {attachmentError === "File size must be less than 2 MB"
-                    ? "Max file size is 2MB. Try again"
-                    : "Upload Failed. Try again"}
-                </>
-              ) : (
-                <>
-                  Attach your CV in pdf
-                  <Upload className="w-4 h-4 ml-2" />
-                </>
-              )}
-            </label>
+
+        {careerPage && (
+          <div className="pt-[5px]">
+            <div className="flex items-center justify-center">
+              <input
+                ref={fileInputRef}
+                type="file"
+                onChange={handleAttachmentChange}
+                className="hidden"
+                accept=".pdf,.jpg,.jpeg,.png,.gif,.doc,.docx,.txt,.xls,.xlsx"
+                id="attachment"
+              />
+              <label
+                htmlFor="attachment"
+                className={`w-full inline-flex items-center justify-center px-4 py-[14px] border border-dashed rounded-[30px] text-[18px] leading-[140%] font-medium cursor-pointer transition-colors duration-300 ${isUploading ? " text-[#0057FF] border-[#0057FF]" : attachment ? "text-[#0E8914] border-[#0E8914]" : attachmentError ? "text-[#B50F0F] border-[#B50F0F]" : " text-[#716B6B] border-[#716B6B] hover:bg-gray-50"}`}
+              >
+                {isUploading ? (
+                  <>
+                    <Image
+                      src="/loader.svg"
+                      alt="loader"
+                      height={22}
+                      width={22}
+                      className="w-4 h-4 mr-2 animate-spin"
+                    />
+                    {attachment?.name || "Uploading..."}
+                  </>
+                ) : attachment ? (
+                  <>
+                    <File className="w-6 h-6 mr-2" />
+                    {attachment.name}
+                  </>
+                ) : attachmentError ? (
+                  <>
+                    <FileWarning className="w-6 h-6 mr-2" />
+                    {attachmentError === "File size must be less than 2 MB"
+                      ? "Max file size is 2MB. Try again"
+                      : "Upload Failed. Try again"}
+                  </>
+                ) : (
+                  <>
+                    Attach your CV in pdf
+                    <Upload className="w-4 h-4 ml-2" />
+                  </>
+                )}
+              </label>
+            </div>
           </div>
-        </div>
+        )}
+
+
+
         <div
           className={
             isDesktop
@@ -627,7 +634,11 @@ const HeaderSection: React.FC = () => (
   </div>
 );
 
-const ContactUs: React.FC = () => {
+interface ContactUsProps {
+  careerPage?: boolean
+}
+
+const ContactUs: React.FC<ContactUsProps> = ({ careerPage }) => {
   return (
     <div className="w-full">
       <div className="relative">
@@ -644,8 +655,8 @@ const ContactUs: React.FC = () => {
                   <ContactInfo layout="desktop" />
                 </div>
               </div>
-              <div className=" flex items-center justify-center h-full">
-                <ContactForm layout="desktop" />
+              <div className="flex items-center justify-center h-full">
+                <ContactForm layout="desktop" careerPage={careerPage} />
               </div>
             </div>
           </div>
@@ -670,7 +681,7 @@ const ContactUs: React.FC = () => {
               <div className="text-white">
                 <ContactInfo layout="tablet" />
               </div>
-              <ContactForm layout="tablet" />
+              <ContactForm layout="tablet" careerPage={careerPage} />
             </div>
           </div>
 
@@ -695,7 +706,7 @@ const ContactUs: React.FC = () => {
 
             <div className="grid grid-cols-1 gap-8">
               <ContactInfo layout="mobile" />
-              <ContactForm layout="mobile" />
+              <ContactForm layout="mobile" careerPage={careerPage} />
             </div>
           </div>
         </div>
