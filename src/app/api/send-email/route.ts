@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     // Validate attachment if present
     let attachmentData: any = null;
     if (attachmentFile && attachmentFile.size > 0) {
-      const maxSize = 10 * 1024 * 1024;
+      const maxSize = 2 * 1024 * 1024;
       const allowedTypes = [
         "application/pdf",
         "image/jpeg",
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
       if (attachmentFile.size > maxSize) {
         return new Response(
           JSON.stringify({
-            message: "Attachment size must be less than 10MB",
+            message: "Attachment size must be less than 2 MB",
             success: false,
           }),
           { status: 400, headers: { "Content-Type": "application/json" } }

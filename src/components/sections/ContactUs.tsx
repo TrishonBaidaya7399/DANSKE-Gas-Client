@@ -9,7 +9,8 @@ import { Icons } from "../Icons";
 import { Button } from "../ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
-import { Upload } from "lucide-react";
+import { File, FileWarning, Upload } from "lucide-react";
+import Image from "next/image";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -98,8 +99,9 @@ const FormField: React.FC<FormFieldProps> = ({
           {...register(name)}
           placeholder={placeholder}
           rows={rows}
-          className={`${commonClasses} resize-none ${name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
-            }`}
+          className={`${commonClasses} resize-none ${
+            name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
+          }`}
           style={{
             borderBottomColor: getBorderColor(),
             color: getTextColor(),
@@ -318,12 +320,13 @@ const ContactForm: React.FC<{
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [attachment, setAttachment] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [attachmentError, setAttachmentError] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // file validation
   const validateAttachment = (file: File) => {
-    const maxSize = 10 * 1024 * 1024;
+    const maxSize = 2 * 1024 * 1024;
     const allowedTypes = [
       "application/pdf",
       "image/jpeg",
@@ -346,7 +349,7 @@ const ContactForm: React.FC<{
     ];
 
     if (file.size > maxSize) {
-      setAttachmentError("File size must be less than 10MB");
+      setAttachmentError("File size must be less than 2 MB");
       return false;
     }
 
@@ -454,6 +457,7 @@ const ContactForm: React.FC<{
   const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setIsUploading(true);
       if (validateAttachment(file)) {
         setAttachment(file);
         setAttachmentError("");
@@ -461,6 +465,7 @@ const ContactForm: React.FC<{
         setAttachment(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
       }
+      setIsUploading(false);
     }
   };
 
@@ -543,21 +548,36 @@ const ContactForm: React.FC<{
             />
             <label
               htmlFor="attachment"
-              // style={{
-              //   backgroundImage: `url("data:image/svg+xml,%3csvg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%' height='100%' fill='none' rx='30' ry='30' stroke='%23333' stroke-width='1' stroke-dasharray='6%2c 6' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`,
-              // }}
-              className={`w-full
-                inline-flex items-center justify-center px-4 py-[14px] border-1 border-[#716B6B] border-dashed
-                rounded-full text-[18px] leading-[140%] font-medium text-[#716B6B]
-                bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
-                focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer
-                ${attachmentError ? "border-red-300 text-red-700" : ""}
-            `}
+              className={`w-full inline-flex items-center justify-center px-4 py-[14px] border border-dashed rounded-[30px] text-[18px] leading-[140%] font-medium cursor-pointer transition-colors duration-300 ${isUploading ? " text-[#0057FF] border-[#0057FF]" : attachment ? "text-[#0E8914] border-[#0E8914]" : attachmentError ? "text-[#B50F0F] border-[#B50F0F]" : " text-[#716B6B] border-[#716B6B] hover:bg-gray-50"}`}
             >
-              {attachment ? (
+              {isUploading ? (
                 <>
-                  <Upload className="w-4 h-4 mr-2" />
-                  Replace {attachment.name}
+                  <Image
+                    src="/loader.svg"
+                    alt="loader"
+                    height={22}
+                    width={22}
+                    className="w-4 h-4 mr-2 animate-spin"
+                  />
+                  {attachment?.name || "Uploading..."}
+                </>
+              ) : attachment ? (
+                <>
+                  <File className="w-6 h-6 mr-2" />
+                  {attachment.name}
+                </>
+              ) : attachmentError ? (
+                <>
+                  <FileWarning className="w-6 h-6 mr-2" />
+                  {
+                    attachmentError === "Attachment size must be less than 2 MB"
+                      ? "Max file size is 2MB. Try again"
+                      : "Upload Failed. Try again"
+                    // attachmentError ===
+                    //     "Unsupported file type. Please use PDF, images, or documents."
+                    //   ? "Upload Failed. Try again"
+                    //   : attachmentError
+                  }
                 </>
               ) : (
                 <>
@@ -567,26 +587,20 @@ const ContactForm: React.FC<{
               )}
             </label>
           </div>
-          {/* {attachment && (
-            <p className="mt-1 text-sm text-gray-500">
-              Selected: {attachment.name} (
-              {(attachment.size / 1024 / 1024).toFixed(1)} MB)
-            </p>
-          )} */}
-          {attachmentError && (
-            <p className="mt-1 text-red-600 text-sm">{attachmentError}</p>
-          )}
         </div>
         <div
           className={
-            isDesktop ? "mt-[20px] mb-[20px] 2xl:mb-0 2xl:mt-[31px]" : "lg:pt-6 md:pt-[16px] xs:pt-[14px]"
+            isDesktop
+              ? "mt-[20px] mb-[20px] 2xl:mb-0 2xl:mt-[31px]"
+              : "lg:pt-6 md:pt-[16px] xs:pt-[14px]"
           }
         >
           <Button
             type="submit"
             variant="cta-gradient"
-            className={`w-full ${isDesktop ? "mb-2" : "mt-6"
-              } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300 flex items-center justify-center`}
+            className={`w-full ${
+              isDesktop ? "mb-2" : "mt-6"
+            } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300 flex items-center justify-center`}
             disabled={isSubmitting}
           >
             <span className="relative z-10">Submit Application</span>
@@ -613,7 +627,8 @@ const HeaderSection: React.FC = () => (
       className="2xl:text-[20px] leading-[133%] 2xl:max-w-[430px] 2xl:mt-2 tracking-tight"
       style={{ color: STYLES.colors.textSecondary }}
     >
-      We’re growing fast and looking for people who want to grow with us. Drop us your details and we’ll get back to you to start the conversation.
+      We’re growing fast and looking for people who want to grow with us. Drop
+      us your details and we’ll get back to you to start the conversation.
     </p>
   </div>
 );
@@ -651,7 +666,9 @@ const ContactUs: React.FC = () => {
                 className="text-base 2xl:leading-[150%] md:leading-[140%] mb-8 w-[375px] 2xl:text-[20px] font-normal "
                 style={{ color: STYLES.colors.textSecondary }}
               >
-                We’re growing fast and looking for people who want to grow with us. Drop us your details and we’ll get back to you to start the conversation.
+                We’re growing fast and looking for people who want to grow with
+                us. Drop us your details and we’ll get back to you to start the
+                conversation.
               </p>
             </div>
 
@@ -667,7 +684,7 @@ const ContactUs: React.FC = () => {
           <div className="block sm:hidden">
             <div className="text-white mb-[35px]">
               <h2 className="md:text-3xl xs:text-[34px] font-normal md:leading-tight xs:leading-[133%] mb-[15px]">
-                Interested in Working <br/> With Us?
+                Interested in Working <br /> With Us?
               </h2>
               <p
                 className="text-[16px] font-normal leading-[140%]"
@@ -676,7 +693,9 @@ const ContactUs: React.FC = () => {
                   letterSpacing: "-1%",
                 }}
               >
-                We’re growing fast and looking for people who want to grow with us. Drop us your details and we’ll get back to you to start the conversation.
+                We’re growing fast and looking for people who want to grow with
+                us. Drop us your details and we’ll get back to you to start the
+                conversation.
               </p>
             </div>
 
