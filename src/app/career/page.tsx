@@ -1,7 +1,5 @@
 import CareerHeroSection from "@/components/pages/career/CareerHeroSection";
 import ContactUs from "@/components/sections/ContactUs";
-import FAQS from "@/components/sections/FAQS";
-import MapSection from "@/components/sections/MapSection";
 import React from "react";
 
 function CareerPage() {
