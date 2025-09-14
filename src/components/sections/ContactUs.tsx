@@ -36,7 +36,7 @@ const STYLES = {
   spacing: {
     containerPadding: {
       desktop:
-        "lg:px-[56px] lg:py-[60px] md:px-[31px] md:py-[40px] px-[16px] py-[48px] ",
+        "lg:px-[56px] lg:py-[55px] 3xl:py-[60px] md:px-[31px] md:py-[40px] px-[16px] py-[25px]",
       form: "pt-[24px] pl-[34px] pr-[34px]",
     },
   },
@@ -98,9 +98,8 @@ const FormField: React.FC<FormFieldProps> = ({
           {...register(name)}
           placeholder={placeholder}
           rows={rows}
-          className={`${commonClasses} resize-none ${
-            name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
-          }`}
+          className={`${commonClasses} resize-none ${name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
+            }`}
           style={{
             borderBottomColor: getBorderColor(),
             color: getTextColor(),
@@ -161,7 +160,7 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
   const isMobile = layout === "mobile";
 
   const titleClass = isDesktop
-    ? "2xl:text-[22px] font-bold mb-[30px] leading-[110%]"
+    ? "2xl:text-[22px] font-bold mb-[22px] 3xl:mb-[20px] leading-[110%]"
     : isTablet
       ? "text-[22px] font-bold  mb-[30px]"
       : "text-[18px] font-bold mb-[8px]";
@@ -483,20 +482,18 @@ const ContactForm: React.FC<{
       >
         {isDesktop ? (
           <>
-            Leave your contacts
-            <br />
-            and we will contact you
+            Leave your details and <br /> we will contact you
           </>
         ) : isTablet ? (
-          <>Leave your contacts and we will contact you</>
+          <>Leave your details and we will contact you</>
         ) : isMobile ? (
           <>
-            Leave your contacts
+            Leave your details
             <br />
             and we will contact you
           </>
         ) : (
-          <>Leave your contacts and we will contact you</>
+          <>Leave your details and we will contact you</>
         )}
       </h3>
 
@@ -534,8 +531,8 @@ const ContactForm: React.FC<{
             error={errors.comment?.message}
           />
         </div>
-        <div className="mb-4">
-          <div className="flex items-center">
+        <div className="pt-[5px]">
+          <div className="flex items-center justify-center">
             <input
               ref={fileInputRef}
               type="file"
@@ -546,13 +543,16 @@ const ContactForm: React.FC<{
             />
             <label
               htmlFor="attachment"
-              className={`
-        inline-flex items-center px-4 py-2 border border-gray-300 
-        rounded-md shadow-sm text-sm font-medium text-gray-700 
-        bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
-        focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer
-        ${attachmentError ? "border-red-300 text-red-700" : ""}
-      `}
+              // style={{
+              //   backgroundImage: `url("data:image/svg+xml,%3csvg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%' height='100%' fill='none' rx='30' ry='30' stroke='%23333' stroke-width='1' stroke-dasharray='6%2c 6' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`,
+              // }}
+              className={`w-full
+                inline-flex items-center justify-center px-4 py-[14px] border-1 border-[#716B6B] border-dashed
+                rounded-full text-[18px] leading-[140%] font-medium text-[#716B6B]
+                bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer
+                ${attachmentError ? "border-red-300 text-red-700" : ""}
+            `}
             >
               {attachment ? (
                 <>
@@ -561,8 +561,8 @@ const ContactForm: React.FC<{
                 </>
               ) : (
                 <>
-                  <Upload className="w-4 h-4 mr-2" />
-                  Upload Attachment (optional)
+                  Attach your CV in pdf
+                  <Upload className="w-4 h-4 ml-2" />
                 </>
               )}
             </label>
@@ -576,24 +576,20 @@ const ContactForm: React.FC<{
           {attachmentError && (
             <p className="mt-1 text-red-600 text-sm">{attachmentError}</p>
           )}
-          <p className="mt-1 text-xs text-gray-500">
-            Max: 10MB (Supported: PDF, JPG, PNG, DOC, DOCX, TXT, XLS, XLSX)
-          </p>
         </div>
         <div
           className={
-            isDesktop ? "2xl:mt-[16px]" : "lg:pt-6 md:pt-[16px] xs:pt-[14px]"
+            isDesktop ? "mt-[20px] mb-[20px] 2xl:mb-0 2xl:mt-[31px]" : "lg:pt-6 md:pt-[16px] xs:pt-[14px]"
           }
         >
           <Button
             type="submit"
             variant="cta-gradient"
-            className={`w-full ${
-              isDesktop ? "mb-2 3xl:mb-5" : ""
-            } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300 flex items-center justify-center`}
+            className={`w-full ${isDesktop ? "mb-2" : "mt-6"
+              } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300 flex items-center justify-center`}
             disabled={isSubmitting}
           >
-            <span className="relative z-10">Get in touch</span>
+            <span className="relative z-10">Submit Application</span>
             <Icons.UpRightArrowLight />
           </Button>
         </div>
@@ -601,6 +597,7 @@ const ContactForm: React.FC<{
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
           ref={recaptchaRef}
           size="invisible"
+          className="absolute"
         />
       </form>
     </div>
@@ -609,16 +606,14 @@ const ContactForm: React.FC<{
 
 const HeaderSection: React.FC = () => (
   <div className="text-white mb-12">
-    <h2 className="2xl:text-[40px] text-xl font-normal leading-[133%] mb-4 mt-2 tracking-wide">
-      Place Your Request —<br />
-      We'll Handle the Rest
+    <h2 className="2xl:text-[40px] text-xl font-normal leading-[133%] mb-[18px] tracking-wide">
+      Interested in Working <br /> With Us?
     </h2>
     <p
-      className="2xl:text-[20px] leading-[133%] 2xl:w-[443px] 2xl:mt-2 tracking-tight"
+      className="2xl:text-[20px] leading-[133%] 2xl:max-w-[430px] 2xl:mt-2 tracking-tight"
       style={{ color: STYLES.colors.textSecondary }}
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua.
+      We’re growing fast and looking for people who want to grow with us. Drop us your details and we’ll get back to you to start the conversation.
     </p>
   </div>
 );
@@ -633,7 +628,7 @@ const ContactUs: React.FC = () => {
         >
           {/* Desktop Layout */}
           <div className="hidden lg:block h-full">
-            <div className="grid lg:grid-cols-2  h-full">
+            <div className="grid lg:grid-cols-2 h-full">
               <div className="text-white flex flex-col h-full">
                 <HeaderSection />
                 <div className="mt-auto">
@@ -649,15 +644,14 @@ const ContactUs: React.FC = () => {
           {/* Tablet Layout */}
           <div className="hidden sm:block lg:hidden">
             <div className="text-white mb-12">
-              <h2 className="2xl:text-[40px] md:text-[34px] 2xl:font-normal leading-[133%] mb-4 2xl:tracking-tight md:tracking-normal">
-                Place Your Request — We'll Handle the Rest
+              <h2 className="2xl:text-[40px] md:text-[40px] 2xl:font-normal leading-[133%] mb-4 tracking-[0.5px] 2xl:tracking-tight">
+                Interested in Working With Us?
               </h2>
               <p
                 className="text-base 2xl:leading-[150%] md:leading-[140%] mb-8 w-[375px] 2xl:text-[20px] font-normal "
                 style={{ color: STYLES.colors.textSecondary }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                We’re growing fast and looking for people who want to grow with us. Drop us your details and we’ll get back to you to start the conversation.
               </p>
             </div>
 
@@ -673,8 +667,7 @@ const ContactUs: React.FC = () => {
           <div className="block sm:hidden">
             <div className="text-white mb-[35px]">
               <h2 className="md:text-3xl xs:text-[34px] font-normal md:leading-tight xs:leading-[133%] mb-[15px]">
-                Place Your Request —<br />
-                We'll Handle the Rest
+                Interested in Working <br/> With Us?
               </h2>
               <p
                 className="text-[16px] font-normal leading-[140%]"
@@ -683,8 +676,7 @@ const ContactUs: React.FC = () => {
                   letterSpacing: "-1%",
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                We’re growing fast and looking for people who want to grow with us. Drop us your details and we’ll get back to you to start the conversation.
               </p>
             </div>
 

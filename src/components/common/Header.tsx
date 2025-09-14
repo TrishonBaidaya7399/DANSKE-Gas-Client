@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   DropdownMenu,
@@ -17,12 +17,10 @@ import { Icons } from "@/components/Icons";
 interface NavItem {
   label: string;
   href: string;
-  isActive?: boolean;
 }
 
 interface HeaderProps {
   className?: string;
-  activeNavItem?: string;
 }
 
 interface Language {
@@ -35,7 +33,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Our Products", href: "/our-products" },
   { label: "News", href: "#" },
   { label: "Art", href: "#" },
-  { label: "Career", href: "#" },
+  { label: "Career", href: "/career" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -58,8 +56,7 @@ const IMAGES = {
 } as const;
 
 const Navbar: React.FC<HeaderProps> = ({
-  className = "",
-  activeNavItem = "",
+  className = ""
 }) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,6 +67,7 @@ const Navbar: React.FC<HeaderProps> = ({
   const languageDropdownRef = useRef<HTMLDivElement>(null);
   const [showFixedNav, setShowFixedNav] = useState(false);
   const topNavRef = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -95,7 +93,7 @@ const Navbar: React.FC<HeaderProps> = ({
 
   const navItemsWithActive = NAV_ITEMS.map((item) => ({
     ...item,
-    isActive: item.label === activeNavItem,
+    isActive: item.href !== "#" && pathname.startsWith(item.href)
   }));
 
   useEffect(() => {
@@ -210,8 +208,7 @@ const Navbar: React.FC<HeaderProps> = ({
                       {item.label}
 
                       <span
-                        className={`absolute left-0 -bottom-0 h-[1px] bg-white transition-all duration-300 ${item.isActive ? "w-full" : "w-0 group-hover:w-full"
-                          }`}
+                        className={`absolute left-0 -bottom-0 bg-white transition-all duration-300 ${item.isActive ? "w-full h-0.5" : "w-0 h-px group-hover:w-full"}`}
                       ></span>
                     </Link>
                   ))}
