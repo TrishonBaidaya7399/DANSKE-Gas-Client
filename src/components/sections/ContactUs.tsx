@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -99,9 +99,8 @@ const FormField: React.FC<FormFieldProps> = ({
           {...register(name)}
           placeholder={placeholder}
           rows={rows}
-          className={`${commonClasses} resize-none ${
-            name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
-          }`}
+          className={`${commonClasses} resize-none ${name === "comment" ? "lg:h-26 md:h-[105px] xs:h-[106px]" : ""
+            }`}
           style={{
             borderBottomColor: getBorderColor(),
             color: getTextColor(),
@@ -306,24 +305,44 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
 
 const ContactForm: React.FC<{
   layout: "desktop" | "tablet" | "mobile";
-  careerPage? : boolean;
+  careerPage?: boolean;
 }> = ({ layout, careerPage }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
     reset,
+    setFocus
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     mode: "onSubmit",
   });
 
+  const formRef = useRef<HTMLDivElement | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [attachment, setAttachment] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [attachmentError, setAttachmentError] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!formRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setFocus("firstName"); // 👈 focus every time form is visible
+        }
+      },
+      { threshold: 0.5 } // adjust: 0.5 = 50% visible
+    );
+
+    observer.observe(formRef.current);
+
+    return () => observer.disconnect();
+  }, [setFocus]);
 
   // file validation
   const validateAttachment = (file: File) => {
@@ -471,7 +490,7 @@ const ContactForm: React.FC<{
   };
 
   return (
-    <div
+    <div ref={formRef}
       className={containerClass}
       style={{
         backgroundColor: STYLES.colors.formBackground,
@@ -599,9 +618,8 @@ const ContactForm: React.FC<{
           <Button
             type="submit"
             variant="cta-gradient"
-            className={`w-full ${
-              isDesktop ? "mb-2" : "mt-6"
-            } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300 flex items-center justify-center`}
+            className={`w-full ${isDesktop ? "mb-2" : "mt-6"
+              } rounded-full h-[54px] w-full font-normal text-lg transition-all duration-300 flex items-center justify-center`}
             disabled={isSubmitting}
           >
             <span className="relative z-10">Submit Application</span>

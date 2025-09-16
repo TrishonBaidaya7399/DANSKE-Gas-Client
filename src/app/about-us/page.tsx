@@ -2,7 +2,6 @@ import React from "react";
 import AboutUsHeroSection from "@/components/pages/about_us/AboutUsHeroSection";
 import Image from "next/image";
 import OurStory from "@/components/pages/about_us/OurStory";
-import Swiper1 from "@/components/pages/about_us/Swiper1";
 import WhoIsBehind from "@/components/pages/about_us/WhoIsBehind";
 import SupervisoryBoard from "@/components/pages/about_us/SupervisoryBoard";
 import BrandName from "@/components/pages/about_us/BrandName";

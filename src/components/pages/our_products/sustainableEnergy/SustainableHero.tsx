@@ -90,10 +90,6 @@ const SustainableHero: React.FC<SustainableHeroProps> = ({
                 Homepage
               </Link>
               <span className="mx-1">{"/"}</span>
-              <Link href={"/"} className="hover:underline transition-all duration-300 text-[13px] font-normal leading-[140%]">
-                Contact Us
-              </Link>
-              <span className="mx-1">{"/"}</span>
               <span className="font-semibold text-[13px] leading-[140%]">
                 Sustainable energy
               </span>

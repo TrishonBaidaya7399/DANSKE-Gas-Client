@@ -122,7 +122,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
   return (
     <div className={`w-full relative ${className}`}>
       {/* Header Container - Fixed height */}
-      <div className="bg-[#F99639] relative">
+      <div className="bg-[#F99639] relative z-20">
         <div
           className="w-full relative bg-cover bg-bottom bg-no-repeat overflow-hidden
             3xl:bg-[url('/assets/header-pic/bg.png')] 3xl:h-[649px]
@@ -164,7 +164,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
                       w-full min-[596px]:w-[227px] lg:w-[251px] 
                       p-[14.5px] group transition-all duration-300
                       hover:text-white hover:bg-black"
-                  href="#"
+                  href="/our-products"
                 >
                   <span>
                     See Our Products

@@ -166,7 +166,6 @@ const Footer: React.FC = () => {
   const footerData: FooterData = {
     links: [
       { name: "Products", href: "#" },
-      { name: "News", href: "#" },
       { name: "About Us", href: "#" },
       { name: "Art", href: "#" },
       { name: "Contact Us", href: "#" },

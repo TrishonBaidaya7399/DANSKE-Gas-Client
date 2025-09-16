@@ -7,6 +7,7 @@ import FooterWrapper from "@/components/common/FooterWrapper";
 import Script from "next/script";
 import CookiebotScript from "@/components/common/CookiebotScript";
 import CookiebotReact from "@/components/common/CookiebotReact";
+import GoogleAnalytics from "@/components/common/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -122,6 +123,7 @@ export default function RootLayout({
           }}
         />
         <FooterWrapper />
+        <GoogleAnalytics/>
       </body>
     </html>
   );
