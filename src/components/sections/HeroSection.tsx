@@ -2,7 +2,6 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { gsap } from "gsap";
 import { Icons } from "../Icons";
 

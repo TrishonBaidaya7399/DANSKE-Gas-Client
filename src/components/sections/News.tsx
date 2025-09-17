@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { eventData } from "@/data/article";
 
 interface EventCard {
   id: string;
@@ -20,39 +20,6 @@ const News = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isMdBreakpoint, setIsMdBreakpoint] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  const eventData: EventCard[] = [
-    {
-      id: "1",
-      date: "12 Sept 2025",
-      title: "Fuel Innovation Talk at Industry Summit",
-      description:
-        "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial",
-      imageUrl: "/assets/news-pic-1.webp",
-      compressedImageUrl: "/assets/news-pic-1-compressed.webp",
-      imageAlt: "Industry Summit Meeting",
-    },
-    {
-      id: "2",
-      date: "15 Oct 2025",
-      title: "Speaking at the Chemical Safety Conference",
-      description:
-        "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial.",
-      imageUrl: "/assets/news-pic-2.webp",
-      compressedImageUrl: "/assets/news-pic-2-compressed.webp",
-      imageAlt: "Energy Conference",
-    },
-    {
-      id: "3",
-      date: "20 Nov 2025",
-      title: "Partnering at the Sustainable Transport Forum",
-      description:
-        "Danske Gas powers industries, engines, and champions. From high-performance racing fuels to technical gases and industrial.",
-      imageUrl: "/assets/news-pic-3.webp",
-      compressedImageUrl: "/assets/news-pic-3-compressed.webp",
-      imageAlt: "Gas Symposium",
-    },
-  ];
 
   useEffect(() => {
     const checkBreakpoint = () => {
@@ -145,10 +112,7 @@ const News = () => {
     <div className="container-custom mt-[100px] md:mt-0" ref={sectionRef}>
       <div>
         {/* Header Section */}
-        <div
-          className={`flex lg:justify-center lg:items-center lg:text-center flex-col mb-10 transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-        >
+        <div className={`flex lg:justify-center lg:items-center lg:text-center flex-col mb-10 transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span
             className="text-[12px] md:text-[16px] leading-[140%] font-medium inline-block capitalize bg-clip-text text-transparent"
             style={{
@@ -181,7 +145,7 @@ const News = () => {
         </div>
 
         {/* Event Cards Section */}
-        <div className="pl-[3px] pt-[2px] 3xl:pt-[3px] 3xl:pl-[15px] 3xl:pr-[15px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[26px] sm:gap-y-[30px] md:gap-x-[25px] md:gap-y-[40px] lg:gap-x-[40px] lg:gap-y-[40px] mx-auto ">
+        <div className="3xl:pt-[3px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[26px] sm:gap-y-[30px] md:gap-x-[25px] md:gap-y-[40px] lg:gap-x-[40px] lg:gap-y-[40px] mx-auto ">
           {getOrderedCards().map(({ event, originalIndex }, sortedIndex) => (
             <div
               key={event.id}
@@ -289,24 +253,6 @@ const News = () => {
             </div>
           ))}
         </div>
-
-        {/* <div className="text-center pt-[49px] sm:pt-[45px]">
-          <Button
-            variant="cta-gradient"
-            size="cta"
-            className="font-medium lg:w-[205px] md:w-[226px] w-full h-[54px] text-[16px]"
-          >
-            <Link
-              href="#"
-              className="inline-flex items-center gap-2 relative z-10"
-            >
-              <span className="relative z-10 text-[18px] leading-[140%]">
-                Go to all articles
-              </span>
-            </Link>
-          </Button>
-        </div> */}
-
       </div>
     </div>
   );

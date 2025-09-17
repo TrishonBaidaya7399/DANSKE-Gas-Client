@@ -274,8 +274,8 @@ const Footer: React.FC = () => {
 
       {/* Desktop and Tablet - Border with container spacing */}
       <div className="hidden lg:block md:block">
-        <div className="container-custom 2xl:w-[1280px] lg:mt-0 md:mt-[-3px]">
-          <div className="border-t border-dark-gray pt-[14px] lg:pb-[56px] pb-[40px] 3xl:ml-[-22px] 2xl:ml-[-79px] 2xl:mt-[-5px] 2xl:w-[1280px]">
+        <div className="container-custom">
+          <div className="border-t border-dark-gray pt-[14px] lg:pb-[56px] pb-[40px]">
             <div className="flex flex-row justify-between items-center gap-4">
               <p className="text-[16px] text-white">
                 © 2025. All rights reserved.
