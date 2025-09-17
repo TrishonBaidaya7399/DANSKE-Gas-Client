@@ -139,7 +139,8 @@ const Navbar: React.FC<HeaderProps> = ({ className = "" }) => {
   const toggleLanguageDropdown = () => setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
   const selectLanguage = (langCode: string) => {
     setSelectedLanguage(langCode);
-    setIsLanguageDropdownOpen(false);
+    setIsLanguageDropdownOpen(false); 
+    
   };
 
   return (
