@@ -19,7 +19,7 @@ export interface EventCard {
 }
 
 const headingClass = "font-medium text-[32px] leading-[133%]";
-const paragraphClass = "text-[#171515] text-[16px] leading-[140%] -tracking-[0.2px]";
+const paragraphClass = "text-[#171515] text-[16px] leading-[140%] -tracking-[0.15px] lg:-tracking-[0.18px]";
 const listHeadingClass = "text-[20px] leading-[150%] -tracking-[0.2px] font-semibold";
 const gradientText = {
   background: "linear-gradient(to right, #ff6a00, #ee0979)",
@@ -42,27 +42,18 @@ export const eventData: EventCard[] = [
         id: "two_energy",
         label: "Two Energy Paths, One Mission",
         content: (
-          <div className="text-black space-y-[60px]">
-            <div className="text-[24px] leading-[150%] -tracking-[0.2px]">
+          <div className="text-black space-y-[40px] md:space-y-[60px]">
+            <div className="text-[20px] md:text-[24px] leading-[150%] -tracking-[0.2px] md:-tracking-[0.25px] lg:-tracking-[0.3px]">
               Danske Gas proudly took part in this year’s Future of Energy Forum, one of Europe’s most influential gatherings of energy leaders, innovators, and policymakers. Held in Berlin, the event united companies from over 30 countries to explore how the energy sector can respond to today’s most urgent challenges—decarbonization, energy security, and sustainable growth.
             </div>
 
-            <div className="w-full space-y-11">
-              <div className="w-full space-y-8">
+            <div className="w-full space-y-[40px] lg:space-y-11">
+              <div className="w-full space-y-[22px] md:space-y-8">
                 <div className={headingClass}>
                   Two Energy Paths, One Mission
                 </div>
                 <div className={paragraphClass}>
-                  <div className="space-y-5">
-                    <div>
-                      Our CEO opened the session by highlighting Danske Gas’ two-pronged strategy: maintaining high-performance delivery of conventional fuels while investing in scalable green energy solutions. With the European energy mix evolving rapidly, the company emphasized that a hybrid approach is not only realistic—but essential.
-                    </div>
-                    <div>
-                      Danske Gas also presented its framework for <b>integrated energy procurement,</b> allowing clients to combine conventional fuel contracts with renewable certificates, CO₂ offsets, or biomass solutions under one agreement. This flexible model gives clients a realistic path to greener operations — without compromising performance or delivery.
-                    </div>
-                    <div>
-                      With operations expanding across Central and Northern Europe, the company reaffirmed its commitment to infrastructure investment, cross-sector collaboration, and innovation — not just in what energy is delivered, but how it’s delivered.
-                    </div>
+                  <div className="space-y-[19px]">
                     <div>
                       Our CEO opened the session by highlighting Danske Gas’ two-pronged strategy: maintaining high-performance delivery of conventional fuels while investing in scalable green energy solutions. With the European energy mix evolving rapidly, the company emphasized that a hybrid approach is not only realistic—but essential.
                     </div>
@@ -77,7 +68,7 @@ export const eventData: EventCard[] = [
               </div>
 
               {/* img area start */}
-              <div className="w-full relative h-[364px] rounded-[12px] overflow-hidden">
+              <div className="w-full relative h-[200px] md:h-[409px] lg:h-[364px] rounded-[12px] overflow-hidden">
                 <Image
                   src={'/assets/Articles/Article-1/1.webp'}
                   alt={'img'}
@@ -94,9 +85,9 @@ export const eventData: EventCard[] = [
       },
       {
         id: "key_take",
-        label: "Key Takeaways",
+        label: "Key Takeaways from the Conference",
         content: (
-          <div className="w-full space-y-8 text-black">
+          <div className="w-full space-y-[15px] md:space-y-8 text-black">
             <div className={headingClass}>
               Key Takeaways from the Conference
             </div>
@@ -137,14 +128,14 @@ export const eventData: EventCard[] = [
       },
       {
         id: "driving",
-        label: "Driving Innovation",
+        label: "Driving Innovation Through Dialogue",
         content: (
-          <div className="w-full space-y-8 text-black">
+          <div className="w-full space-y-[9px] md:space-y-[28px] lg:space-y-8 text-black">
             <div className={headingClass}>
               Driving Innovation Through Dialogue
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               <div className={paragraphClass}>
                 One of the most valuable aspects of the Future of Energy Forum was the opportunity for real, open conversation between industry stakeholders. From startup founders to government regulators and corporate energy buyers, the event fostered a space where challenges were met with solutions — and ideas turned into partnerships.
               </div>
@@ -160,9 +151,9 @@ export const eventData: EventCard[] = [
         label: "Looking Ahead",
         content: (
           <div className="text-black space-y-[60px]">
-            <div className="w-full space-y-11">
+            <div className="w-full space-y-[36px] lg:space-y-[41px]">
 
-              <div className="w-full space-y-8">
+              <div className="w-full space-y-[20px] md:space-y-8">
                 <div className={headingClass}>
                   Looking Ahead
                 </div>
@@ -179,7 +170,7 @@ export const eventData: EventCard[] = [
               </div>
 
               {/* img area start */}
-              <div className="w-full relative h-[364px] rounded-[12px] overflow-hidden">
+              <div className="w-full relative h-[200px] md:h-[409px] lg:h-[364px] rounded-[12px] overflow-hidden">
                 <Image
                   src={'/assets/Articles/Article-1/2.webp'}
                   alt={'img'}

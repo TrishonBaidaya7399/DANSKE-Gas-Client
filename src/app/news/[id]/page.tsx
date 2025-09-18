@@ -42,9 +42,9 @@ export default function NewsPage({ params }: NewsPageProps) {
 
   return (
     <div className="w-full">
-      <div className="pt-[155px] px-[14px]">
+      <div className="pt-[116px] md:pt-[150px] lg:pt-[156px] 3xl:pt-[152px] container-custom">
         {/* Breadcrumb */}
-        <nav className="text-black -tracking-[0.3px] mb-6 container-custom">
+        <nav className="text-black -tracking-[0.3px] 3xl:px-[12px]">
           <Link
             href="/"
             className="hover:underline transition-all duration-300 text-[13px] font-normal leading-[140%]"
@@ -60,23 +60,24 @@ export default function NewsPage({ params }: NewsPageProps) {
         </nav>
 
         {/* Header */}
-        <div className="flex items-end gap-5 justify-between container-custom">
-          <div className="text-[48px] leading-[133%] max-w-[738px] w-full pt-[5px] pb-[3px]">
+        <div className="flex flex-col md:flex-row md:items-end gap-[7px] md:gap-5 justify-between 3xl:px-[12px]">
+          <div className="text-[34px] lg:text-[48px] leading-[133%] max-w-[450px] lg:max-w-[738px] w-full pt-[3px] md:pt-[8px] lg:pt-[5px] lg:pb-[3px]">
             {article.title}
+            {/* Danske Gas at the Future of Energy Forum 2025 */}
           </div>
           <div className="">
-            <div className="text-[16px] leading-[140%] font-[600] gradientText">
+            <div className="text-[12px] lg:text-[16px] leading-[140%] font-[600] gradientText">
               DATE
             </div>
-            <div className="text-[20px] leading-[150%] -tracking-[0.2px]">
+            <div className="text-[16px] lg:text-[20px] leading-[140%] lg:leading-[150%] -tracking-[0.2px]">
               {article.date}
             </div>
           </div>
         </div>
 
-        <div className="container-custom">
+        <div className="3xl:px-[12px]">
           {/* Hero Image */}
-          <div className="w-full relative h-[600px] rounded-[12px] overflow-hidden mt-[60px]">
+          <div className="w-full relative h-[173px] md:h-[353px] lg:h-[600px] rounded-[12px] overflow-hidden mt-[37px] lg:mt-[60px]">
             <Image
               src={article.imageUrl}
               alt={article.imageAlt}
@@ -87,7 +88,7 @@ export default function NewsPage({ params }: NewsPageProps) {
           </div>
 
           {/* Main Section */}
-          <div className="w-full grid grid-cols-1 lg:grid-cols-5 items-start gap-10 pt-[100px] relative">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-5 items-start gap-10 pt-[62px] lg:pt-[100px] relative">
             {/* Sidebar */}
             <div className="hidden lg:flex flex-col sticky top-[100px] max-w-[217px] w-full border-l">
               {article.sections.map((section) => (
@@ -95,12 +96,14 @@ export default function NewsPage({ params }: NewsPageProps) {
                   key={section.id}
                   href={`#${section.id}`}
                   className={`text-[#716B6B] px-4 py-[19px] relative
+                    text-[16px] leading-[140%] -tracking-[0.2px]
+                    transition-all duration-300
                     before:transition-all before:duration-300
-                    before:h-full before:w-[2px] before:absolute 
-                    before:left-0 before:top-0
+                    before:h-full before:w-[1px] before:absolute 
+                    before:left-[-1px] before:top-0
                     ${activeId === section.id
-                      ? "before:bg-red-400 font-medium text-black"
-                      : "before:bg-transparent"
+                      ? "before:bg-gradient-to-t before:from-[#A01800] before:via-[#D80A00] before:to-[#F99639] font-medium text-black"
+                      : "before:bg-transparent hover:before:bg-[#D80A00] hover:text-black"
                     }
                   `}
                 >
@@ -111,7 +114,7 @@ export default function NewsPage({ params }: NewsPageProps) {
 
             {/* Content */}
             <div className="col-span-1 lg:col-span-3">
-              <div className="max-w-[670px] mx-auto w-full space-y-12">
+              <div className="lg:max-w-[670px] mx-auto w-full space-y-[38px] md:space-y-[62px] lg:space-y-[58px]">
                 {article.sections.map((section) => (
                   <div key={section.id} id={section.id} className="scroll-mt-[150px]">
                     <div>{section.content}</div>
@@ -124,8 +127,8 @@ export default function NewsPage({ params }: NewsPageProps) {
       </div>
       
       {/* new area start */}
-      <div className="pt-[170px]">
-        <News />
+      <div className="pt-[105px] md:pt-[100px] lg:pt-[168px]">
+        <News NewsPage/>
       </div>
 
       <div className="container-custom">

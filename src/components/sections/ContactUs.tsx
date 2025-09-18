@@ -637,10 +637,26 @@ const ContactForm: React.FC<{
   );
 };
 
-const HeaderSection: React.FC = () => (
+interface HeaderSectionProps {
+  careerPage?: boolean
+}
+
+const HeaderSection: React.FC<HeaderSectionProps> = ({ careerPage }) => (
   <div className="text-white mb-12">
     <h2 className="2xl:text-[40px] text-xl font-normal leading-[133%] mb-[18px] tracking-wide">
-      Interested in Working <br /> With Us?
+
+      {careerPage ? (
+        <>
+          Interested in Working <br /> With Us?
+        </>
+      ) :
+        (
+          <>
+            Place Your Request — <br /> We’ll Handle the Rest
+          </>
+        )
+      }
+
     </h2>
     <p
       className="2xl:text-[20px] leading-[133%] 2xl:max-w-[430px] 2xl:mt-2 tracking-tight"
@@ -668,7 +684,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ careerPage }) => {
           <div className="hidden lg:block h-full">
             <div className="grid lg:grid-cols-2 h-full">
               <div className="text-white flex flex-col h-full">
-                <HeaderSection />
+                <HeaderSection careerPage={careerPage} />
                 <div className="mt-auto">
                   <ContactInfo layout="desktop" />
                 </div>
@@ -683,7 +699,17 @@ const ContactUs: React.FC<ContactUsProps> = ({ careerPage }) => {
           <div className="hidden sm:block lg:hidden">
             <div className="text-white mb-12">
               <h2 className="2xl:text-[40px] md:text-[40px] 2xl:font-normal leading-[133%] mb-4 tracking-[0.5px] 2xl:tracking-tight">
-                Interested in Working With Us?
+                {careerPage ? (
+                  <>
+                    Interested in Working With Us?
+                  </>
+                ) :
+                  (
+                    <>
+                      Place Your Request — We’ll Handle the Rest
+                    </>
+                  )
+                }
               </h2>
               <p
                 className="text-base 2xl:leading-[150%] md:leading-[140%] mb-8 w-[375px] 2xl:text-[20px] font-normal "
@@ -707,7 +733,17 @@ const ContactUs: React.FC<ContactUsProps> = ({ careerPage }) => {
           <div className="block sm:hidden">
             <div className="text-white mb-[35px]">
               <h2 className="md:text-3xl xs:text-[34px] font-normal md:leading-tight xs:leading-[133%] mb-[15px]">
-                Interested in Working <br /> With Us?
+                {careerPage ? (
+                  <>
+                    Interested in Working <br /> With Us?
+                  </>
+                ) :
+                  (
+                    <>
+                      Place Your Request — <br /> We’ll Handle the Rest
+                    </>
+                  )
+                }
               </h2>
               <p
                 className="text-[16px] font-normal leading-[140%]"

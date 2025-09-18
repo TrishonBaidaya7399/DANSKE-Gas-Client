@@ -15,7 +15,12 @@ interface EventCard {
   imageAlt: string;
 }
 
-const News = () => {
+interface NewsProps {
+  NewsPage?: boolean
+}
+
+
+const News: React.FC<NewsProps> = ({ NewsPage }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isMdBreakpoint, setIsMdBreakpoint] = useState(false);
@@ -109,10 +114,10 @@ const News = () => {
   };
 
   return (
-    <div className="container-custom mt-[100px] md:mt-0" ref={sectionRef}>
+    <div className={`container-custom ${NewsPage ? '' : 'mt-[100px] md:mt-0'}`} ref={sectionRef}>
       <div>
         {/* Header Section */}
-        <div className={`flex lg:justify-center lg:items-center lg:text-center flex-col mb-10 transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`${NewsPage ? "3xl:pl-[10px] pb-[40px]" : "flex lg:justify-center lg:items-center lg:text-center flex-col mb-10"} transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span
             className="text-[12px] md:text-[16px] leading-[140%] font-medium inline-block capitalize bg-clip-text text-transparent"
             style={{
@@ -123,29 +128,32 @@ const News = () => {
               backgroundClip: "text",
             }}
           >
-            MEET THE TEAM
+            {NewsPage ? "RELATED ARTICLES" : "MEET THE TEAM"}
+
           </span>
 
           <h2 className="text-[48px] leading-[133%] lg:block hidden ">
-            From the Stage. <br /> From the Field. From Us.
+            {NewsPage ? ("You May Also Like") : (<>From the Stage. <br /> From the Field. From Us.</>)}
           </h2>{" "}
           <h2 className="text-[34px] leading-[133%] lg:hidden md:block hidden">
-            From the Stage. From the Field. From Us.
+            {NewsPage ? ("You May Also Like") : (<>From the Stage. From the Field. From Us.</>)}
           </h2>{" "}
           <h2 className="text-[34px] md:text-[48px] leading-[133%] lg:hidden md:hidden block">
-            From the Stage. <br /> From the Field. From Us.
+            {NewsPage ? ("You May Also Like") : (<>From the Stage. <br /> From the Field. From Us.</>)}
           </h2>
-          <p className="text-[16px] lg:text-[20px] 
-              leading-[140%] lg:leading-[150%] 
-              max-w-[494px] lg:max-w-[600px] tracking-[-0.2px] w-full 
-              pt-[7px] lg:pt-[8px]">
-            Our leadership team brings decades of expertise in fuel import,
-            logistics and energy distribution across Europe.
-          </p>
+          {!NewsPage && (
+            <p className="text-[16px] lg:text-[20px] 
+                leading-[140%] lg:leading-[150%] 
+                max-w-[494px] lg:max-w-[600px] tracking-[-0.2px] w-full 
+                pt-[7px] lg:pt-[8px]">
+              Our leadership team brings decades of expertise in fuel import,
+              logistics and energy distribution across Europe.
+            </p>
+          )}
         </div>
 
         {/* Event Cards Section */}
-        <div className="3xl:pt-[3px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[26px] sm:gap-y-[30px] md:gap-x-[25px] md:gap-y-[40px] lg:gap-x-[40px] lg:gap-y-[40px] mx-auto ">
+        <div className="3xl:pt-[3px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[26px] sm:gap-y-[30px] md:gap-x-[25px] md:gap-y-[40px] lg:gap-x-[40px] lg:gap-y-[40px] mx-auto 3xl:px-[18px]">
           {getOrderedCards().map(({ event, originalIndex }, sortedIndex) => (
             <div
               key={event.id}
