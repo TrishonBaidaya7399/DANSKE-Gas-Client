@@ -122,7 +122,8 @@ export default function NewsPage({ params }: NewsPageProps) {
           </div>
         </div>
       </div>
-
+      
+      {/* new area start */}
       <div className="pt-[170px]">
         <News />
       </div>
