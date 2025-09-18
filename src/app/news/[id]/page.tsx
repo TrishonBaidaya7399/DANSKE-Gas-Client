@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { eventData } from "@/data/article";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,24 +9,26 @@ import News from "@/components/sections/News";
 import ContactUs from "@/components/sections/ContactUs";
 
 interface NewsPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default function NewsPage({ params }: NewsPageProps) {
-  const article = eventData.find((item) => item.id === params.id);
+  const { id } = use(params);
+
+  const article = eventData.find((item) => item.id === id);
   const [activeId, setActiveId] = useState<string>("");
 
-  if (!article) return notFound();
 
-  // Scroll-spy logic
   useEffect(() => {
+    if (!article) return; // Early return inside useEffect
+
     const handleScroll = () => {
       let currentId = "";
       article.sections.forEach((section) => {
         const el = document.getElementById(section.id);
         if (el) {
           const offsetTop = el.getBoundingClientRect().top;
-          if (offsetTop <= 200) { // navbar offset
+          if (offsetTop <= 200) {
             currentId = section.id;
           }
         }
@@ -35,10 +37,15 @@ export default function NewsPage({ params }: NewsPageProps) {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // initial check
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [article.sections]);
+  }, [article]); // Use article instead of article.sections for dependency
+
+  // Handle not found case after hooks
+  if (!article) {
+    notFound();
+  }
 
   return (
     <div className="w-full">
@@ -63,7 +70,6 @@ export default function NewsPage({ params }: NewsPageProps) {
         <div className="flex flex-col md:flex-row md:items-end gap-[7px] md:gap-5 justify-between 3xl:px-[12px]">
           <div className="text-[34px] lg:text-[48px] leading-[133%] max-w-[450px] lg:max-w-[738px] w-full pt-[3px] md:pt-[8px] lg:pt-[5px] lg:pb-[3px]">
             {article.title}
-            {/* Danske Gas at the Future of Energy Forum 2025 */}
           </div>
           <div className="">
             <div className="text-[12px] lg:text-[16px] leading-[140%] font-[600] gradientText">
@@ -125,10 +131,10 @@ export default function NewsPage({ params }: NewsPageProps) {
           </div>
         </div>
       </div>
-      
+
       {/* new area start */}
       <div className="pt-[105px] md:pt-[100px] lg:pt-[168px]">
-        <News NewsPage/>
+        <News NewsPage />
       </div>
 
       <div className="container-custom">

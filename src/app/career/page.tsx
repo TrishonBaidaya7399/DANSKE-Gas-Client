@@ -16,10 +16,6 @@ function CareerPage() {
         </div>
       </div>
 
-
-
-      
-
       <div className="mt-[72px] md:mt-[100px] lg:mt-[167px] 3xl:mt-[163px] container-custom">
         <div className="max-w-[1280px] w-full mx-auto">
           <BenefitsSection/>
