@@ -79,7 +79,7 @@ const ProductTabs = ({ projects }: ProductTabsProps) => {
     setIsNavigating(true);
 
     if (isXL) {
-      // ✅ old logic for xl
+
       if (containerRef.current) {
         const containerTop = containerRef.current.offsetTop;
         const vh = window.innerHeight;
