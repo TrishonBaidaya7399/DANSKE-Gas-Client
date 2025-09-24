@@ -137,7 +137,7 @@ const FAQS = () => {
           </p>
         </div>
 
-        <div className="flex flex-col xs:gap-4 md:gap-[16px] 2xl:gap-[32px] 3xl:gap-[27px] 2xl:w-[651px] 3xl:mr-[23px]">
+        <div className="flex flex-col gap-4 lg:gap-6 2xl:w-[651px] 3xl:mr-[23px]">
           {faqData.map((faq) => (
             <div
               key={faq.id}
@@ -149,16 +149,18 @@ const FAQS = () => {
               }`}
               onClick={() => toggleFAQ(faq.id)}
             >
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between">
                 <h3
-                  className={`2xl:text-[20px] xs:text-[18px] lg:w-full md:w-[45%] 2xl:max-w-[100%] xs:max-w-[280px] xs:w-[280px] font-medium transition-all duration-700 ease-out 2xl:leading-[100%] md:leading-[150%]  ${
-                    openFAQ === faq.id ? "text-white 3xl:mt-4 2xl:mt-3 xs:mt-[6px]" : "text-black 3xl:mt-2 2xl:mt-1"
+                  className={`2xl:text-[20px] xs:text-[18px] lg:w-full md:w-[45%] 2xl:max-w-[100%] xs:max-w-[280px] xs:w-[280px] font-medium transition-all duration-700 ease-out leading-[150%]  
+                    ${
+                    openFAQ === faq.id ? "text-white" : "text-black"
                   }`}
                 >
                   {faq.question}
                 </h3>
                 <div
-                  className={`2xl:mr-0 md:ml-4 xs:mr-2 xs:mt-[4px] flex-shrink-0 transition-all duration-700 ease-out  ${
+                  className={`2xl:mr-0 md:ml-4 xs:mr-2 flex-shrink-0 transition-all duration-700 ease-out flex items-center justify-center
+                  ${
                     openFAQ === faq.id ? "rotate-180" : "rotate-0"
                   }`}
                 >

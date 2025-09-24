@@ -1,6 +1,5 @@
 import React from "react";
 import AboutUsHeroSection from "@/components/pages/about_us/AboutUsHeroSection";
-import Image from "next/image";
 import OurStory from "@/components/pages/about_us/OurStory";
 import WhoIsBehind from "@/components/pages/about_us/WhoIsBehind";
 import SupervisoryBoard from "@/components/pages/about_us/SupervisoryBoard";
@@ -31,10 +30,6 @@ function sustainableEnergy() {
             <div className="px-4 md:px-10 lg:px-0 lg:max-w-[1280px] mx-auto py-[110px] md:py-[100px] lg:py-[170px]">
                 <ContactUs/>
             </div>
-
-            
-
-
         </div>
     );
 }

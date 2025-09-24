@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import Swiper2 from "./Swiper2";
+import Swiper1 from "./Swiper1";
 
-const SupervisoryBoard: React.FC = () => {
+const FreshPerspectives: React.FC = () => {
     const prevRef = useRef<HTMLButtonElement | null>(null);
     const nextRef = useRef<HTMLButtonElement | null>(null);
 
@@ -11,26 +11,25 @@ const SupervisoryBoard: React.FC = () => {
     const [isEnd, setIsEnd] = useState(false);
 
     return (
-        <div className="w-full space-y-10">
-            <div className="w-full max-w-[1440px] mx-auto px-4 md:px-[53px] lg:px-[80px] text-black
+        <div className="container-custom space-y-[39px] lg:space-y-[56px]">
+            <div className="w-full mx-auto text-black
                 flex items-end justify-between">
 
                 <div className="w-full">
                     <h2 className="gradientText font-medium text-[12px] md:text-[16px] leading-[140%] uppercase">
-                        Rada Nadzorcza
+                        Fresh Perspectives
                     </h2>
                     <div className="text-[34px] lg:text-[48px] leading-[133%]">
-                        The Supervisory Board <br />That
-                        <span className="font-medium pl-[8px] md:pl-[10px] lg:pl-[13px]">Guides Our Growth</span>
+                        Art in Rotation
                     </div>
                     <p className="text-[16px] leading-[140%] md:text-[20px] md:leading-[150%] tracking-[-0.2] mt-[7px] max-w-[544px] w-full">
-                        Our Supervisory Board plays a critical role in overseeing Danske Gas operations and long-term growth.
+                        Due to space limitations, only part of the collection is on display at any given time in our offices. To offer a dynamic experience, we rotate the exhibited works every few months
                     </p>
                 </div>
 
                 {/* External Navigation */}
                 {isBeginning && isEnd ? null : (
-                    <div className="hidden md:flex gap-[20px] pb-[10px] 3xl:gap-[26px] 3xl:pb-[8px]">
+                    <div className="hidden md:flex gap-[20px] lg:gap-[26px] pb-[10px] 3xl:gap-[26px] 3xl:pb-[8px] pr-[5px] 3xl:pr-[32px]">
                         {/* Prev */}
                         <button
                             ref={prevRef}
@@ -71,8 +70,8 @@ const SupervisoryBoard: React.FC = () => {
 
             </div>
 
-            <div className="w-full max-w-[1440px] mx-auto pl-4 md:pl-[53px] md:pr-[53px] lg:pl-0 lg:pr-0 3xl:pl-[80px] 3xl:pr-[80px]">
-                <Swiper2
+            <div className="w-full 3xl:pr-[26px]">
+                <Swiper1
                     prevEl={prevRef}
                     nextEl={nextRef}
                     setIsBeginning={setIsBeginning}
@@ -84,4 +83,4 @@ const SupervisoryBoard: React.FC = () => {
     );
 };
 
-export default SupervisoryBoard;
+export default FreshPerspectives;

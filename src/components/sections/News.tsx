@@ -222,7 +222,7 @@ const News: React.FC<NewsProps> = ({ NewsPage }) => {
                       }`}
                   >
                     <Link
-                      href="/about"
+                      href={`/news/${event.id}`}
                       className="text-dark-gray hover:bg-gradient-to-r hover:from-[#A01800] hover:via-[#D80A00] hover:to-[#F99639] hover:bg-clip-text hover:text-transparent transition-all duration-300 hover:underline underline-offset-2"
                     >
                       By Danske Gas

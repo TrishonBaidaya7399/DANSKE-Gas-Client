@@ -156,7 +156,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
                 </p>
               </div>
 
-              <div className="relative pt-[125px] md:pt-[156px] lg:pt-[140px]">
+              <div className="relative z-30 pt-[125px] md:pt-[156px] lg:pt-[140px]">
                 <Link className="text-[18px] leading-[140%] 
                       text-black rounded-full bg-white font-medium
                       inline-flex items-center justify-center gap-[10px]
@@ -192,7 +192,7 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
 
       {/* Content Section Below Header - PROPERLY CONTAINED */}
       <div
-        className={`w-full relative z-10 ${!isTablet ? "container-custom" : ""}`}
+        className={`w-full relative z-30 ${!isTablet ? "container-custom" : ""}`}
         style={{ marginTop: "0px" }}
       >
         <div className="">
@@ -206,8 +206,8 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
               businesses, and global motorsports.
             </p>
 
-            {/* Feature Cards */}
-            <div>
+            
+            <div className="w-full">
               {/* Mobile - Marquee Animation (2x Slower) */}
               <div className="overflow-hidden mt-[24px] block lg:hidden">
                 <div className="relative h-full flex items-center">
@@ -248,12 +248,13 @@ const HeroSection: React.FC<HeaderProps> = ({ className = "" }) => {
                   </div>
                 </div>
               </div>
-
+              
+              {/* Feature Cards */}
               {/* Desktop - Static Grid with positioning (shows after 1025px) */}
-              <div className="hidden lg:flex justify-end w-full 
+              <div className="hidden lg:flex justify-end
                 min-[1320px]:absolute
                 relative top-[-50px] min-[1320px]:top-auto 
-                min-[1320px]:left-0 min-[1320px]:bottom-0 
+                min-[1320px]:right-0 min-[1320px]:bottom-0 
                 gap-[10px] min-[1320px]:gap-[25px]
                 min-[1320px]:pr-[1px] 3xl:pr-[25px]"
               >

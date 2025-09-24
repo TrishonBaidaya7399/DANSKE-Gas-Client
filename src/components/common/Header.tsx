@@ -31,7 +31,7 @@ interface Language {
 const NAV_ITEMS: NavItem[] = [
   { label: "About Us", href: "/about-us" },
   { label: "Our Products", href: "/our-products" },
-  { label: "Art", href: "#" },
+  { label: "Art", href: "/art" },
   { label: "Career", href: "/career" },
   { label: "Contact Us", href: "/contact" },
 ];
