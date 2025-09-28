@@ -190,19 +190,19 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              +48 780 751 724
+              Tel: +48 22 490 80 00
             </p>
             <p
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              +48 780 751 724
+              Fax: + 48 22 490 80 01
             </p>
             <p
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              email@danskegas.com
+              warsaw@danskegas.com
             </p>
           </div>
         </div>
@@ -220,13 +220,13 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              Wawelska 45/58,
+              ul. Słomińskiego 7, lok. 215,
             </p>
             <p
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              02-034 Warszawa
+             00-195 Warszawa, Poland
             </p>
             <p
               className={textClass}
@@ -252,19 +252,19 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              +48 780 751 724
+              Tel: +48 22 490 80 00
             </p>
             <p
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              +48 780 751 724
+              Fax: + 48 22 490 80 01
             </p>
             <p
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              email@danskegas.com
+              warsaw@danskegas.com
             </p>
           </div>
         </div>
@@ -278,13 +278,13 @@ const ContactInfo: React.FC<{ layout: "desktop" | "tablet" | "mobile" }> = ({
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              Wawelska 45/58,
+              ul. Słomińskiego 7, lok. 215,
             </p>
             <p
               className={textClass}
               style={{ color: STYLES.colors.textSecondary }}
             >
-              02-034 Warszawa
+              00-195 Warszawa, Poland
             </p>
             <p
               className={textClass}
@@ -662,8 +662,17 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({ careerPage }) => (
       className="2xl:text-[20px] leading-[133%] 2xl:max-w-[430px] 2xl:mt-2 tracking-tight"
       style={{ color: STYLES.colors.textSecondary }}
     >
-      We’re growing fast and looking for people who want to grow with us. Drop
-      us your details and we’ll get back to you to start the conversation.
+      {careerPage ? (
+        <>
+          We’re growing fast and looking for people who want to grow with us. Drop
+          us your details and we’ll get back to you to start the conversation.
+        </>
+      ) : (
+        <>
+          Have questions about fuel sourcing, licensing, or logistics? Get in touch with Danske Gas — our team is here to help you navigate the energy market with confidence.
+        </>
+      )}
+
     </p>
   </div>
 );

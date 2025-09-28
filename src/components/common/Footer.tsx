@@ -8,16 +8,17 @@ interface LinkItem {
   href: string;
 }
 
-interface OfficeInfo {
-  address: string[];
-  phone: string;
+interface ContactInfo {
+  tel: string;
+  fax: string;
   email: string;
+  address: string[];
 }
 
 interface FooterData {
   links: LinkItem[];
   legal: LinkItem[];
-  office: OfficeInfo;
+  contact: ContactInfo;
 }
 
 // Constants
@@ -30,9 +31,8 @@ const LOGO_DIMENSIONS = {
 const COMMON_CLASSES = {
   sectionTitle: "font-medium mb-[16px]",
   linkBase: "text-white hover:text-white transition-colors duration-200",
-  linkSpacing: "space-y-[2px]",
-  officeSpacing:
-    "leading-[140%] lg:space-y-[8px] md:space-y-[8px] space-y-[12px]",
+  linkSpacing: "space-y-[8px]",
+  contactSpacing: "space-y-[8px]",
   legalSpacing: "space-y-[8px]",
 } as const;
 
@@ -81,18 +81,30 @@ const FooterDescription: React.FC<{ className?: string }> = ({
   className = "text-[16px]",
 }) => (
   <div>
-    <p
-      className={`${className} md:w-[394px] lg:block md:block hidden md:text-[16px] text-white leading-[140%] lg:tracking-[-0.2px]`}
+    <div
+      className={`${className} md:w-[394px] lg:block md:block hidden md:text-[16px] text-white leading-[140%] lg:tracking-[-0.2px] space-y-4`}
     >
-      Danske Gas powers industries, engines, and champions. From
-      high-performance racing fuels to technical gases.
-    </p>{" "}
-    <p
-      className={`${className} lg:hidden md:hidden block lg:w-full md:w-full max-w-[354px] w-full text-[16px] text-white leading-[140%] lg:tracking-[-0.2px]`}
+      <p>
+        Danske Gas powers industries, engines, and champions. From
+        high-performance racing fuels to technical gases.
+      </p>
+      <p>
+        VAT: PL 525-283-81-36, REGON: 387197468, KRS: 0000861970
+        Paid up capital: 20.000.000,00 PLN
+      </p>
+    </div>{" "}
+    <div
+      className={`${className} lg:hidden md:hidden block lg:w-full md:w-full max-w-[354px] w-full text-[16px] text-white leading-[140%] lg:tracking-[-0.2px] space-y-3`}
     >
-      Danske Gas powers industries, engines, and champions. From
-      high-performance racing fuels to technical gases.
-    </p>
+      <p>
+        Danske Gas powers industries, engines, and champions. From
+        high-performance racing fuels to technical gases.
+      </p>
+      <p>
+        VAT: PL 525-283-81-36, REGON: 387197468, KRS: 0000861970
+        Paid up capital: 20.000.000,00 PLN  
+      </p>
+    </div>
   </div>
 );
 
@@ -111,7 +123,12 @@ const LinksSection: React.FC<LinksSectionProps> = ({
   linkClass = "text-[16px] font-normal leading-[132%] tracking-tight",
   containerClass = COMMON_CLASSES.linkSpacing,
 }) => (
-  <div className={` ${title === "Legal" ? "lg:mt-0 lg:ml-0 md:mt-[22px] md:ml-[-16px]" : ""}`}>
+  <div
+    className={` ${title === "Legal"
+      ? "lg:mt-0 lg:ml-0 md:mt-[22px] md:ml-[-16px]"
+      : ""
+      }`}
+  >
     <h3 className={`${COMMON_CLASSES.sectionTitle} ${titleClass}`}>{title}</h3>
     <ul className={containerClass}>
       {links.map((link, index) => (
@@ -128,36 +145,39 @@ const LinksSection: React.FC<LinksSectionProps> = ({
   </div>
 );
 
-interface OfficeSectionProps {
-  office: OfficeInfo;
+interface ContactSectionProps {
+  contact: ContactInfo;
   titleClass?: string;
   textClass?: string;
   containerClass?: string;
 }
 
-const OfficeSection: React.FC<OfficeSectionProps> = ({
-  office,
+const ContactSection: React.FC<ContactSectionProps> = ({
+  contact,
   titleClass = "text-[20px]",
   textClass = "text-[16px]",
-  containerClass = COMMON_CLASSES.officeSpacing,
+  containerClass = COMMON_CLASSES.contactSpacing,
 }) => (
-  <div className="2xl:w-[170px] lg:mt-0 lg:ml-0 md:mt-[6px] md:ml-[10px]">
-    <h3 className={`${COMMON_CLASSES.sectionTitle} ${titleClass}`}>Office</h3>
+  <div className="lg:mt-0 lg:ml-0 md:mt-[6px] md:ml-[10px]">
+    <h3 className={`${COMMON_CLASSES.sectionTitle} ${titleClass}`}>
+      Contacts
+    </h3>
     <div className={containerClass}>
-      <div>
-        {office.address.map((line, index) => (
+      <p className={`${textClass} text-white`}>Tel: {contact.tel}</p>
+      <p className={`${textClass} text-white`}>Fax: {contact.fax}</p>
+      <Link
+        href={`mailto:${contact.email}`}
+        className={`${textClass} ${COMMON_CLASSES.linkBase}`}
+      >
+        {contact.email}
+      </Link>
+      <div className="pt-2">
+        {contact.address.map((line, index) => (
           <p key={`address-${index}`} className={`${textClass} text-white`}>
             {line}
           </p>
         ))}
       </div>
-      <p className="text-[16px] text-white lg:mt-[20px]">{office.phone}</p>
-      <Link
-        href={`mailto:${office.email}`}
-        className={`${textClass} ${COMMON_CLASSES.linkBase}`}
-      >
-        {office.email}
-      </Link>
     </div>
   </div>
 );
@@ -175,10 +195,11 @@ const Footer: React.FC = () => {
       { name: "Terms and Conditions", href: "#" },
       { name: "Cookies Settings", href: "#" },
     ],
-    office: {
-      address: ["Wawelska 45/58,", "02-034 Warszawa"],
-      phone: "+48 780 751 724",
-      email: "email@danskegas.com",
+    contact: {
+      tel: "+48 22 490 80 00",
+      fax: "+48 22 490 80 01",
+      email: "warsaw@danskegas.com",
+      address: ["ul. Słomińskiego 7, lok. 215,", "00-195 Warszawa, Poland"],
     },
   };
 
@@ -200,9 +221,9 @@ const Footer: React.FC = () => {
                   containerClass={COMMON_CLASSES.linkSpacing}
                 />
               </div>
-              <OfficeSection
-                office={footerData.office}
-                containerClass={COMMON_CLASSES.officeSpacing}
+              <ContactSection
+                contact={footerData.contact}
+                containerClass={COMMON_CLASSES.contactSpacing}
               />
               <LinksSection
                 title="Legal"
@@ -225,8 +246,8 @@ const Footer: React.FC = () => {
               links={footerData.links}
               linkClass="text-[16px]"
             />
-            <OfficeSection
-              office={footerData.office}
+            <ContactSection
+              contact={footerData.contact}
               titleClass="text-lg"
               textClass="text-[16px]"
             />
@@ -255,8 +276,8 @@ const Footer: React.FC = () => {
                 />
               </div>
               <div className="flex-1">
-                <OfficeSection
-                  office={footerData.office}
+                <ContactSection
+                  contact={footerData.contact}
                   titleClass="text-lg"
                 />
               </div>

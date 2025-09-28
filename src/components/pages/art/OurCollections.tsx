@@ -58,7 +58,7 @@ const OurCollection: React.FC<OurCollectionProps> = ({ className = "" }) => {
                         <p>
                             Danske Gas Group proudly maintains a curated collection of modern art, featuring works by acclaimed Polish and international artists. Among the highlights are pieces by <b>Wojciech Fangor, Jerzy Nowosielski,</b> and other prominent figures of the contemporary art scene. The collection, focused primarily on painting, includes several dozen works that span a variety of styles and artistic movements.
                         </p>
-                        <p className="px-4 lg:px-5 py-4 lg:py-6">
+                        <p className="px-4 lg:px-5 py-4 lg:py-6 bg-[#F9F7F7]">
                             “We believe that a workplace should inspire more than productivity — it should also stimulate thought, creativity, and cultural appreciation. For us, art is a meaningful bridge between energy, innovation, and human expression.”
                         </p>
                     </div>

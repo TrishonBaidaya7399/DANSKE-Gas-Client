@@ -170,82 +170,85 @@ const PoweringCulture: React.FC<PoweringCultureProps> = ({ PoweringCulturePage }
                             onMouseEnter={() => setHoveredCard(event.id)}
                             onMouseLeave={() => setHoveredCard(null)}
                         >
-                            {/* Image-Container */}
-                            <div
-                                className={`relative ${originalIndex === 2
-                                    ? "md:w-[347px] md:h-[242px] w-full md:flex-shrink-0 md:order-2 lg:w-full lg:h-[242px] lg:order-none h-[242px]"
-                                    : "h-[242px] md:h-[240px] lg:h-[240px]"
-                                    }`}
-                            >
-                                <div className="relative rounded-lg">
-                                    <Image
-                                        src={event.imageUrl}
-                                        overrideSrc={event.imageUrl}
-                                        placeholder="blur"
-                                        blurDataURL={event.compressedImageUrl}
-                                        alt={event.imageAlt}
-                                        className={`rounded-[10px] object-cover ${originalIndex === 2
-                                            ? "md:w-[347px] w-full h-[242px] md:h-[242px] lg:w-[100%] lg:h-[242px]"
-                                            : "w-[100%] h-[242px] md:h-[241px] lg:h-[241px]"
-                                            }`}
-                                        priority={event.id === "1"}
-                                        height={242}
-                                        width={originalIndex === 2 ? 347 : 357}
-                                    />
-                                </div>
-                            </div>
-                            {/* Content Container */}
-                            <div
-                                className={`flex flex-col lg:pt-[8px] pl-[1px] lg:pl-0 
-                                    ${originalIndex === 2
-                                        ? "md:flex-1 md:order-1 md:pr-6 lg:pr-0 lg:order-none"
-                                        : ""
-                                    }`}
-                            >
-                                {/* Date with Vending Machine Animation */}
-                                <div className="text-[14px] md:text-[16px] text-dark-gray font-normal lg:mt-[12px] h-5 overflow-hidden relative">
+                            <div className="h-full flex flex-col justify-between">
+                                <div className="w-full">
+                                    {/* Image-Container */}
                                     <div
-                                        className={`transform transition-transform duration-400 ease-in-out ${hoveredCard === event.id
-                                            ? "-translate-y-5"
-                                            : "translate-y-0"
+                                        className={`relative ${originalIndex === 2
+                                            ? "md:w-[347px] md:h-[242px] w-full md:flex-shrink-0 md:order-2 lg:w-full lg:h-[242px] lg:order-none h-[242px]"
+                                            : "h-[242px] md:h-[240px] lg:h-[240px]"
                                             }`}
                                     >
-                                        {event.date}
+                                        <div className="relative rounded-lg">
+                                            <Image
+                                                src={event.imageUrl}
+                                                overrideSrc={event.imageUrl}
+                                                placeholder="blur"
+                                                blurDataURL={event.compressedImageUrl}
+                                                alt={event.imageAlt}
+                                                className={`rounded-[10px] object-cover ${originalIndex === 2
+                                                    ? "md:w-[347px] w-full h-[242px] md:h-[242px] lg:w-[100%] lg:h-[242px]"
+                                                    : "w-[100%] h-[242px] md:h-[241px] lg:h-[241px]"
+                                                    }`}
+                                                priority={event.id === "1"}
+                                                height={242}
+                                                width={originalIndex === 2 ? 347 : 357}
+                                            />
+                                        </div>
                                     </div>
+                                    {/* Content Container */}
                                     <div
-                                        className={`absolute top-5 left-0 transform transition-transform duration-400 ease-in-out ${hoveredCard === event.id
-                                            ? "-translate-y-5"
-                                            : "translate-y-0"
+                                        className={`flex flex-col lg:pt-[8px] pl-[1px] lg:pl-0 
+                                            ${originalIndex === 2
+                                                ? "md:flex-1 md:order-1 md:pr-6 lg:pr-0 lg:order-none"
+                                                : ""
                                             }`}
                                     >
-                                        <Link
-                                            href={`#`}
-                                            className="text-dark-gray hover:bg-gradient-to-r hover:from-[#A01800] hover:via-[#D80A00] hover:to-[#F99639] hover:bg-clip-text hover:text-transparent transition-all duration-300 hover:underline underline-offset-2"
-                                        >
-                                            By Danske Gas
-                                        </Link>
+                                        {/* Date with Vending Machine Animation */}
+                                        <div className="text-[14px] md:text-[16px] text-dark-gray font-normal lg:mt-[12px] h-5 overflow-hidden relative">
+                                            <div
+                                                className={`transform transition-transform duration-400 ease-in-out ${hoveredCard === event.id
+                                                    ? "-translate-y-5"
+                                                    : "translate-y-0"
+                                                    }`}
+                                            >
+                                                {event.date}
+                                            </div>
+                                            <div
+                                                className={`absolute top-5 left-0 transform transition-transform duration-400 ease-in-out ${hoveredCard === event.id
+                                                    ? "-translate-y-5"
+                                                    : "translate-y-0"
+                                                    }`}
+                                            >
+                                                <Link
+                                                    href={`#`}
+                                                    className="text-dark-gray hover:bg-gradient-to-r hover:from-[#A01800] hover:via-[#D80A00] hover:to-[#F99639] hover:bg-clip-text hover:text-transparent transition-all duration-300 hover:underline underline-offset-2"
+                                                >
+                                                    By Danske Gas
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        {/* Title */}
+                                        <h3 className="max-w-[300px] w-full lg:max-w-full text-[20px] lg:text-[24px] pt-[6px] tracking-[-0.2px] leading-[150%] font-normal text-black mb-1">
+                                            {event.title}
+                                        </h3>
+
+                                        {/* Description */}
+                                        <p className="text-[16px] leading-[140%] tracking-[-0.2px]">
+                                            {event.description}
+                                        </p>
                                     </div>
                                 </div>
-
-                                {/* Title */}
-                                <h3 className="max-w-[300px] w-full lg:max-w-full text-[20px] lg:text-[24px] pt-[6px] tracking-[-0.2px] leading-[150%] font-normal text-black mb-1">
-                                    {event.title}
-                                </h3>
-
-                                {/* Description */}
-                                <p className="text-[16px] leading-[140%] tracking-[-0.2px]">
-                                    {event.description}
-                                </p>
-
                                 {/* Read More Button */}
                                 <Link
                                     href={`#`}
                                     className={`inline-flex items-center gap-[18px] transition-all duration-300 self-start group
-                                        ${originalIndex === 2
+                                            ${originalIndex === 2
                                             ? "mt-[26px] md:mt-[58px] lg:mt-[26px]"
                                             : "mt-[26px] md:mt-[25px] lg:mt-[26px]"
                                         }
-                                    `}
+                                        `}
                                 >
                                     <span className="text-[12px] md:text-[16px] leading-[140%] font-medium bg-gradient-to-r from-[#A01800] via-[#D80A00] to-[#F99639] bg-clip-text text-transparent">
                                         READ MORE

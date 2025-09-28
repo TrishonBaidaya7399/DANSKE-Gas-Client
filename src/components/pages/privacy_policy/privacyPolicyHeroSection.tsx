@@ -8,7 +8,7 @@ const PrivacyPolicyHeroSection: React.FC = () => {
     return (
         <div
             className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden   
-            bg-[url('/assets/privacy-policy/hero.png')] 
+            bg-[url('/assets/privacy-policy/hero.webp')] 
             3xl:h-[476px] lg:h-[479px] md:h-[414px] h-[411px]
         `}
         >

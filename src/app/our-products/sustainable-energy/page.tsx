@@ -433,9 +433,9 @@ function sustainableEnergy() {
     <div className="w-full">
       <SustainableHero/>
 
-      <div className="pt-[58px] md:pt-[82px] 3xl:pt-[150px]">
+      {/* <div className="pt-[58px] md:pt-[82px] 3xl:pt-[150px]">
         <ProductTabs projects={products}/>
-      </div>
+      </div> */}
 
       <div className="container-custom pt-[110px] md:pt-[98px] lg:pt-[169.5px] 3xl:pt-[148.5px] pb-[134px] md:pb-[100px] lg:pb-[170px]">
         <div className="w-full max-w-[1240px] mx-auto">

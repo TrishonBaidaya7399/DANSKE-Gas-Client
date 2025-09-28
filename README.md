@@ -12,7 +12,7 @@ Built with **Next.js 15**, **React 19**, and **Tailwind CSS v4**, it delivers a 
 ## 🛠️ Technology Stack
 
 ### Framework & Core
-- **Next.js 15.4.5** – React framework with App Router
+- **Next.js 15** – React framework with App Router
 - **React 19.1.0** – Concurrent features enabled
 - **TypeScript 5** – Type-safe development
 

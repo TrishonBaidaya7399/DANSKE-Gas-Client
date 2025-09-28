@@ -9,8 +9,7 @@ import Image from "next/image";
 const members = [
     { id: 1, name: "James Bond", role: "Lorem Ipsum Name of Painting", image: "/assets/art-page/art-1.png" },
     { id: 2, name: "James Bond", role: "Lorem Ipsum Name of Painting", image: "/assets/art-page/art-2.png" },
-    { id: 3, name: "James Bond", role: "Lorem Ipsum Name of Painting", image: "/assets/art-page/art-3.png" },
-    { id: 4, name: "James Bond", role: "Lorem Ipsum Name of Painting", image: "/assets/art-page/art-2.png" },
+    { id: 3, name: "James Bond", role: "Lorem Ipsum Name of Painting", image: "/assets/art-page/art-3.png" }
 ];
 
 export default function Swiper1({

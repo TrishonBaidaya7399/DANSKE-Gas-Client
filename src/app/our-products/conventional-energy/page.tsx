@@ -68,8 +68,8 @@ const products: Product[] = [
 
       </div>
     ),
-    src_lg: "disel-lg.png",
-    src_sm: "disel.png",
+    src_lg: "disel.png",
+    src_sm: "disel-lg.png",
     link: "#",
     color: "#FFF",
   },

@@ -87,7 +87,7 @@ const OurSupply = () => {
           />
           {/* Content */}
           <motion.div
-            className="min-h-[180px] md:min-h-[236px] relative w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
+            className="min-h-[180px] sm:min-h-[162px] lg:min-h-[236px] relative w-full pl-[14px] pr-[19px] pt-[13px] pb-[32px] lg:pl-[32px] lg:pr-[24px] lg:pt-[32px] lg:pb-[56px]"
             style={{ color: useTransform(springActive, [0, 1], [inactiveText, activeText]) }}
           >
             <div className="text-end">

@@ -182,8 +182,8 @@ const Navbar: React.FC<HeaderProps> = ({ className = "" }) => {
                       <Link
                         key={index}
                         href={item.href}
-                        className={`cursor-pointer inline-block font-normal text-[20px] leading-[150%] only-lg:text-[18px] 
-                                hover:scale-110
+                        className={`cursor-pointer inline-block text-[20px] leading-[150%] only-lg:text-[18px] 
+                                hover:scale-110  ${item.isActive ? "font-semibold" : "font-normal"}
                                 transition-all duration-300 whitespace-nowrap relative group text-white`
                         }
                       >
@@ -262,15 +262,12 @@ const Navbar: React.FC<HeaderProps> = ({ className = "" }) => {
                           <Link
                             href={item.href}
                             onClick={closeMenu}
-                            className={`block px-6 py-2 font-normal text-[20px] transition-all duration-300 relative group cursor-pointer ${item.isActive
-                              ? "text-charcoal font-bold"
-                              : "text-charcoal"
-                              }`}
+                            className={`block whitespace-nowrap px-6 py-2 text-[20px] transition-all duration-300 relative group cursor-pointer 
+                              ${item.isActive ? "text-charcoal font-semibold" : "text-charcoal font-normal"}`}
                           >
                             <span className="relative inline-block">
                               <span
-                                className={`transition-opacity duration-300 ${item.isActive ? "" : "group-hover:opacity-0"
-                                  }`}
+                                className={`transition-opacity duration-300 ${item.isActive ? "" : "group-hover:opacity-0"}`}
                               >
                                 {item.label}
                               </span>
@@ -377,8 +374,8 @@ const Navbar: React.FC<HeaderProps> = ({ className = "" }) => {
                         <Link
                           key={index}
                           href={item.href}
-                          className={`cursor-pointer inline-block font-normal text-[20px] leading-[150%] only-lg:text-[18px] 
-                              hover:scale-110
+                          className={`cursor-pointer inline-block text-[20px] leading-[150%] only-lg:text-[18px] 
+                              hover:scale-110 ${item.isActive ? "font-semibold" : "font-normal"}
                               transition-all duration-300 whitespace-nowrap relative group text-white`
                           }
                         >
@@ -386,8 +383,7 @@ const Navbar: React.FC<HeaderProps> = ({ className = "" }) => {
                           {item.label}
 
                           <span
-                            className={`absolute left-0 -bottom-0 h-[1px] bg-white transition-all duration-300 ${item.isActive ? "w-full" : "w-0 group-hover:w-full"
-                              }`}
+                            className={`absolute left-0 -bottom-0 h-[1px] bg-white transition-all duration-300 ${item.isActive ? "w-full" : "w-0 group-hover:w-full"}`}
                           ></span>
                         </Link>
                       ))}
@@ -458,9 +454,9 @@ const Navbar: React.FC<HeaderProps> = ({ className = "" }) => {
                             <Link
                               href={item.href}
                               onClick={closeMenu}
-                              className={`block px-6 py-2 font-normal text-[20px] transition-all duration-300 relative group cursor-pointer ${item.isActive
-                                ? "text-charcoal font-bold"
-                                : "text-charcoal"
+                              className={`block whitespace-nowrap px-6 py-2 text-[20px] transition-all duration-300 relative group cursor-pointer ${item.isActive
+                                ? "text-charcoal font-semibold"
+                                : "text-charcoal font-normal"
                                 }`}
                             >
                               <span className="relative inline-block">
