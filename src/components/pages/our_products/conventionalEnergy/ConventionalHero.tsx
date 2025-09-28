@@ -61,7 +61,7 @@ const ConventionalHero: React.FC<ConventionalHeroProps> = ({
       <div
         className={`w-full relative bg-cover bg-center bg-no-repeat overflow-hidden   
             3xl:bg-[url('/assets/OurProduct-page/conventional-energy/hero-1920.png')] 3xl:h-[670px]
-            lg:bg-[url('/assets/OurProduct-page/conventional-energy/hero-1920.png')] lg:h-[680px]
+            lg:bg-[url('/assets/OurProduct-page/conventional-energy/hero-1440.png')] lg:h-[680px]
             md:bg-[url('/assets/OurProduct-page/conventional-energy/hero-834.png')] md:h-[414px]
             bg-[url('/assets/OurProduct-page/conventional-energy/hero-402.png')] h-[410px]
         `}
