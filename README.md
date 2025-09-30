@@ -5,7 +5,7 @@
 **Live Demo:** [https://danske-gas.vercel.app](https://danske-gas.vercel.app)
 
 A modern, responsive website for **Danske Gas** – a leading industrial gas supplier.  
-Built with **Next.js 15**, **React 19**, and **Tailwind CSS v4**, it delivers a professional design, smooth animations, and seamless performance.
+Built with **Next.js 15**, **React 19**, and **Tailwind CSS v4**, it delivers a professional design, smooth animations, and seamless performance
 
 ---
 
